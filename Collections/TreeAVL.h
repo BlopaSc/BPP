@@ -12,6 +12,7 @@ namespace bpp{
 template <class Key, class T, class Compare = std::less<Key>,class Allocator = std::allocator<std::pair<const Key, T>>> class TreeAVL{
 	private:
 		struct NodeAVL;
+		class iterator_base;
 		// Rebind Allocator
 		using AllocatorNodes = typename std::allocator_traits<Allocator>::rebind_alloc<NodeAVL>;
 	public:
@@ -48,11 +49,39 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Allocator get_allocator() const noexcept;
 		
 		// Element access
-		T& at(const Key& key);
+		const T& at(const Key& key) const;
 		T& operator[](const Key& key);
 		T& operator[](Key&& key);
 		
 		// Iterators
+		class iterator : public iterator_base{
+			public:
+				iterator(NodeAVL* init=0);
+				std::pair<Key, T>& operator*() const;
+				std::pair<Key, T>* operator->() const;
+				iterator& operator++();
+		};
+		class const_iterator;
+		class reverse_iterator : public iterator_base{
+			public:
+				reverse_iterator(NodeAVL* init=0);
+				std::pair<Key, T>& operator*() const;
+				std::pair<Key, T>* operator->() const;
+				reverse_iterator& operator++();
+		};
+		class const_reverse_iterator;
+		iterator begin() const;
+		// const_iterator begin() const;
+		// const_iterator cbegin() const;
+		iterator end() const;
+		// const_iterator end() const;
+		// const_iterator cend() const;
+		reverse_iterator rbegin() const;
+		// const_reverse_iterator rbegin() const;
+		// const_reverse_iterator crbegin() const;
+		reverse_iterator rend() const;
+		// const_reverse_iterator rend() const;
+		// const_reverse_iterator crend() const;
 		
 		// Capacity
 		bool empty() const;
@@ -62,8 +91,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Nested class NodeAVL
 		struct NodeAVL{
 			NodeAVL *parent,*leftChild,*rightChild;
-			Key key;
-			T value;
+			std::pair<Key,T> data;
 			std::size_t height;
 			void create(const Key& key, NodeAVL* parent=0);
 			void create(Key&& key, NodeAVL* parent=0);
@@ -83,6 +111,14 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline static NodeAVL* rotation_RR(NodeAVL* source);
 		inline static NodeAVL* rotation_LR(NodeAVL* source);
 		inline static NodeAVL* rotation_RL(NodeAVL* source);
+		// Iterator base class
+		class iterator_base{
+			protected:
+				NodeAVL* current;
+			public:
+				bool operator ==(const iterator_base& other) const;
+				bool operator !=(const iterator_base& other) const;
+		};
 };
 
 	}
