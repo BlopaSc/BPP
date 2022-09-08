@@ -65,6 +65,13 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	this->count = other.count;
 	return *this;
 }
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>& TreeAVL<Key,T,Compare,Allocator>::operator=(std::initializer_list<std::pair<const Key, T>> ilist){
+	this->clear();
+	for(auto it : ilist){
+		this->get_forward(it.first)->data.second = it.second;
+	}
+	return *this;
+}
 
 // Get allocator
 
@@ -91,7 +98,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	while(this->current && this->current->leftChild){ this->current = this->current->leftChild; }
 }
 template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>& TreeAVL<Key,T,Compare,Allocator>::iterator::operator*() const{
-	return this->current ? this->current->data : std::pair<Key, T>();
+	return this->current ? this->current->data : this->nullvalue;
 }
 template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>* TreeAVL<Key,T,Compare,Allocator>::iterator::operator->() const{
 	return this->current ? &this->current->data : 0;
@@ -154,6 +161,17 @@ template <class Key, class T, class Compare, class Allocator> std::size_t TreeAV
 	return this->count;
 }
 
+// Modifiers
+// Clear
+template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::clear(){
+	if(this->root){
+		this->root->destroy(this->alloc);
+		this->root = 0;
+		this->count = 0;
+	}
+}
+
+
 // Nested class NodeAVL
 template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::create(const Key& key, NodeAVL* parent){
 	this->parent = parent;
@@ -170,6 +188,8 @@ template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,
 	this->height = 0;
 }
 template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::destroy(AllocatorNodes& alloc){
+	if(this->leftChild){ this->leftChild->destroy(alloc); }
+	if(this->rightChild){ this->rightChild->destroy(alloc); }
 	std::destroy_at<NodeAVL>(this);
 	alloc.deallocate(this,1);
 }

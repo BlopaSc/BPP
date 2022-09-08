@@ -43,7 +43,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Assignment
 		TreeAVL& operator=(const TreeAVL& other);
 		TreeAVL& operator=(TreeAVL&& other);
-		//TreeAVL& operator=(std::initializer_list<value_type> ilist);
+		TreeAVL& operator=(std::initializer_list<std::pair<const Key, T>> ilist);
 		
 		// Get allocator
 		// Allocator get_allocator() const noexcept;
@@ -87,6 +87,24 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		bool empty() const;
 		std::size_t size() const;
 		
+		// Modifiers
+		// Clear
+		void clear();
+		// Insert
+		std::pair<iterator, bool> insert(const std::pair<const Key, T>& value);
+		// template<class P> std::pair<iterator, bool> insert(P&& value);
+		std::pair<iterator, bool> insert(std::pair<const Key, T>&& value);
+		iterator insert(iterator_base hint, const std::pair<const Key, T>& value);
+		// template<class P> iterator insert(const_iterator hint, P&& value);
+		iterator insert(iterator_base hint, std::pair<const Key, T>&& value);
+		template<class InputIt> void insert(InputIt first, InputIt last);
+		void insert(std::initializer_list<std::pair<const Key, T>> ilist);
+		// Insert or Assign
+		
+		// Erase
+		
+		
+		
 	private:
 		// Nested class NodeAVL
 		struct NodeAVL{
@@ -113,11 +131,12 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline static NodeAVL* rotation_RL(NodeAVL* source);
 		// Iterator base class
 		class iterator_base{
-			protected:
-				NodeAVL* current;
 			public:
 				bool operator ==(const iterator_base& other) const;
 				bool operator !=(const iterator_base& other) const;
+			protected:
+				NodeAVL* current;
+				static std::pair<Key, T> nullvalue;
 		};
 };
 
