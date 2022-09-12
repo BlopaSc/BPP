@@ -26,7 +26,16 @@ The only requirement for this library is that it is written using the C++20, the
 
 This library doesn't requires any kind of installation, you can include the documents straight into your code, or if you are using a makefile you can handle compilation through the .h with the .cpp.
 
-## Directories
+## Directories and Namespaces
+
+### Namespaces
+
+All libraries belonging to B++ will be contained inside the `bpp` namespace. However to keep order withing the namespace, `bpp` will contain additional namespaces within it to organize the different libraries within it.
+
+### Directories
+
+The main directories are listed below as well as their general purpose. The corresponding nested list will include the namespaces used inside the directory and the corresponding classes within the namespace. (E.g: `TreeAVL` would be located in the `bpp::map` namespace).
 
 - Collections: In here you will find all data-structures related classes and algorithms.
+	- `map`: TreeAVL
 
