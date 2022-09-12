@@ -105,16 +105,29 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		template <class M> std::pair<iterator, bool> insert_or_assign(iterator_base hint, const Key& k, M&& obj);
 		template <class M> std::pair<iterator, bool> insert_or_assign(iterator_base hint, Key&& k, M&& obj);
 		// Erase
+		iterator erase(iterator pos);
+		// iterator erase(const_iterator);
+		// iterator erase(iterator first, iterator last);
+		// iterator erase(const_iterator_base first, const_iterator last);
+		std::size_t erase(const Key& key);
+		template<class K> std::size_t erase(K&& key);
 		
 		// Lookup
 		// Count
 		template<class K> std::size_t count(const K& key) const;
 		// Find
+		template<class K> iterator find(const K& key);
+		// template<class K> const_iterator find(const K& key) const;
 		// Contains
+		template<class K> bool contains(const K& key) const;
+		// Bounds
 		
 		// Operators
 		template<class A,class B,class C,class D> bool operator==(const TreeAVL<A,B,C,D>& other) const;
 		template<class A,class B,class C,class D> bool operator!=(const TreeAVL<A,B,C,D>& other) const;
+		
+		// Non-member
+		
 		
 		
 	private:
@@ -138,6 +151,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline NodeAVL* get_forward(Key&& key);
 		inline NodeAVL* get_forward(const Key& key, NodeAVL* hint);
 		inline NodeAVL* get_forward(Key&& key, NodeAVL* hint);
+		inline NodeAVL* remove_node(NodeAVL* src);
 		inline void rebalance(NodeAVL *source);
 		inline static NodeAVL* rotation_LL(NodeAVL* source);
 		inline static NodeAVL* rotation_RR(NodeAVL* source);

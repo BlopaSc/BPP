@@ -95,7 +95,6 @@ template <class Key, class T, class Compare, class Allocator> T& TreeAVL<Key,T,C
 // Iterator
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator::iterator(NodeAVL* init){
 	this->current = init;
-	while(this->current && this->current->leftChild){ this->current = this->current->leftChild; }
 }
 template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>& TreeAVL<Key,T,Compare,Allocator>::iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
@@ -118,7 +117,6 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 // Reverse Iterator
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::reverse_iterator(NodeAVL* init){
 	this->current = init;
-	while(this->current && this->current->rightChild){ this->current = this->current->rightChild; }
 }
 template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator*() const{
 	return this->current ? this->current->data : std::pair<Key, T>();
@@ -141,13 +139,17 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 
 // Iterator generation methods
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::begin() const{
-	return iterator(this->root);
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->leftChild){ tmp = tmp->leftChild; }
+	return iterator(tmp);
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::end() const{
 	return iterator();
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rbegin() const{
-	return reverse_iterator(this->root);
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->rightChild){ tmp = tmp->rightChild; }
+	return reverse_iterator(tmp);
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rend() const{
 	return reverse_iterator();
@@ -235,19 +237,46 @@ template <class Key, class T, class Compare, class Allocator> template <class M>
 	return std::pair<iterator, bool>(iterator(tmp), pcounter != this->counter);
 }
 // Erase
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::erase(iterator pos){
+	NodeAVL *tmp = pos.current;
+	const Key k = pos.current->data.first;
+	tmp = this->remove_node(tmp);
+	iterator it = iterator(tmp);
+	if(tmp && this->cmp(tmp->data.first, k)){ ++it; }
+	return it;
+}
+template <class Key, class T, class Compare, class Allocator> std::size_t TreeAVL<Key,T,Compare,Allocator>::erase(const Key& key){
+	NodeAVL *tmp = this->root;
+	while(tmp && tmp->data.first!=key){ tmp = this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild; }
+	this->remove_node(tmp);
+	return tmp ? 1 : 0;
+}
+template <class Key, class T, class Compare, class Allocator> template<class K> std::size_t TreeAVL<Key,T,Compare,Allocator>::erase(K&& key){
+	NodeAVL *tmp = this->root;
+	while(tmp && tmp->data.first!=key){ tmp = this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild; }
+	this->remove_node(tmp);
+	return tmp ? 1 : 0;
+}
 
 // Lookup
 // Count
 template <class Key, class T, class Compare, class Allocator> template<class K> std::size_t TreeAVL<Key,T,Compare,Allocator>::count(const K& key) const{
 	NodeAVL* tmp = this->root;
-	while(tmp && tmp->data.first!=key){
-		tmp = this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild;
-	}
+	while(tmp && tmp->data.first!=key){ tmp = this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild; }
 	return tmp ? 1 : 0;
 }
 // Find
+template <class Key, class T, class Compare, class Allocator> template<class K> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::find(const K& key){
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->data.first!=key){ tmp = (this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild); }
+	return iterator(tmp);
+}
 // Contains
-
+template <class Key, class T, class Compare, class Allocator> template<class K> bool TreeAVL<Key,T,Compare,Allocator>::contains(const K& key) const{
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->data.first!=key){ tmp = this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild; }
+	return tmp;
+}
 
 
 // Nested class NodeAVL
@@ -300,7 +329,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 			tmp = this->alloc.allocate(1);
 			tmp->create(key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
-			rebalance(parent);
+			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
@@ -322,7 +351,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 			tmp = this->alloc.allocate(1);
 			tmp->create(key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
-			rebalance(parent);
+			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
@@ -345,7 +374,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 			tmp = this->alloc.allocate(1);
 			tmp->create(key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
-			rebalance(parent);
+			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
@@ -368,7 +397,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 			tmp = this->alloc.allocate(1);
 			tmp->create(key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
-			rebalance(parent);
+			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
@@ -378,6 +407,37 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 		this->counter++;
 	}
 	return tmp;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL* TreeAVL<Key,T,Compare,Allocator>::remove_node(TreeAVL<Key,T,Compare,Allocator>::NodeAVL* src){
+	NodeAVL *tmp = src, *result = src;
+	bool leftChild;
+	if(src){
+		this->counter--;
+		if(tmp->rightChild){
+			tmp = tmp->rightChild;
+			leftChild = tmp->leftChild;
+			while(tmp->leftChild){ tmp = tmp->leftChild; }
+			*(leftChild ? &(tmp->parent->leftChild):&(tmp->parent->rightChild)) = tmp->rightChild;
+			if(tmp->rightChild){
+				tmp->rightChild->parent = tmp->parent;
+				tmp->rightChild = 0;
+			}
+			src->data = tmp->data;
+		}else if(tmp->leftChild){
+			tmp = tmp->leftChild;
+			src->data = tmp->data;
+			tmp->parent->leftChild = 0;
+		}else{
+			if(result = tmp->parent){
+				*((tmp->parent->leftChild == tmp) ? &(tmp->parent->leftChild):&(tmp->parent->rightChild)) = 0;
+			}else{
+				this->root = 0;
+			}
+		}
+		if(tmp->parent){ this->rebalance(tmp->parent); }
+		tmp->destroy(this->alloc);
+	}
+	return result;
 }
 template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::rebalance(NodeAVL *source){
 	do{
