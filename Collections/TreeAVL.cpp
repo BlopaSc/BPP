@@ -278,6 +278,69 @@ template <class Key, class T, class Compare, class Allocator> template<class K> 
 	return tmp;
 }
 
+// Bounds
+template <class Key, class T, class Compare, class Allocator> template<class K> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::lower_bound(const K& key){
+	NodeAVL *tmp = this->root, *prev = 0;
+	while(tmp && tmp->data.first!=key){
+		prev = tmp;
+		tmp = (this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild);
+	}
+	iterator it(tmp ? tmp : prev);
+	if(it.current && this->cmp(it.current->data.first, key)){ ++it; }
+	return it;
+}
+template <class Key, class T, class Compare, class Allocator> template<class K> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::upper_bound(const K& key){
+	NodeAVL *tmp = this->root, *prev = 0;
+	while(tmp && tmp->data.first!=key){
+		prev = tmp;
+		tmp = (this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild);
+	}
+	iterator it(tmp ? tmp : prev);
+	if(it.current && (it.current->data.first==key || this->cmp(it.current->data.first, key))){ ++it; }
+	return it;
+}
+template <class Key, class T, class Compare, class Allocator> template<class K> std::pair<typename TreeAVL<Key,T,Compare,Allocator>::iterator, typename TreeAVL<Key,T,Compare,Allocator>::iterator> TreeAVL<Key,T,Compare,Allocator>::equal_range(const K& key){
+	return std::pair<iterator,iterator>(this->lower_bound(key), this->upper_bound(key));
+}
+
+// Non-member functions
+// Operators
+template<class A,class B,class C,class D> bool operator==(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs){
+	bool result;
+	if(result = (lhs.size() == rhs.size())){
+		auto it = lhs.begin(), ito = rhs.begin(), ite = lhs.end();
+		while(it != ite){
+			if((*it) != (*ito)){ return false; }
+			++it;
+			++ito;
+		}
+	}
+	return result;
+}
+template<class A,class B,class C,class D> std::strong_ordering operator<=>(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs){
+	auto it = lhs.begin(), ito = rhs.begin(), ite = lhs.end(), itoe = rhs.end();
+	while(it != ite && ito != itoe){
+		if((*it) != (*ito)){ break; }
+		++it;
+		++ito;
+	}
+	if(it == ite && ito == itoe){ return std::strong_ordering::equal; }
+	if(it == ite){ return std::strong_ordering::less; }
+	if(ito == itoe || (*ito) < (*it)){ return std::strong_ordering::greater; }
+	return std::strong_ordering::less;
+}
+// Other
+template<class A,class B,class C,class D, class Pred> std::size_t erase_if(TreeAVL<A,B,C,D>& tree, Pred pred){
+	auto original = tree.size();
+	for (auto i = tree.begin(), last = tree.end(); i != last; ){
+		if(pred(*i)){
+			i = tree.erase(i);
+		}else{
+			++i;
+		}
+	}
+	return original - tree.size();
+}
 
 // Nested class NodeAVL
 template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::create(const Key& key, NodeAVL* parent){
@@ -501,6 +564,8 @@ template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T
 template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T,Compare,Allocator>::iterator_base::operator!=(const TreeAVL<Key,T,Compare,Allocator>::iterator_base& other) const{
 	return this->current != other.current;
 }
+
+template <class Key, class T, class Compare, class Allocator> std::pair<Key, T> TreeAVL<Key,T,Compare,Allocator>::iterator_base::nullvalue;
 
 	}
 }

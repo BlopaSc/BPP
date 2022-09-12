@@ -1,5 +1,6 @@
 #ifndef TREEAVL_H
 #define TREEAVL_H
+#include <compare>			// std::strong_ordering
 #include <functional>		// std::less
 #include <initializer_list>	// std::initializer_list<>
 #include <memory>			// std::allocator, std::allocator_traits<>
@@ -121,14 +122,19 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Contains
 		template<class K> bool contains(const K& key) const;
 		// Bounds
-		
-		// Operators
-		template<class A,class B,class C,class D> bool operator==(const TreeAVL<A,B,C,D>& other) const;
-		template<class A,class B,class C,class D> bool operator!=(const TreeAVL<A,B,C,D>& other) const;
+		template<class K> iterator lower_bound(const K& key);
+		// template<class K> const_iterator lower_bound(const K& key);
+		template<class K> iterator upper_bound(const K& key);
+		// template<class K> const_iterator upper_bound(const K& key);
+		template<class K> std::pair<iterator,iterator> equal_range(const K& key);
+		// template<class K> std::pair<const_iterator,const_iterator> equal_range(const K& key);
 		
 		// Non-member
-		
-		
+		// Operators
+		template<class A,class B,class C,class D> friend bool operator==(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
+		template<class A,class B,class C,class D> friend std::strong_ordering operator<=>(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
+		// Other
+		template<class A,class B,class C,class D, class Pred> friend std::size_t erase_if(TreeAVL<A,B,C,D>& tree, Pred pred);
 		
 	private:
 		// Nested class NodeAVL
