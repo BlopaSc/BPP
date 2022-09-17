@@ -43,7 +43,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		
 		// Assignment
 		TreeAVL& operator=(const TreeAVL& other);
-		TreeAVL& operator=(TreeAVL&& other);
+		TreeAVL& operator=(TreeAVL&& other) noexcept;
 		TreeAVL& operator=(std::initializer_list<std::pair<const Key, T>> ilist);
 		
 		// Get allocator
@@ -71,26 +71,26 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 				reverse_iterator& operator++();
 		};
 		class const_reverse_iterator;
-		iterator begin() const;
-		// const_iterator begin() const;
-		// const_iterator cbegin() const;
-		iterator end() const;
-		// const_iterator end() const;
-		// const_iterator cend() const;
-		reverse_iterator rbegin() const;
-		// const_reverse_iterator rbegin() const;
-		// const_reverse_iterator crbegin() const;
-		reverse_iterator rend() const;
-		// const_reverse_iterator rend() const;
-		// const_reverse_iterator crend() const;
+		iterator begin() const noexcept;
+		// const_iterator begin() const noexcept;
+		// const_iterator cbegin() const noexcept;
+		iterator end() const noexcept;
+		// const_iterator end() const noexcept;
+		// const_iterator cend() const noexcept;
+		reverse_iterator rbegin() const noexcept;
+		// const_reverse_iterator rbegin() const noexcept;
+		// const_reverse_iterator crbegin() const noexcept;
+		reverse_iterator rend() const noexcept;
+		// const_reverse_iterator rend() const noexcept;
+		// const_reverse_iterator crend() const noexcept;
 		
 		// Capacity
-		bool empty() const;
-		std::size_t size() const;
+		bool empty() const noexcept;
+		std::size_t size() const noexcept;
 		
 		// Modifiers
 		// Clear
-		void clear();
+		void clear() noexcept;
 		// Insert
 		std::pair<iterator, bool> insert(const std::pair<const Key, T>& value);
 		// template<class P> std::pair<iterator, bool> insert(P&& value);
