@@ -1,9 +1,5 @@
-#ifndef TREEAVL_CPP
-#define TREEAVL_CPP
-#include "TreeAVL.h"
-
-namespace bpp{
-	namespace map{
+#ifndef BPP_MAP_TREEAVL_CPP
+#define BPP_MAP_TREEAVL_CPP
 
 // Empty initialization
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(){
@@ -566,8 +562,5 @@ template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T
 }
 
 template <class Key, class T, class Compare, class Allocator> std::pair<Key, T> TreeAVL<Key,T,Compare,Allocator>::iterator_base::nullvalue;
-
-	}
-}
 
 #endif

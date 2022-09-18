@@ -1,0 +1,4 @@
+# Ignores the following directories
+
+Tests/
+docs/html
