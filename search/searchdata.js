@@ -4,7 +4,9 @@ var indexSectionsWithContent =
   1: "irt",
   2: "b",
   3: "abcefilorstu~",
-  4: "eo"
+  4: "eo",
+  5: "c",
+  6: "b"
 };
 
 var indexSectionNames =
@@ -13,7 +15,9 @@ var indexSectionNames =
   1: "classes",
   2: "namespaces",
   3: "functions",
-  4: "related"
+  4: "related",
+  5: "groups",
+  6: "pages"
 };
 
 var indexSectionLabels =
@@ -22,6 +26,8 @@ var indexSectionLabels =
   1: "Data Structures",
   2: "Namespaces",
   3: "Functions",
-  4: "Friends"
+  4: "Friends",
+  5: "Modules",
+  6: "Pages"
 };
 

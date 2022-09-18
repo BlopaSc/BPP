@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7etreeavl_0',['~TreeAVL',['../da/d53/class_tree_a_v_l.html#a5e84334f60d86836e3dc245a9b8da4f5',1,'TreeAVL']]]
+  ['_7etreeavl_0',['~TreeAVL',['../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#adffe51a09fd6ba462a480d5c946591d5',1,'bpp::map::TreeAVL']]]
 ];

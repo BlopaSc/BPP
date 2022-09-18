@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['clear_0',['clear',['../da/d53/class_tree_a_v_l.html#a616297ef38bbb06034dee80a9d806b3c',1,'TreeAVL']]],
-  ['contains_1',['contains',['../da/d53/class_tree_a_v_l.html#aaa20b71d6c7cd55d42b09f3148dc6ade',1,'TreeAVL']]],
-  ['count_2',['count',['../da/d53/class_tree_a_v_l.html#af8205a4fbaf4b40b5f178a1639f85090',1,'TreeAVL']]]
+  ['clear_0',['clear',['../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#a34a82ff67e7ce5a9c8ae4b3c26458e20',1,'bpp::map::TreeAVL']]],
+  ['collections_1',['Collections',['../db/dbe/group__group__collections.html',1,'']]],
+  ['contains_2',['contains',['../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#af5fab7541b538330e6e513036f12886b',1,'bpp::map::TreeAVL']]],
+  ['count_3',['count',['../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#ad0865d7643604b80d1a412b4dff985fc',1,'bpp::map::TreeAVL']]]
 ];
