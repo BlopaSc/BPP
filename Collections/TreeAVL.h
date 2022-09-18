@@ -1,13 +1,14 @@
 #ifndef BPP_MAP_TREEAVL_H
 #define BPP_MAP_TREEAVL_H
-#ifndef BPP_COLLECTIONS_STANDALONE
 #include <compare>			// std::strong_ordering
 #include <functional>		// std::less
 #include <initializer_list>	// std::initializer_list<>
 #include <memory>			// std::allocator, std::allocator_traits<>
 #include <stdexcept>		// std::out_of_range
 #include <utility>			// std::pair, std::swap
-#endif
+
+namespace bpp{
+	namespace map{
 
 //! TreeAVL is a sorted associative container that contains key-value pairs with unique keys. Keys are sorted by using the comparison function Compare. Search, removal, and insertion operations have logarithmic complexity. This is an implementation of an Adelson-Velsky and Landis Tree.
 template <class Key, class T, class Compare = std::less<Key>,class Allocator = std::allocator<std::pair<const Key, T>>> class TreeAVL{
@@ -221,5 +222,8 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 };
 
 #include "TreeAVL.cpp"
+
+	}
+}
 
 #endif

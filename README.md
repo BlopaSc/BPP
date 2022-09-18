@@ -6,6 +6,8 @@ The repository is built and mantained by Blopa SC., it comes with no guarantees 
 
 If you discover a bug, feel free to send me a message with your discovery; and/or if you patched it, please send a pull request to the repository.
 
+The documentation for the contained library can be found [here](https://blopasc.github.io/BPP/). 
+
 ## About me
 
 I am just a programmer who likes building data structures and some other clever algorithms in his free time. I am trying to make the library as similar to STL as possible to allow the easy utilization of the library, but sometimes differences may occur.
