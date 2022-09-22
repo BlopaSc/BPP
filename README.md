@@ -2,17 +2,11 @@
 
 Is a collection of C++ libraries and classes which can come in handy.
 
-The repository is built and mantained by Blopa SC., it comes with no guarantees but feel free to use.
+The repository is built and (currently) maintained by Blopa Sc., it comes with no guarantees but feel free to use.
 
-If you discover a bug, feel free to send me a message with your discovery; and/or if you patched it, please send a pull request to the repository.
+If you want to collaborate with the development of the project, feel free to message me, fork the project, or send a pull request. If you discover a bug: please notify me; if you already patched it: please send a pull request to the repository.
 
-The documentation for the contained library can be found [here](https://blopasc.github.io/BPP/). 
-
-## About me
-
-I am just a programmer who likes building data structures and some other clever algorithms in his free time. I am trying to make the library as similar to STL as possible to allow the easy utilization of the library, but sometimes differences may occur.
-
-I know these kind of projects should usually be worked with forks, but I will be commiting to the master branch a lot. This is my repository and I don't expect anyone else to be working on it. However, I will do my best to stick to a single class at a time.
+Check out the **documentation**: [BPP documentation](https://blopasc.github.io/BPP/)
 
 ## Installation and requirements
 
@@ -26,7 +20,7 @@ The only requirement for this library is that it is written using the C++20, the
 
 ### Installation
 
-This library doesn't requires any kind of installation, you can include the documents straight into your code, or if you are using a makefile you can handle compilation through the .h with the .cpp.
+This library doesn't requires any kind of installation, you can include the documents straight into your code.
 
 ## Directories and Namespaces
 
@@ -41,3 +35,6 @@ The main directories are listed below as well as their general purpose. The corr
 - Collections: In here you will find all data-structures related classes and algorithms.
 	- `map`: TreeAVL
 
+## Contributors
+
+- [BlopaSc](https://github.com/BlopaSc)
