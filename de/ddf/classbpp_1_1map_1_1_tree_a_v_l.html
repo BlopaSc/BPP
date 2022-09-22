@@ -95,23 +95,48 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> ()</td></tr>
 <tr class="memdesc:aceb1c6e193ecde84efcf94a3f6403bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty container. <br /></td></tr>
 <tr class="separator:aceb1c6e193ecde84efcf94a3f6403bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a296e8e32d0605d8782aa4f46a63c6b7b"><td class="memTemplParams" colspan="2"><a id="a296e8e32d0605d8782aa4f46a63c6b7b" name="a296e8e32d0605d8782aa4f46a63c6b7b"></a>
+<tr class="memitem:a295ca38b00bd257edf4a0ddaafd70cc0"><td class="memItemLeft" align="right" valign="top"><a id="a295ca38b00bd257edf4a0ddaafd70cc0" name="a295ca38b00bd257edf4a0ddaafd70cc0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (const Compare &amp;comp, const Allocator &amp;alloc=Allocator())</td></tr>
+<tr class="memdesc:a295ca38b00bd257edf4a0ddaafd70cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty container. Receives the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:a295ca38b00bd257edf4a0ddaafd70cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad7239d5adba0f9c24a3cab269b7892f"><td class="memItemLeft" align="right" valign="top"><a id="aad7239d5adba0f9c24a3cab269b7892f" name="aad7239d5adba0f9c24a3cab269b7892f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (const Allocator &amp;alloc)</td></tr>
+<tr class="memdesc:aad7239d5adba0f9c24a3cab269b7892f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty container. Receives the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:aad7239d5adba0f9c24a3cab269b7892f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab71f67dd6f402ab1f2feb0cdcafb37b0"><td class="memTemplParams" colspan="2"><a id="ab71f67dd6f402ab1f2feb0cdcafb37b0" name="ab71f67dd6f402ab1f2feb0cdcafb37b0"></a>
 template&lt;class InputIt &gt; </td></tr>
-<tr class="memitem:a296e8e32d0605d8782aa4f46a63c6b7b"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>TreeAVL</b> (InputIt first, InputIt last)</td></tr>
-<tr class="memdesc:a296e8e32d0605d8782aa4f46a63c6b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. <br /></td></tr>
-<tr class="separator:a296e8e32d0605d8782aa4f46a63c6b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab71f67dd6f402ab1f2feb0cdcafb37b0"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>TreeAVL</b> (InputIt first, InputIt last, const Compare &amp;comp=Compare(), const Allocator &amp;alloc=Allocator())</td></tr>
+<tr class="memdesc:ab71f67dd6f402ab1f2feb0cdcafb37b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Can receive the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:ab71f67dd6f402ab1f2feb0cdcafb37b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae633b483fdef983e8e1a5341c9b2fa7"><td class="memTemplParams" colspan="2"><a id="aae633b483fdef983e8e1a5341c9b2fa7" name="aae633b483fdef983e8e1a5341c9b2fa7"></a>
+template&lt;class InputIt &gt; </td></tr>
+<tr class="memitem:aae633b483fdef983e8e1a5341c9b2fa7"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>TreeAVL</b> (InputIt first, InputIt last, const Allocator &amp;alloc)</td></tr>
+<tr class="memdesc:aae633b483fdef983e8e1a5341c9b2fa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Receives the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:aae633b483fdef983e8e1a5341c9b2fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18413e575b41fd487afda597dc23533d"><td class="memItemLeft" align="right" valign="top"><a id="a18413e575b41fd487afda597dc23533d" name="a18413e575b41fd487afda597dc23533d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (const <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a> &amp;other)</td></tr>
 <tr class="memdesc:a18413e575b41fd487afda597dc23533d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. Constructs the container with the copy of the contents of other. <br /></td></tr>
 <tr class="separator:a18413e575b41fd487afda597dc23533d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9288edbeadec77fdb0074f433870848"><td class="memItemLeft" align="right" valign="top"><a id="ab9288edbeadec77fdb0074f433870848" name="ab9288edbeadec77fdb0074f433870848"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (const <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a> &amp;other, const Allocator &amp;alloc)</td></tr>
+<tr class="memdesc:ab9288edbeadec77fdb0074f433870848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. Constructs the container with the copy of the contents of other. Receives the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:ab9288edbeadec77fdb0074f433870848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1108e3487553e1cfd913e3b7bb7dcd55"><td class="memItemLeft" align="right" valign="top"><a id="a1108e3487553e1cfd913e3b7bb7dcd55" name="a1108e3487553e1cfd913e3b7bb7dcd55"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (<a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a> &amp;&amp;other)</td></tr>
-<tr class="memdesc:a1108e3487553e1cfd913e3b7bb7dcd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. Constructs the container with the contents of other using move semantics. <br /></td></tr>
+<tr class="memdesc:a1108e3487553e1cfd913e3b7bb7dcd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is guaranteed to be <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#af415e32537b81924ff9f0c67ac92038d" title="Checks if the container has no elements, i.e. whether begin() == end().">empty()</a>. <br /></td></tr>
 <tr class="separator:a1108e3487553e1cfd913e3b7bb7dcd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23ebf942e2dd608b9eba28e21bd29d72"><td class="memItemLeft" align="right" valign="top"><a id="a23ebf942e2dd608b9eba28e21bd29d72" name="a23ebf942e2dd608b9eba28e21bd29d72"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (std::initializer_list&lt; std::pair&lt; const Key, T &gt; &gt; ilist)</td></tr>
-<tr class="memdesc:a23ebf942e2dd608b9eba28e21bd29d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the container with the contents of the initializer list init. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. <br /></td></tr>
-<tr class="separator:a23ebf942e2dd608b9eba28e21bd29d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf4ed09c391ef8d9b2425f85fc0c0f11"><td class="memItemLeft" align="right" valign="top"><a id="abf4ed09c391ef8d9b2425f85fc0c0f11" name="abf4ed09c391ef8d9b2425f85fc0c0f11"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (<a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a> &amp;&amp;other, const Allocator &amp;alloc)</td></tr>
+<tr class="memdesc:abf4ed09c391ef8d9b2425f85fc0c0f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is guaranteed to be <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#af415e32537b81924ff9f0c67ac92038d" title="Checks if the container has no elements, i.e. whether begin() == end().">empty()</a>. Receives the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:abf4ed09c391ef8d9b2425f85fc0c0f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e0ac63a6c7ace5f1cf5bdcacc234bb"><td class="memItemLeft" align="right" valign="top"><a id="a46e0ac63a6c7ace5f1cf5bdcacc234bb" name="a46e0ac63a6c7ace5f1cf5bdcacc234bb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (std::initializer_list&lt; std::pair&lt; const Key, T &gt; &gt; ilist, const Compare &amp;comp=Compare(), const Allocator &amp;alloc=Allocator())</td></tr>
+<tr class="memdesc:a46e0ac63a6c7ace5f1cf5bdcacc234bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the container with the contents of the initializer list init. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Can receive the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:a46e0ac63a6c7ace5f1cf5bdcacc234bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af439775efe40a12a9835ead7fd397c5b"><td class="memItemLeft" align="right" valign="top"><a id="af439775efe40a12a9835ead7fd397c5b" name="af439775efe40a12a9835ead7fd397c5b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TreeAVL</b> (std::initializer_list&lt; std::pair&lt; const Key, T &gt; &gt; ilist, const Allocator &amp;alloc)</td></tr>
+<tr class="memdesc:af439775efe40a12a9835ead7fd397c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the container with the contents of the initializer list init. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Receives the allocator to use for all memory allocations. <br /></td></tr>
+<tr class="separator:af439775efe40a12a9835ead7fd397c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adffe51a09fd6ba462a480d5c946591d5"><td class="memItemLeft" align="right" valign="top"><a id="adffe51a09fd6ba462a480d5c946591d5" name="adffe51a09fd6ba462a480d5c946591d5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~TreeAVL</b> ()</td></tr>
 <tr class="memdesc:adffe51a09fd6ba462a480d5c946591d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the map. The destructors of the elements are called and the used storage is deallocated. Note, that if the elements are pointers, the pointed-to objects are not destroyed. <br /></td></tr>
@@ -122,12 +147,16 @@ template&lt;class InputIt &gt; </td></tr>
 <tr class="separator:aedfac8eebc20075946eb30205550514d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a612738403996dc8af1f47b74ba70994e"><td class="memItemLeft" align="right" valign="top"><a id="a612738403996dc8af1f47b74ba70994e" name="a612738403996dc8af1f47b74ba70994e"></a>
 <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a> &amp;&amp;other) noexcept</td></tr>
-<tr class="memdesc:a612738403996dc8af1f47b74ba70994e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container). <br /></td></tr>
+<tr class="memdesc:a612738403996dc8af1f47b74ba70994e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container). After the move, other is guaranteed to be <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#af415e32537b81924ff9f0c67ac92038d" title="Checks if the container has no elements, i.e. whether begin() == end().">empty()</a>. <br /></td></tr>
 <tr class="separator:a612738403996dc8af1f47b74ba70994e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27cfc9b3db9ed8a6bb21c6a942f85aa5"><td class="memItemLeft" align="right" valign="top"><a id="a27cfc9b3db9ed8a6bb21c6a942f85aa5" name="a27cfc9b3db9ed8a6bb21c6a942f85aa5"></a>
 <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (std::initializer_list&lt; std::pair&lt; const Key, T &gt; &gt; ilist)</td></tr>
 <tr class="memdesc:a27cfc9b3db9ed8a6bb21c6a942f85aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the contents with those identified by initializer list ilist. <br /></td></tr>
 <tr class="separator:a27cfc9b3db9ed8a6bb21c6a942f85aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690bf2fa051ce5f6dc0b2dd0c16677ac"><td class="memItemLeft" align="right" valign="top"><a id="a690bf2fa051ce5f6dc0b2dd0c16677ac" name="a690bf2fa051ce5f6dc0b2dd0c16677ac"></a>
+Allocator&#160;</td><td class="memItemRight" valign="bottom"><b>get_allocator</b> () const noexcept</td></tr>
+<tr class="memdesc:a690bf2fa051ce5f6dc0b2dd0c16677ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the allocator associated with the container. <br /></td></tr>
+<tr class="separator:a690bf2fa051ce5f6dc0b2dd0c16677ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b1c778969f0c1885576b45ec7bc47e9"><td class="memItemLeft" align="right" valign="top"><a id="a4b1c778969f0c1885576b45ec7bc47e9" name="a4b1c778969f0c1885576b45ec7bc47e9"></a>
 const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const Key &amp;key) const</td></tr>
 <tr class="memdesc:a4b1c778969f0c1885576b45ec7bc47e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the mapped value of the element with key equivalent to key. If no such element exists, an exception of type std::out_of_range is thrown. <br /></td></tr>
@@ -164,6 +193,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> () const no
 std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const noexcept</td></tr>
 <tr class="memdesc:add4afd4cd5649b18745a44477ace0ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in the container. <br /></td></tr>
 <tr class="separator:add4afd4cd5649b18745a44477ace0ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af044ea0b45f5dc0cfd7ddb8d3ca86fc0"><td class="memItemLeft" align="right" valign="top"><a id="af044ea0b45f5dc0cfd7ddb8d3ca86fc0" name="af044ea0b45f5dc0cfd7ddb8d3ca86fc0"></a>
+std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>memory</b> () const noexcept</td></tr>
+<tr class="memdesc:af044ea0b45f5dc0cfd7ddb8d3ca86fc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total space in memory. <br /></td></tr>
+<tr class="separator:af044ea0b45f5dc0cfd7ddb8d3ca86fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34a82ff67e7ce5a9c8ae4b3c26458e20"><td class="memItemLeft" align="right" valign="top"><a id="a34a82ff67e7ce5a9c8ae4b3c26458e20" name="a34a82ff67e7ce5a9c8ae4b3c26458e20"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> () noexcept</td></tr>
 <tr class="memdesc:a34a82ff67e7ce5a9c8ae4b3c26458e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erases all elements from the container. After this call, <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#add4afd4cd5649b18745a44477ace0ffa" title="Returns the number of elements in the container.">size()</a> returns zero. Invalidates any references, pointers, or iterators referring to contained elements. Any past-the-end iterator remains valid. <br /></td></tr>
@@ -269,11 +302,16 @@ template&lt;class A , class B , class C , class D &gt; </td></tr>
 <tr class="memitem:afbde3aab88ccc3d13f15f43dc4004e0b"><td class="memTemplItemLeft" align="right" valign="top">std::strong_ordering&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;=&gt;</b> (const <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a>&lt; A, B, C, D &gt; &amp;lhs, const <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a>&lt; A, B, C, D &gt; &amp;rhs)</td></tr>
 <tr class="memdesc:afbde3aab88ccc3d13f15f43dc4004e0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the contents of lhs and rhs lexicographically. <br /></td></tr>
 <tr class="separator:afbde3aab88ccc3d13f15f43dc4004e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5ffc5a9552b28032ae6175764a96ef5"><td class="memTemplParams" colspan="2"><a id="ab5ffc5a9552b28032ae6175764a96ef5" name="ab5ffc5a9552b28032ae6175764a96ef5"></a>
+<tr class="memitem:a89b0125402c16bf092502ccea78a2fd4"><td class="memTemplParams" colspan="2"><a id="a89b0125402c16bf092502ccea78a2fd4" name="a89b0125402c16bf092502ccea78a2fd4"></a>
 template&lt;class A , class B , class C , class D , class Pred &gt; </td></tr>
-<tr class="memitem:ab5ffc5a9552b28032ae6175764a96ef5"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><b>erase_if</b> (<a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a>&lt; A, B, C, D &gt; &amp;tree, Pred pred)</td></tr>
-<tr class="memdesc:ab5ffc5a9552b28032ae6175764a96ef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erases all elements that satisfy the predicate pred from the container. <br /></td></tr>
-<tr class="separator:ab5ffc5a9552b28032ae6175764a96ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b0125402c16bf092502ccea78a2fd4"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><b>std::erase_if</b> (<a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">bpp::map::TreeAVL</a>&lt; A, B, C, D &gt; &amp;tree, Pred pred)</td></tr>
+<tr class="memdesc:a89b0125402c16bf092502ccea78a2fd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erases all elements that satisfy the predicate pred from the container. <br /></td></tr>
+<tr class="separator:a89b0125402c16bf092502ccea78a2fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c654f9e5ab05c76129ff66a3c0dca83"><td class="memTemplParams" colspan="2"><a id="a2c654f9e5ab05c76129ff66a3c0dca83" name="a2c654f9e5ab05c76129ff66a3c0dca83"></a>
+template&lt;class A , class B , class C , class D &gt; </td></tr>
+<tr class="memitem:a2c654f9e5ab05c76129ff66a3c0dca83"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>std::swap</b> (<a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a>&lt; A, B, C, D &gt; &amp;lhs, <a class="el" href="../../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html">TreeAVL</a>&lt; A, B, C, D &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a2c654f9e5ab05c76129ff66a3c0dca83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialized swapping function. <br /></td></tr>
+<tr class="separator:a2c654f9e5ab05c76129ff66a3c0dca83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Key, class T, class Compare = std::less&lt;Key&gt;, class Allocator = std::allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt;<br />
