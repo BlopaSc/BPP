@@ -5,7 +5,8 @@
 #include <initializer_list>	// std::initializer_list<>
 #include <memory>			// std::allocator, std::allocator_traits<>
 #include <stdexcept>		// std::out_of_range
-#include <utility>			// std::pair, std::swap
+#include <type_traits>		// std::true_type, std::false_type
+#include <utility>			// std::pair, std::swap, std::move
 
 namespace bpp{
 	namespace map{
@@ -20,24 +21,30 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 	public:
 		//! Constructs an empty container.
 		TreeAVL();
-		// explicit TreeAVL(const Compare& comp, const Allocator& alloc = Allocator());
-		// explicit TreeAVL(const Allocator& alloc);
+		//! Constructs an empty container. Receives the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations.
+		explicit TreeAVL(const Compare& comp, const Allocator& alloc = Allocator());
+		//! Constructs an empty container. Receives the allocator to use for all memory allocations.
+		explicit TreeAVL(const Allocator& alloc);
 		
-		//! Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
-		template<class InputIt> TreeAVL(InputIt first, InputIt last/*, const Compare& comp = Compare(), const Allocator& alloc = Allocator()*/);
-		// template<class InputIt> TreeAVL(InputIt first, InputIt last, const Allocator& alloc);
+		//! Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Can receive the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations.
+		template<class InputIt> TreeAVL(InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator());
+		//! Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Receives the allocator to use for all memory allocations.
+		template<class InputIt> TreeAVL(InputIt first, InputIt last, const Allocator& alloc);
 		
 		//! Copy constructor. Constructs the container with the copy of the contents of other.
 		TreeAVL(const TreeAVL& other);
-		// TreeAVL(const TreeAVL& other, const Allocator& alloc);
+		//! Copy constructor. Constructs the container with the copy of the contents of other. Receives the allocator to use for all memory allocations.
+		TreeAVL(const TreeAVL& other, const Allocator& alloc);
 		
-		//! Move constructor. Constructs the container with the contents of other using move semantics.
+		//! Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is guaranteed to be empty().
 		TreeAVL(TreeAVL&& other);
-		// TreeAVL(TreeAVL&& other, const Allocator& alloc);
+		//! Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is guaranteed to be empty(). Receives the allocator to use for all memory allocations.
+		TreeAVL(TreeAVL&& other, const Allocator& alloc);
 		
-		//! Constructs the container with the contents of the initializer list init. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
-		TreeAVL(std::initializer_list<std::pair<const Key, T>> ilist/*, const Compare& comp = Compare(), const Allocator& alloc = Allocator()*/);
-		//TreeAVL(std::initializer_list<value_type> ilist, const Allocator&);
+		//! Constructs the container with the contents of the initializer list init. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Can receive the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations.
+		TreeAVL(std::initializer_list<std::pair<const Key, T>> ilist, const Compare& comp = Compare(), const Allocator& alloc = Allocator());
+		//! Constructs the container with the contents of the initializer list init. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Receives the allocator to use for all memory allocations.
+		TreeAVL(std::initializer_list<std::pair<const Key, T>> ilist, const Allocator& alloc);
 		
 		//! Destructs the map. The destructors of the elements are called and the used storage is deallocated. Note, that if the elements are pointers, the pointed-to objects are not destroyed.
 		~TreeAVL();
@@ -45,13 +52,14 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Assignment
 		//! Copy assignment operator. Replaces the contents with a copy of the contents of other.
 		TreeAVL& operator=(const TreeAVL& other);
-		//! Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container).
+		//! Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container). After the move, other is guaranteed to be empty().
 		TreeAVL& operator=(TreeAVL&& other) noexcept;
 		//! Replaces the contents with those identified by initializer list ilist.
 		TreeAVL& operator=(std::initializer_list<std::pair<const Key, T>> ilist);
 		
 		// Get allocator
-		// Allocator get_allocator() const noexcept;
+		//! Returns the allocator associated with the container.
+		Allocator get_allocator() const noexcept;
 		
 		// Element access
 		//! Returns a reference to the mapped value of the element with key equivalent to key. If no such element exists, an exception of type std::out_of_range is thrown.
@@ -110,6 +118,8 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		bool empty() const noexcept;
 		//! Returns the number of elements in the container.
 		std::size_t size() const noexcept;
+		//! Returns the total space in memory.
+		std::size_t memory() const noexcept;
 		
 		// Modifiers
 		// Clear
@@ -180,7 +190,9 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		template<class A,class B,class C,class D> friend std::strong_ordering operator<=>(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
 		// Other
 		//! Erases all elements that satisfy the predicate pred from the container.
-		template<class A,class B,class C,class D, class Pred> friend std::size_t erase_if(TreeAVL<A,B,C,D>& tree, Pred pred);
+		template<class A,class B,class C,class D, class Pred> friend std::size_t std::erase_if(bpp::map::TreeAVL<A,B,C,D>& tree, Pred pred);
+		//! Specialized swapping function.
+		template<class A,class B,class C,class D> friend void std::swap(TreeAVL<A,B,C,D> &lhs, TreeAVL<A,B,C,D>& rhs);
 		
 	private:
 		// Nested class NodeAVL
@@ -188,12 +200,13 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			NodeAVL *parent,*leftChild,*rightChild;
 			std::pair<Key,T> data;
 			std::size_t height;
+			void create(NodeAVL* parent=0);
 			void create(const Key& key, NodeAVL* parent=0);
 			void create(Key&& key, NodeAVL* parent=0);
-			void destroy(AllocatorNodes& alloc);
 			inline void recalculate_height();
-			inline int balance();
-			static NodeAVL* copy(AllocatorNodes& alloc, NodeAVL* src, NodeAVL* parent=0);
+			inline int left_heavy();
+			static NodeAVL* copy(AllocatorNodes& alloc, NodeAVL* src, NodeAVL* dst=0);
+			static NodeAVL* destroy(AllocatorNodes& alloc, NodeAVL* node);
 		};
 		AllocatorNodes alloc;
 		Compare cmp;
@@ -219,11 +232,16 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 				NodeAVL* current;
 				static std::pair<Key, T> nullvalue;
 		};
+		// Specialized copy/move calls
+		inline void sp_copy(const TreeAVL& other, std::true_type);
+		inline void sp_copy(const TreeAVL& other, std::false_type);
+		inline void sp_move(TreeAVL&& other, std::true_type) noexcept;
+		inline void sp_move(TreeAVL&& other, std::false_type) noexcept;
 };
-
-#include "TreeAVL.cpp"
 
 	}
 }
+
+#include "TreeAVL.cpp"
 
 #endif
