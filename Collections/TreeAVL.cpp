@@ -379,25 +379,27 @@ template<class A,class B,class C,class D> std::strong_ordering operator<=>(const
 }
 
 // Nested class NodeAVL
-template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::create(NodeAVL* parent){
+template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(NodeAVL* parent){
 	this->parent = parent;
 	this->leftChild = 0;
 	this->rightChild = 0;
-}
-template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::create(const Key& key, NodeAVL* parent){
-	this->parent = parent;
-	this->leftChild = 0;
-	this->rightChild = 0;
-	this->data.first = key;
 	this->height = 0;
 }
-template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::create(Key&& key, NodeAVL* parent){
+template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(const Key& key, NodeAVL* parent){
 	this->parent = parent;
 	this->leftChild = 0;
 	this->rightChild = 0;
-	this->data.first = key;
 	this->height = 0;
+	this->data.first = key;
 }
+template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(Key&& key, NodeAVL* parent){
+	this->parent = parent;
+	this->leftChild = 0;
+	this->rightChild = 0;
+	this->height = 0;
+	this->data.first = key;
+}
+template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::~NodeAVL(){}
 template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::recalculate_height(){
 	std::size_t lz = (this->leftChild ? this->leftChild->height : 0), rz = (this->rightChild ? this->rightChild->height : 0);
 	this->height = (lz>rz ? lz : rz) + 1;
@@ -409,7 +411,7 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 	NodeAVL* result = dst, *ptr;
 	if(!result){
 		result = alloc.allocate(1);
-		result->create();
+		std::construct_at(result);
 	}
 	ptr = result;
 	ptr->data = src->data;
@@ -420,7 +422,7 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 		if(src->rightChild){
 			if(!ptr->rightChild){
 				ptr->rightChild = alloc.allocate(1);
-				ptr->rightChild->create(ptr);
+				std::construct_at(ptr->rightChild, ptr);
 			}
 			src = src->rightChild;
 			ptr = ptr->rightChild;
@@ -430,7 +432,7 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 			while(src->leftChild){
 				if(!ptr->leftChild){
 					ptr->leftChild = alloc.allocate(1);
-					ptr->leftChild->create(ptr);
+					std::construct_at(ptr->leftChild, ptr);
 				}
 				src = src->leftChild;
 				ptr = ptr->leftChild;
@@ -460,17 +462,17 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 		}else{
 			while(ptr->parent && ptr == ptr->parent->rightChild){
 				ptr = ptr->parent;
-				std::destroy_at<NodeAVL>(ptr->rightChild);
+				std::destroy_at(ptr->rightChild);
 				alloc.deallocate(ptr->rightChild,1);
 			}
 			ptr = ptr->parent;
 			if(ptr && ptr->leftChild){
-				std::destroy_at<NodeAVL>(ptr->leftChild);
+				std::destroy_at(ptr->leftChild);
 				alloc.deallocate(ptr->leftChild,1);
 			}
 		}
 	}
-	std::destroy_at<NodeAVL>(node);
+	std::destroy_at(node);
 	alloc.deallocate(node,1);
 	return 0;
 }
@@ -485,14 +487,14 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 		}
 		if(!tmp){
 			tmp = this->alloc.allocate(1);
-			tmp->create(key, parent);
+			std::construct_at(tmp, key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
 			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
 		tmp = this->alloc.allocate(1);
-		tmp->create(key);
+		std::construct_at(tmp, key);
 		this->root = tmp;
 		this->counter++;
 	}
@@ -507,14 +509,14 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 		}
 		if(!tmp){
 			tmp = this->alloc.allocate(1);
-			tmp->create(key, parent);
+			std::construct_at(tmp, key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
 			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
 		tmp = this->alloc.allocate(1);
-		tmp->create(key);
+		std::construct_at(tmp, key);
 		this->root = tmp;
 		this->counter++;
 	}
@@ -530,14 +532,14 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 		}
 		if(!tmp){
 			tmp = this->alloc.allocate(1);
-			tmp->create(key, parent);
+			std::construct_at(tmp, key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
 			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
 		tmp = this->alloc.allocate(1);
-		tmp->create(key);
+		std::construct_at(tmp, key);
 		this->root = tmp;
 		this->counter++;
 	}
@@ -553,14 +555,14 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 		}
 		if(!tmp){
 			tmp = this->alloc.allocate(1);
-			tmp->create(key, parent);
+			std::construct_at(tmp, key, parent);
 			*(this->cmp(key, parent->data.first) ? &(parent->leftChild) : &(parent->rightChild)) = tmp;
 			this->rebalance(parent);
 			this->counter++;
 		}
 	}else{
 		tmp = this->alloc.allocate(1);
-		tmp->create(key);
+		std::construct_at(tmp, key);
 		this->root = tmp;
 		this->counter++;
 	}
@@ -580,10 +582,10 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 				tmp->rightChild->parent = tmp->parent;
 				tmp->rightChild = 0;
 			}
-			src->data = tmp->data;
+			src->data = std::move(tmp->data);
 		}else if(tmp->leftChild){
 			tmp = tmp->leftChild;
-			src->data = tmp->data;
+			src->data = std::move(tmp->data);
 			tmp->parent->leftChild = 0;
 		}else{
 			if(result = tmp->parent){

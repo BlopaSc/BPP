@@ -9,6 +9,11 @@ namespace bpp{
 	//! The header file <Collections.h> will include all of the Collections module namespaces into the project.
 	//! @{
 	
+	//! Generic ordered container that contains index-accessible values.
+	namespace list{
+		
+	}
+	
 	//! Generic sorted associative containers that contains key-value pairs with unique keys. Keys are sorted by using the comparison function Compare.
 	namespace map{
 		
@@ -17,6 +22,7 @@ namespace bpp{
 	//! @}
 }
 
+#include "Collections/ListArray.h"
 #include "Collections/TreeAVL.h"
 
 #endif

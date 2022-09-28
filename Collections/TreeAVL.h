@@ -52,7 +52,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Assignment
 		//! Copy assignment operator. Replaces the contents with a copy of the contents of other.
 		TreeAVL& operator=(const TreeAVL& other);
-		//! Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container). After the move, other is guaranteed to be empty().
+		//! Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container). After the move, other is in a valid but unspecified state.
 		TreeAVL& operator=(TreeAVL&& other) noexcept;
 		//! Replaces the contents with those identified by initializer list ilist.
 		TreeAVL& operator=(std::initializer_list<std::pair<const Key, T>> ilist);
@@ -200,9 +200,10 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			NodeAVL *parent,*leftChild,*rightChild;
 			std::pair<Key,T> data;
 			std::size_t height;
-			void create(NodeAVL* parent=0);
-			void create(const Key& key, NodeAVL* parent=0);
-			void create(Key&& key, NodeAVL* parent=0);
+			NodeAVL(NodeAVL* parent=0);
+			NodeAVL(const Key& key, NodeAVL* parent=0);
+			NodeAVL(Key&& key, NodeAVL* parent=0);
+			~NodeAVL();
 			inline void recalculate_height();
 			inline int left_heavy();
 			static NodeAVL* copy(AllocatorNodes& alloc, NodeAVL* src, NodeAVL* dst=0);
