@@ -15,7 +15,7 @@ namespace bpp{
 template <class Key, class T, class Compare = std::less<Key>,class Allocator = std::allocator<std::pair<const Key, T>>> class TreeAVL{
 	private:
 		struct NodeAVL;
-		class iterator_base;
+		class iterator_actions;
 		// Rebind Allocator
 		using AllocatorNodes = typename std::allocator_traits<Allocator>::rebind_alloc<NodeAVL>;
 	public:
@@ -71,31 +71,41 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		
 		// Iterators
 		//! iterator is an object that allows iteration of the container in the order of the sorted keys. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.
-		class iterator : public iterator_base{
-			public:
-				//! Should not be called, use begin() and end() instead.
-				iterator(NodeAVL* init=0);
-				//! References the key-value pair pointed at by the iterator.
-				std::pair<Key, T>& operator*() const;
-				//! Dereferences the key-value pair pointed at by the iterator.
-				std::pair<Key, T>* operator->() const;
-				//! Advances the iterator to the next key-value in the map.
-				iterator& operator++();
+		struct iterator : public iterator_actions{
+			//! Should not be called, use begin() and end() instead.
+			explicit iterator(NodeAVL* init=0);
+			//! References the key-value pair pointed at by the iterator.
+			std::pair<Key, T>& operator*() const;
+			//! Dereferences the key-value pair pointed at by the iterator.
+			std::pair<Key, T>* operator->() const;
+			//! Advances the iterator to the next key-value in the map.
+			iterator& operator++();
+			//! Advances the iterator to the next key-value in the map..
+			iterator operator++(int);
+			//! Regresses the iterator to the previous key-value in the map. If out of bounds, becomes equal to end().
+			iterator& operator--();
+			//! Regresses the iterator to the previous key-value in the map. If out of bounds, becomes equal to end().
+			iterator operator--(int);
 		};
-		class const_iterator;
+		struct const_iterator;
 		//! reverse_iterator is an object that allows iteration of the container in the inverse order of the sorted keys. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.
-		class reverse_iterator : public iterator_base{
-			public:
-				//! Should not be called, use rbegin() and rend() instead.
-				reverse_iterator(NodeAVL* init=0);
-				//! References the key-value pair pointed at by the iterator.
-				std::pair<Key, T>& operator*() const;
-				//! Dereferences the key-value pair pointed at by the iterator.
-				std::pair<Key, T>* operator->() const;
-				//! Advances the iterator to the previous key-value in the map.
-				reverse_iterator& operator++();
+		struct reverse_iterator : public iterator_actions{
+			//! Should not be called, use rbegin() and rend() instead.
+			explicit reverse_iterator(NodeAVL* init=0);
+			//! References the key-value pair pointed at by the iterator.
+			std::pair<Key, T>& operator*() const;
+			//! Dereferences the key-value pair pointed at by the iterator.
+			std::pair<Key, T>* operator->() const;
+			//! Advances the iterator to the previous key-value in the map.
+			reverse_iterator& operator++();
+			//! Advances the iterator to the previous key-value in the map, returns void.
+			reverse_iterator operator++(int);
+			//! Regresses the iterator to the next key-value in the map. If out of bounds, becomes equal to end().
+			reverse_iterator& operator--();
+			//! Regresses the iterator to the next key-value in the map. If out of bounds, becomes equal to end().
+			reverse_iterator operator--(int);
 		};
-		class const_reverse_iterator;
+		struct const_reverse_iterator;
 		//! Returns an iterator to the first element of the map. If the map is empty, the returned iterator will be equal to end().
 		iterator begin() const noexcept;
 		// const_iterator begin() const noexcept;
@@ -132,10 +142,10 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		//! Inserts element(s) into the container, if the container doesn't already contain an element with an equivalent key. Returns a pair consisting of an iterator to the inserted element (or to the element that prevented the insertion) and a bool denoting whether the insertion took place.
 		std::pair<iterator, bool> insert(std::pair<const Key, T>&& value);
 		//! Inserts value in the position as close as possible to hint. Returns an iterator to the inserted element, or to the element that prevented the insertion.
-		iterator insert(iterator_base hint, const std::pair<const Key, T>& value);
+		iterator insert(iterator hint, const std::pair<const Key, T>& value);
 		// template<class P> iterator insert(const_iterator hint, P&& value);
 		//! Inserts value in the position as close as possible to hint. Returns an iterator to the inserted element, or to the element that prevented the insertion.
-		iterator insert(iterator_base hint, std::pair<const Key, T>&& value);
+		iterator insert(iterator hint, std::pair<const Key, T>&& value);
 		//! Inserts elements from range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
 		template<class InputIt> void insert(InputIt first, InputIt last);
 		//! Inserts elements from initializer list ilist. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
@@ -146,9 +156,9 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		//! If a key equivalent to k already exists in the container, assigns obj to the mapped_type corresponding to the key k. If the key does not exist, inserts the new value as if by insert.
 		template <class M> std::pair<iterator, bool> insert_or_assign(Key&& k, M&& obj);
 		//! If a key equivalent to k already exists in the container, assigns obj to the mapped_type corresponding to the key k. If the key does not exist, inserts the new value as if by insert.
-		template <class M> std::pair<iterator, bool> insert_or_assign(iterator_base hint, const Key& k, M&& obj);
+		template <class M> std::pair<iterator, bool> insert_or_assign(iterator hint, const Key& k, M&& obj);
 		//! If a key equivalent to k already exists in the container, assigns obj to the mapped_type corresponding to the key k. If the key does not exist, inserts the new value as if by insert.
-		template <class M> std::pair<iterator, bool> insert_or_assign(iterator_base hint, Key&& k, M&& obj);
+		template <class M> std::pair<iterator, bool> insert_or_assign(iterator hint, Key&& k, M&& obj);
 		// Erase
 		//! Removes element at pos from the container. Returns iterator following the last removed element.
 		iterator erase(iterator pos);
@@ -223,15 +233,21 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline static NodeAVL* rotation_RR(NodeAVL* source);
 		inline static NodeAVL* rotation_LR(NodeAVL* source);
 		inline static NodeAVL* rotation_RL(NodeAVL* source);
-		// Iterator base class
-		class iterator_base{
+		// Iterator base structure
+		struct iterator_actions{
+			using iterator_category = std::bidirectional_iterator_tag;
+			using value_type = std::pair<Key, T>;
+			using difference_type = std::size_t;
+			using pointer = NodeAVL*;
+			using reference = std::pair<Key, T>&;
 			friend class TreeAVL<Key,T,Compare,Allocator>;
-			public:
-				bool operator==(const iterator_base& other) const;
-				bool operator!=(const iterator_base& other) const;
+			bool operator==(const iterator_actions& other) const;
+			bool operator!=(const iterator_actions& other) const;
 			protected:
 				NodeAVL* current;
 				static std::pair<Key, T> nullvalue;
+				inline void next_element();
+				inline void previous_element();
 		};
 		// Specialized copy/move calls
 		inline void sp_copy(const TreeAVL& other, std::true_type);

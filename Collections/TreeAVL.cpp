@@ -148,38 +148,50 @@ template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>*
 	return this->current ? &this->current->data : 0;
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator& TreeAVL<Key,T,Compare,Allocator>::iterator::operator++(){
-	if(this->current){
-		if(this->current->rightChild){
-			this->current = this->current->rightChild;
-			while(this->current->leftChild){ this->current = this->current->leftChild; }
-		}else{
-			while(this->current->parent && (this->current->parent->rightChild == this->current)){ this->current = this->current->parent; }
-			this->current = this->current->parent;
-		}
-	}
+	this->next_element();
 	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::iterator::operator++(int){
+	iterator pit(this->current);
+	this->next_element();
+	return pit;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator& TreeAVL<Key,T,Compare,Allocator>::iterator::operator--(){
+	this->previous_element();
+	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::iterator::operator--(int){
+	iterator pit(this->current);
+	this->previous_element();
+	return pit;
 }
 // Reverse Iterator
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::reverse_iterator(NodeAVL* init){
 	this->current = init;
 }
 template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator*() const{
-	return this->current ? this->current->data : std::pair<Key, T>();
+	return this->current ? this->current->data : this->nullvalue;
 }
 template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>* TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator->() const{
 	return this->current ? &this->current->data : 0;
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator++(){
-	if(this->current){
-		if(this->current->leftChild){
-			this->current = this->current->leftChild;
-			while(this->current->rightChild){ this->current = this->current->rightChild; }
-		}else{
-			while(this->current->parent && (this->current->parent->leftChild == this->current)){ this->current = this->current->parent; }
-			this->current = this->current->parent;
-		}
-	}
+	this->previous_element();
 	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator++(int){
+	reverse_iterator pit(this->current);
+	this->previous_element();
+	return pit;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator--(){
+	this->next_element();
+	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator--(int){
+	reverse_iterator pit(this->current);
+	this->next_element();
+	return pit;
 }
 
 // Iterator generation methods
@@ -233,13 +245,13 @@ template <class Key, class T, class Compare, class Allocator> std::pair<typename
 	if(pcounter != this->counter){ tmp->data.second = value.second; }
 	return std::pair<iterator, bool>(iterator(tmp), pcounter != this->counter);
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::insert(TreeAVL<Key,T,Compare,Allocator>::iterator_base hint, const std::pair<const Key, T>& value){
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::insert(TreeAVL<Key,T,Compare,Allocator>::iterator hint, const std::pair<const Key, T>& value){
 	std::size_t pcounter = this->counter;
 	NodeAVL* tmp = this->get_forward(value.first, hint.current);
 	if(pcounter != this->counter){ tmp->data.second = value.second; }
 	return iterator(tmp);
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::insert(TreeAVL<Key,T,Compare,Allocator>::iterator_base hint, std::pair<const Key, T>&& value){
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::insert(TreeAVL<Key,T,Compare,Allocator>::iterator hint, std::pair<const Key, T>&& value){
 	std::size_t pcounter = this->counter;
 	NodeAVL* tmp = this->get_forward(value.first, hint.current);
 	if(pcounter != this->counter){ tmp->data.second = value.second; }
@@ -272,13 +284,13 @@ template <class Key, class T, class Compare, class Allocator> template <class M>
 	tmp->data.second = obj;
 	return std::pair<iterator, bool>(iterator(tmp), pcounter != this->counter);
 }
-template <class Key, class T, class Compare, class Allocator> template <class M> std::pair<typename TreeAVL<Key,T,Compare,Allocator>::iterator, bool> TreeAVL<Key,T,Compare,Allocator>::insert_or_assign(TreeAVL<Key,T,Compare,Allocator>::iterator_base hint, const Key& k, M&& obj){
+template <class Key, class T, class Compare, class Allocator> template <class M> std::pair<typename TreeAVL<Key,T,Compare,Allocator>::iterator, bool> TreeAVL<Key,T,Compare,Allocator>::insert_or_assign(TreeAVL<Key,T,Compare,Allocator>::iterator hint, const Key& k, M&& obj){
 	std::size_t pcounter = this->counter;
 	NodeAVL* tmp = this->get_forward(k, hint.current);
 	tmp->data.second = obj;
 	return std::pair<iterator, bool>(iterator(tmp), pcounter != this->counter);
 }
-template <class Key, class T, class Compare, class Allocator> template <class M> std::pair<typename TreeAVL<Key,T,Compare,Allocator>::iterator, bool> TreeAVL<Key,T,Compare,Allocator>::insert_or_assign(TreeAVL<Key,T,Compare,Allocator>::iterator_base hint, Key&& k, M&& obj){
+template <class Key, class T, class Compare, class Allocator> template <class M> std::pair<typename TreeAVL<Key,T,Compare,Allocator>::iterator, bool> TreeAVL<Key,T,Compare,Allocator>::insert_or_assign(TreeAVL<Key,T,Compare,Allocator>::iterator hint, Key&& k, M&& obj){
 	std::size_t pcounter = this->counter;
 	NodeAVL* tmp = this->get_forward(k, hint.current);
 	tmp->data.second = obj;
@@ -654,15 +666,37 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	return rotation_RR(source);
 }
 
-// Base iterator comparison
-template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T,Compare,Allocator>::iterator_base::operator==(const TreeAVL<Key,T,Compare,Allocator>::iterator_base& other) const{
+// Iterator actions
+template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::iterator_actions::next_element(){
+	if(this->current){
+		if(this->current->rightChild){
+			this->current = this->current->rightChild;
+			while(this->current->leftChild){ this->current = this->current->leftChild; }
+		}else{
+			while(this->current->parent && (this->current->parent->rightChild == this->current)){ this->current = this->current->parent; }
+			this->current = this->current->parent;
+		}
+	}
+}
+template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::iterator_actions::previous_element(){
+	if(this->current){
+		if(this->current->leftChild){
+			this->current = this->current->leftChild;
+			while(this->current->rightChild){ this->current = this->current->rightChild; }
+		}else{
+			while(this->current->parent && (this->current->parent->leftChild == this->current)){ this->current = this->current->parent; }
+			this->current = this->current->parent;
+		}
+	}
+}
+template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T,Compare,Allocator>::iterator_actions::operator==(const TreeAVL<Key,T,Compare,Allocator>::iterator_actions& other) const{
 	return this->current == other.current;
 }
-template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T,Compare,Allocator>::iterator_base::operator!=(const TreeAVL<Key,T,Compare,Allocator>::iterator_base& other) const{
+template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T,Compare,Allocator>::iterator_actions::operator!=(const TreeAVL<Key,T,Compare,Allocator>::iterator_actions& other) const{
 	return this->current != other.current;
 }
 
-template <class Key, class T, class Compare, class Allocator> std::pair<Key, T> TreeAVL<Key,T,Compare,Allocator>::iterator_base::nullvalue;
+template <class Key, class T, class Compare, class Allocator> std::pair<Key, T> TreeAVL<Key,T,Compare,Allocator>::iterator_actions::nullvalue;
 
 // Specialized copy/move calls
 template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::sp_copy(const TreeAVL& other, std::true_type){
