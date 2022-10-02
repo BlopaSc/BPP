@@ -2,7 +2,8 @@
 #define BPP_MAP_TREEAVL_CPP
 
 namespace bpp{
-	namespace map{
+	namespace collections{
+		namespace map{
 
 // Empty initialization
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(){
@@ -747,6 +748,7 @@ template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T
 	}
 }
 
+		}
 	}
 }
 

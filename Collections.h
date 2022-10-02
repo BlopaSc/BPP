@@ -2,6 +2,9 @@
 #define BPP_COLLECTIONS_H
 
 namespace bpp{
+	
+	//! Data structures for data management.
+	namespace collections{
 	//! @defgroup group_collections Collections
 	//! @brief Namespaces of the Collections module of B++.
 	//!
@@ -9,8 +12,8 @@ namespace bpp{
 	//! The header file <Collections.h> will include all of the Collections module namespaces into the project.
 	//! @{
 	
-	//! Generic ordered container that contains index-accessible values.
-	namespace list{
+	//! Generic containers that allow quick lookup times for the smallest element. Behaves as a priority queue.
+	namespace heap{
 		
 	}
 	
@@ -20,6 +23,7 @@ namespace bpp{
 	}
 	
 	//! @}
+	}
 }
 
 #include "Collections/ListArray.h"

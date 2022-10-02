@@ -1,4 +1,5 @@
 # Ignores the following directories
 
+DEFUNC/
 Tests/
 docs/html

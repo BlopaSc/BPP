@@ -30,9 +30,9 @@ All libraries belonging to B++ will be contained inside the `bpp` namespace. How
 
 ### Directories
 
-The main directories are listed below as well as their general purpose. The corresponding nested list will include the namespaces used inside the directory and the corresponding classes within the namespace. (E.g: `TreeAVL` would be located in the `bpp::map` namespace).
+The main directories are listed below as well as their general purpose. The corresponding nested list will include the namespaces used inside the directory and the corresponding classes within the namespace. (E.g: `TreeAVL` would be located in the `bpp::collections::map` namespace).
 
-- Collections: In here you will find all data-structures related classes and algorithms.
+- collections: All data structures related classes and algorithms.
 	- `map`: TreeAVL
 
 ## Contributors

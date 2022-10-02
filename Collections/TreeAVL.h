@@ -9,13 +9,14 @@
 #include <utility>			// std::pair, std::swap, std::move
 
 namespace bpp{
-	namespace map{
+	namespace collections{
+		namespace map{
 
 //! TreeAVL is a sorted associative container that contains key-value pairs with unique keys. Keys are sorted by using the comparison function Compare. Search, removal, and insertion operations have logarithmic complexity. This is an implementation of an Adelson-Velsky and Landis Tree.
 template <class Key, class T, class Compare = std::less<Key>,class Allocator = std::allocator<std::pair<const Key, T>>> class TreeAVL{
 	private:
 		struct NodeAVL;
-		class iterator_actions;
+		struct iterator_actions;
 		// Rebind Allocator
 		using AllocatorNodes = typename std::allocator_traits<Allocator>::rebind_alloc<NodeAVL>;
 	public:
@@ -80,7 +81,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			std::pair<Key, T>* operator->() const;
 			//! Advances the iterator to the next key-value in the map.
 			iterator& operator++();
-			//! Advances the iterator to the next key-value in the map..
+			//! Advances the iterator to the next key-value in the map.
 			iterator operator++(int);
 			//! Regresses the iterator to the previous key-value in the map. If out of bounds, becomes equal to end().
 			iterator& operator--();
@@ -98,7 +99,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			std::pair<Key, T>* operator->() const;
 			//! Advances the iterator to the previous key-value in the map.
 			reverse_iterator& operator++();
-			//! Advances the iterator to the previous key-value in the map, returns void.
+			//! Advances the iterator to the previous key-value in the map.
 			reverse_iterator operator++(int);
 			//! Regresses the iterator to the next key-value in the map. If out of bounds, becomes equal to end().
 			reverse_iterator& operator--();
@@ -256,6 +257,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline void sp_move(TreeAVL&& other, std::false_type) noexcept;
 };
 
+		}
 	}
 }
 
