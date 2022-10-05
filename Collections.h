@@ -12,8 +12,8 @@ namespace bpp{
 	//! The header file <Collections.h> will include all of the Collections module namespaces into the project.
 	//! @{
 	
-	//! Generic containers that allow quick lookup times for the smallest element. Behaves as a priority queue.
-	namespace heap{
+	//! Generic containers that allow quick lookup times for the smallest element.
+	namespace priority_queue{
 		
 	}
 	

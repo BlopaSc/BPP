@@ -164,7 +164,8 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		//! Removes element at pos from the container. Returns iterator following the last removed element.
 		iterator erase(iterator pos);
 		// iterator erase(const_iterator);
-		// iterator erase(iterator first, iterator last);
+		//! Removes the elements in the range [first; last), which must be a valid range in *this.
+		iterator erase(iterator first, iterator last);
 		// iterator erase(const_iterator_base first, const_iterator last);
 		//! Removes the element (if one exists) with the key equivalent to key. Returns the number of elements removed (0 or 1).
 		std::size_t erase(const Key& key);
@@ -201,7 +202,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		template<class A,class B,class C,class D> friend std::strong_ordering operator<=>(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
 		// Other
 		//! Erases all elements that satisfy the predicate pred from the container.
-		template<class A,class B,class C,class D, class Pred> friend std::size_t std::erase_if(bpp::map::TreeAVL<A,B,C,D>& tree, Pred pred);
+		template<class A,class B,class C,class D, class Pred> friend std::size_t std::erase_if(TreeAVL<A,B,C,D>& tree, Pred pred);
 		//! Specialized swapping function.
 		template<class A,class B,class C,class D> friend void std::swap(TreeAVL<A,B,C,D> &lhs, TreeAVL<A,B,C,D>& rhs);
 		

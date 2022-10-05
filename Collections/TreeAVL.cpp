@@ -302,9 +302,14 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	NodeAVL *tmp = pos.current;
 	const Key k = pos.current->data.first;
 	tmp = this->remove_node(tmp);
-	iterator it = iterator(tmp);
+	iterator it(tmp);
 	if(tmp && this->cmp(tmp->data.first, k)){ ++it; }
 	return it;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::erase(iterator first, iterator last){
+	while(first != last){
+		first = erase(first);
+	}
 }
 template <class Key, class T, class Compare, class Allocator> std::size_t TreeAVL<Key,T,Compare,Allocator>::erase(const Key& key){
 	NodeAVL *tmp = this->root;
@@ -754,7 +759,7 @@ template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T
 
 // Non-member
 // Other
-template<class A,class B,class C,class D, class Pred> std::size_t std::erase_if(bpp::map::TreeAVL<A,B,C,D>& tree, Pred pred){
+template<class A,class B,class C,class D, class Pred> std::size_t std::erase_if(bpp::collections::map::TreeAVL<A,B,C,D>& tree, Pred pred){
 	auto original = tree.size();
 	for (auto i = tree.begin(), last = tree.end(); i != last; ){
 		if(pred(*i)){
@@ -765,7 +770,7 @@ template<class A,class B,class C,class D, class Pred> std::size_t std::erase_if(
 	}
 	return original - tree.size();
 }
-template<class A,class B,class C,class D> void std::swap(bpp::map::TreeAVL<A,B,C,D>& lhs, bpp::map::TreeAVL<A,B,C,D>& rhs){
+template<class A,class B,class C,class D> void std::swap(bpp::collections::map::TreeAVL<A,B,C,D>& lhs, bpp::collections::map::TreeAVL<A,B,C,D>& rhs){
 	std::swap(lhs.alloc, rhs.alloc);
 	std::swap(lhs.cmp, rhs.cmp);
 	std::swap(lhs.root, rhs.root);
