@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['upper_5fbound_0',['upper_bound',['../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#aa059447db0600ab46ca2c50988c25ef0',1,'bpp::map::TreeAVL']]]
+  ['upper_5fbound_0',['upper_bound',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a29c507559c69a4c3cc0d54c64f7e58f8',1,'bpp::collections::map::TreeAVL']]]
 ];

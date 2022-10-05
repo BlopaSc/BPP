@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rbegin_0',['rbegin',['../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#a8a936732380ac670a25bf5cd9739bfad',1,'bpp::map::TreeAVL']]],
-  ['rend_1',['rend',['../de/ddf/classbpp_1_1map_1_1_tree_a_v_l.html#a0378deabfdd329fa13987d8e2ed1f1fa',1,'bpp::map::TreeAVL']]],
-  ['reverse_5fiterator_2',['reverse_iterator',['../d7/dcd/structbpp_1_1map_1_1_tree_a_v_l_1_1reverse__iterator.html#abe8f489836f54c04480408d1fd119052',1,'bpp::map::TreeAVL::reverse_iterator']]]
+  ['rbegin_0',['rbegin',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#abdbaac112d33a723d5b44a2a1c9ceede',1,'bpp::collections::map::TreeAVL']]],
+  ['rend_1',['rend',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#afa710644dcff03d8197c54732e8d39d0',1,'bpp::collections::map::TreeAVL']]],
+  ['reverse_5fiterator_2',['reverse_iterator',['../d7/dd0/structbpp_1_1collections_1_1map_1_1_tree_a_v_l_1_1reverse__iterator.html#a57048d268e273e3d2143011dbb96a051',1,'bpp::collections::map::TreeAVL::reverse_iterator']]]
 ];
