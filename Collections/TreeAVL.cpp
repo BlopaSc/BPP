@@ -1,5 +1,5 @@
-#ifndef BPP_MAP_TREEAVL_CPP
-#define BPP_MAP_TREEAVL_CPP
+#ifndef BPP_COLLECTIONS_MAP_TREEAVL_CPP
+#define BPP_COLLECTIONS_MAP_TREEAVL_CPP
 
 namespace bpp{
 	namespace collections{
@@ -415,7 +415,7 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 	this->leftChild = 0;
 	this->rightChild = 0;
 	this->height = 0;
-	this->data.first = key;
+	this->data.first = std::move(key);
 }
 template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::~NodeAVL(){}
 template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::recalculate_height(){

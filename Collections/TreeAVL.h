@@ -1,9 +1,9 @@
-#ifndef BPP_MAP_TREEAVL_H
-#define BPP_MAP_TREEAVL_H
+#ifndef BPP_COLLECTIONS_MAP_TREEAVL_H
+#define BPP_COLLECTIONS_MAP_TREEAVL_H
 #include <compare>			// std::strong_ordering
 #include <functional>		// std::less
 #include <initializer_list>	// std::initializer_list<>
-#include <memory>			// std::allocator, std::allocator_traits<>
+#include <memory>			// std::allocator<>, std::allocator_traits<>
 #include <stdexcept>		// std::out_of_range
 #include <type_traits>		// std::true_type, std::false_type
 #include <utility>			// std::pair, std::swap, std::move
