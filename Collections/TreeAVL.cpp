@@ -104,7 +104,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	this->sp_copy(other, typename std::allocator_traits<Allocator>::propagate_on_container_copy_assignment());
 	return *this;
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>& TreeAVL<Key,T,Compare,Allocator>::operator=(TreeAVL<Key,T,Compare,Allocator>&& other) noexcept{
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>& TreeAVL<Key,T,Compare,Allocator>::operator=(TreeAVL<Key,T,Compare,Allocator>&& other){
 	this->sp_move(std::move(other), typename std::allocator_traits<Allocator>::propagate_on_container_move_assignment());
 	return *this;
 }
@@ -127,7 +127,7 @@ template <class Key, class T, class Compare, class Allocator> const T& TreeAVL<K
 	while(tmp && tmp->data.first!=key){
 		tmp = this->cmp(key, tmp->data.first) ? tmp->leftChild : tmp->rightChild;
 	}
-	if(!tmp){ throw std::out_of_range("bpp::map::TreeAVL::at"); }
+	if(!tmp){ throw std::out_of_range("bpp::collections::map::TreeAVL::at"); }
 	return tmp->data.second;
 }
 template <class Key, class T, class Compare, class Allocator> T& TreeAVL<Key,T,Compare,Allocator>::operator[](const Key& key){
@@ -736,7 +736,7 @@ template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T
 	other.root = 0;
 	other.counter = 0;
 }
-template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::sp_move(TreeAVL&& other, std::false_type) noexcept{
+template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::sp_move(TreeAVL&& other, std::false_type){
 	if(this->alloc == other.alloc){
 		if(this->root && this->root != other.root){ NodeAVL::destroy(this->alloc, this->root); }
 		this->cmp = std::move(other.cmp);

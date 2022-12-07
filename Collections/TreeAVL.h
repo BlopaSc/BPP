@@ -54,7 +54,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		//! Copy assignment operator. Replaces the contents with a copy of the contents of other.
 		TreeAVL& operator=(const TreeAVL& other);
 		//! Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container). After the move, other is in a valid but unspecified state.
-		TreeAVL& operator=(TreeAVL&& other) noexcept;
+		TreeAVL& operator=(TreeAVL&& other);
 		//! Replaces the contents with those identified by initializer list ilist.
 		TreeAVL& operator=(std::initializer_list<std::pair<const Key, T>> ilist);
 		
@@ -255,7 +255,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline void sp_copy(const TreeAVL& other, std::true_type);
 		inline void sp_copy(const TreeAVL& other, std::false_type);
 		inline void sp_move(TreeAVL&& other, std::true_type) noexcept;
-		inline void sp_move(TreeAVL&& other, std::false_type) noexcept;
+		inline void sp_move(TreeAVL&& other, std::false_type);
 };
 
 		}
