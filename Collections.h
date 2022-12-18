@@ -22,6 +22,11 @@ namespace bpp{
 		
 	}
 	
+	//! Special sequence accesses for sets of elements, like permutations and combinations.
+	namespace sequence{
+		
+	}
+	
 	//! @}
 	}
 }
