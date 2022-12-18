@@ -6,5 +6,6 @@ var searchData=
   ['bpp_2c_20b_2b_2b_20or_20blopa_2b_2b_3',['BPP, B++ or Blopa++',['../d3/dcc/md__r_e_a_d_m_e.html',1,'']]],
   ['collections_4',['collections',['../d0/d04/namespacebpp_1_1collections.html',1,'bpp']]],
   ['map_5',['map',['../d3/d6c/namespacebpp_1_1collections_1_1map.html',1,'bpp::collections']]],
-  ['priority_5fqueue_6',['priority_queue',['../dd/d0e/namespacebpp_1_1collections_1_1priority__queue.html',1,'bpp::collections']]]
+  ['priority_5fqueue_6',['priority_queue',['../dd/d0e/namespacebpp_1_1collections_1_1priority__queue.html',1,'bpp::collections']]],
+  ['sequence_7',['sequence',['../d0/d3b/namespacebpp_1_1collections_1_1sequence.html',1,'bpp::collections']]]
 ];
