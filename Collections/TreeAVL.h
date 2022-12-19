@@ -20,6 +20,26 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Rebind Allocator
 		using AllocatorNodes = typename std::allocator_traits<Allocator>::rebind_alloc<NodeAVL>;
 	public:
+		// Declares member types
+		//! Type of the keys for the key-value pairs.
+		using key_type = Key;
+		//! Type of the mapped values for the key-value pairs.
+		using mapped_type = T;
+		//! Type of the values stored in the map.
+		using value_type = std::pair<const Key, T>;
+		//! Type used to calculate sizes.
+		using size_type = std::size_t;
+		//! Type used to calculate differences (unused).
+		using difference_type = std::ptrdiff_t;
+		//! Type of compare used in key comparison.
+		using key_compare = Compare;
+		//! Type of allocator used.
+		using allocator_type = Allocator;
+		//! Type of references to values.
+		using reference = value_type&;
+		//! Type of constant references to values;
+		using const_reference = const value_type&;
+		
 		//! Constructs an empty container.
 		TreeAVL();
 		//! Constructs an empty container. Receives the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations.
@@ -73,6 +93,16 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Iterators
 		//! iterator is an object that allows iteration of the container in the order of the sorted keys. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.
 		struct iterator : public iterator_actions{
+			//! Category of the iterator.
+			using iterator_category = std::bidirectional_iterator_tag;
+			//! Type of values accessed by the iterator.
+			using value_type = std::pair<Key, T>;
+			//! Type of differences between iterators.
+			using difference_type = std::size_t;
+			//! Type of objects pointed to by the iterator.
+			using pointer = NodeAVL*;
+			//! Type of references to values.
+			using reference = std::pair<Key, T>&;
 			//! Should not be called, use begin() and end() instead.
 			explicit iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
@@ -91,6 +121,16 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		struct const_iterator;
 		//! reverse_iterator is an object that allows iteration of the container in the inverse order of the sorted keys. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.
 		struct reverse_iterator : public iterator_actions{
+			//! Category of the iterator.
+			using iterator_category = std::bidirectional_iterator_tag;
+			//! Type of values accessed by the iterator.
+			using value_type = std::pair<Key, T>;
+			//! Type of differences between iterators.
+			using difference_type = std::size_t;
+			//! Type of objects pointed to by the iterator.
+			using pointer = NodeAVL*;
+			//! Type of references to values.
+			using reference = std::pair<Key, T>&;
 			//! Should not be called, use rbegin() and rend() instead.
 			explicit reverse_iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
@@ -237,11 +277,6 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline static NodeAVL* rotation_RL(NodeAVL* source);
 		// Iterator base structure
 		struct iterator_actions{
-			using iterator_category = std::bidirectional_iterator_tag;
-			using value_type = std::pair<Key, T>;
-			using difference_type = std::size_t;
-			using pointer = NodeAVL*;
-			using reference = std::pair<Key, T>&;
 			friend class TreeAVL<Key,T,Compare,Allocator>;
 			bool operator==(const iterator_actions& other) const;
 			bool operator!=(const iterator_actions& other) const;
