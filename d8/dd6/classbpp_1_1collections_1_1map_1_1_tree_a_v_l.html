@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#friends">Friends</a>  </div>
   <div class="headertitle"><div class="title">bpp::collections::map::TreeAVL&lt; Key, T, Compare, Allocator &gt; Class Template Reference</div></div>
@@ -88,6 +89,45 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dd0/structbpp_1_1collections_1_1map_1_1_tree_a_v_l_1_1reverse__iterator.html">reverse_iterator</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d7/dd0/structbpp_1_1collections_1_1map_1_1_tree_a_v_l_1_1reverse__iterator.html" title="reverse_iterator is an object that allows iteration of the container in the inverse order of the sort...">reverse_iterator</a> is an object that allows iteration of the container in the inverse order of the sorted keys. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.  <a href="../../d7/dd0/structbpp_1_1collections_1_1map_1_1_tree_a_v_l_1_1reverse__iterator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a171a248b242eb701a7512426434153be"><td class="memItemLeft" align="right" valign="top"><a id="a171a248b242eb701a7512426434153be" name="a171a248b242eb701a7512426434153be"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>key_type</b> = Key</td></tr>
+<tr class="memdesc:a171a248b242eb701a7512426434153be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the keys for the key-value pairs. <br /></td></tr>
+<tr class="separator:a171a248b242eb701a7512426434153be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4208b5df75c1bc0af0961a90ac063f4"><td class="memItemLeft" align="right" valign="top"><a id="ad4208b5df75c1bc0af0961a90ac063f4" name="ad4208b5df75c1bc0af0961a90ac063f4"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>mapped_type</b> = T</td></tr>
+<tr class="memdesc:ad4208b5df75c1bc0af0961a90ac063f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the mapped values for the key-value pairs. <br /></td></tr>
+<tr class="separator:ad4208b5df75c1bc0af0961a90ac063f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3c9d3419b237d81e0a30f6fa552dfc2"><td class="memItemLeft" align="right" valign="top"><a id="ae3c9d3419b237d81e0a30f6fa552dfc2" name="ae3c9d3419b237d81e0a30f6fa552dfc2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = std::pair&lt; const Key, T &gt;</td></tr>
+<tr class="memdesc:ae3c9d3419b237d81e0a30f6fa552dfc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the values stored in the map. <br /></td></tr>
+<tr class="separator:ae3c9d3419b237d81e0a30f6fa552dfc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5147fb98de4162b0acdea171b42ed58"><td class="memItemLeft" align="right" valign="top"><a id="af5147fb98de4162b0acdea171b42ed58" name="af5147fb98de4162b0acdea171b42ed58"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = std::size_t</td></tr>
+<tr class="memdesc:af5147fb98de4162b0acdea171b42ed58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to calculate sizes. <br /></td></tr>
+<tr class="separator:af5147fb98de4162b0acdea171b42ed58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af425e40e7c9b6c0764ad3cd374b38f1e"><td class="memItemLeft" align="right" valign="top"><a id="af425e40e7c9b6c0764ad3cd374b38f1e" name="af425e40e7c9b6c0764ad3cd374b38f1e"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = std::ptrdiff_t</td></tr>
+<tr class="memdesc:af425e40e7c9b6c0764ad3cd374b38f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to calculate differences (unused). <br /></td></tr>
+<tr class="separator:af425e40e7c9b6c0764ad3cd374b38f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e807c0f1bc4abcb016cfc2ed6331cf4"><td class="memItemLeft" align="right" valign="top"><a id="a8e807c0f1bc4abcb016cfc2ed6331cf4" name="a8e807c0f1bc4abcb016cfc2ed6331cf4"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>key_compare</b> = Compare</td></tr>
+<tr class="memdesc:a8e807c0f1bc4abcb016cfc2ed6331cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of compare used in key comparison. <br /></td></tr>
+<tr class="separator:a8e807c0f1bc4abcb016cfc2ed6331cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b3919b98c06d590058cd30eb81bdfac"><td class="memItemLeft" align="right" valign="top"><a id="a6b3919b98c06d590058cd30eb81bdfac" name="a6b3919b98c06d590058cd30eb81bdfac"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>allocator_type</b> = Allocator</td></tr>
+<tr class="memdesc:a6b3919b98c06d590058cd30eb81bdfac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of allocator used. <br /></td></tr>
+<tr class="separator:a6b3919b98c06d590058cd30eb81bdfac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad02417dbef396a816300f4e8f9bd7729"><td class="memItemLeft" align="right" valign="top"><a id="ad02417dbef396a816300f4e8f9bd7729" name="ad02417dbef396a816300f4e8f9bd7729"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>reference</b> = <a class="el" href="../../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#ae3c9d3419b237d81e0a30f6fa552dfc2">value_type</a> &amp;</td></tr>
+<tr class="memdesc:ad02417dbef396a816300f4e8f9bd7729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of references to values. <br /></td></tr>
+<tr class="separator:ad02417dbef396a816300f4e8f9bd7729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ecd04671d25f343e2824378eb8d240b"><td class="memItemLeft" align="right" valign="top"><a id="a7ecd04671d25f343e2824378eb8d240b" name="a7ecd04671d25f343e2824378eb8d240b"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>const_reference</b> = const <a class="el" href="../../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#ae3c9d3419b237d81e0a30f6fa552dfc2">value_type</a> &amp;</td></tr>
+<tr class="memdesc:a7ecd04671d25f343e2824378eb8d240b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of constant references to values;. <br /></td></tr>
+<tr class="separator:a7ecd04671d25f343e2824378eb8d240b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
