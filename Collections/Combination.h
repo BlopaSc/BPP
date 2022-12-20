@@ -13,6 +13,17 @@ namespace bpp{
 //! Combination is an iterator structure that allows iteration over the sequence of combination from N choose K.
 class Combination{
 	public:
+		//! Category of the iterator.
+		using iterator_category = std::random_access_iterator_tag;
+		//! Type of values accessed by the iterator.
+		using value_type = std::size_t;
+		//! Type of differences between iterators.
+		using difference_type = std::size_t;
+		//! Type of objects pointed to by the iterator.
+		using pointer = std::size_t*;
+		//! Type of references to values.
+		using reference = std::size_t&;
+		
 		// Constructors
 		//! Constructs an empty iterator.
 		constexpr Combination() noexcept;
@@ -83,6 +94,16 @@ class Combination{
 		Combination& operator--();
 		//! Regresses the iterator to the previous combination in the sequence. Returns a copy of the original iterator.
 		Combination operator--(int);
+		//! Advances the iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk.
+		Combination& operator+=(std::size_t n);
+		//! Advances a new iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk.
+		Combination operator+(std::size_t n) const;
+		//! Regresses the iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk.
+		Combination& operator-=(std::size_t n);
+		//! Regresses a new iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk.
+		Combination operator-(std::size_t n) const;
+		//! Returns the distance between the ranks of the two combinations.
+		std::ptrdiff_t operator-(const Combination& other) const noexcept;
 		
 		// Comparison
 		//! Checks whether both objects iterate over the same set of elements and represent the same nCk combination. The base iterator must be comparable.
@@ -105,9 +126,9 @@ class Combination{
 		//! Compares the current rank of the iterator against an integer.
 		inline friend std::strong_ordering operator<=>(const Combination& lhs, std::size_t rhs);
 		
-	protected:
+	private:
 		std::size_t* positions;
-		std::size_t fromN,chooseK, count;
+		std::size_t fromN, chooseK, count;
 		std::size_t crank;
 		std::size_t cflag;
 		std::size_t (*combination)(std::size_t, std::size_t);

@@ -15,6 +15,16 @@ constexpr Combination::Combination() noexcept{
 	this->count = 1;
 	this->combination = &this->combinations;
 }
+Combination::Combination(std::size_t n, std::size_t k, bool precalculate){
+	this->positions = 0;
+	this->positions = k ? new std::size_t[k+1] : 0;
+	this->fromN = n;
+	this->chooseK = k;
+	this->count = this->combinations(n,k);
+	this->first();
+	this->combination = precalculate ? &this->static_combinations : &this->combinations;
+	if(precalculate){ this->load_combinations(n,k); }
+}
 template <class It> Combination::Combination(const It& first, const It& last, std::size_t k, bool precalculate){
 	std::size_t n = 0;
 	this->positions = 0;
@@ -219,8 +229,7 @@ constexpr std::size_t Combination::rend() const noexcept{
 	return (std::size_t)(-1);
 }
 Combination& Combination::operator++(){
-	if(this->crank < this->count){
-		++this->crank;
+	if(++this->crank < this->count){
 		const std::size_t one = 1;
 		std::size_t pos = 0;
 		do{
@@ -233,6 +242,8 @@ Combination& Combination::operator++(){
 			this->cflag = (this->cflag & (~(one<<tmp))) | (one<<pos);
 			++pos;
 		}while(true);
+	}else{
+		this->crank = this->count;
 	}
 	return *this;
 }
@@ -242,8 +253,7 @@ Combination Combination::operator++(int){
 	return result;
 }
 Combination& Combination::operator--(){
-	if(this->crank != -1){
-		--this->crank;
+	if(--this->crank < this->count){
 		const std::size_t one = 1;
 		std::size_t pos = 0;
 		std::size_t tmp, tmp2;
@@ -253,6 +263,8 @@ Combination& Combination::operator--(){
 			tmp = this->positions[pos];
 			this->cflag = (this->cflag & (~(one<<tmp))) | (one<<(this->positions[pos] = --tmp2));
 		}
+	}else{
+		this->crank = -1;
 	}
 	return *this;
 }
@@ -260,6 +272,37 @@ Combination Combination::operator--(int){
 	Combination result(*this);
 	--(*this);
 	return result;
+}
+Combination& Combination::operator+=(std::size_t n){
+	std::size_t tmp = this->crank + n;
+	if(tmp < this->count){
+		this->seek_rank(tmp);
+	}else{
+		this->last();
+		++this->crank;
+	}
+	return *this;
+}
+Combination Combination::operator+(std::size_t n) const{
+	Combination result(*this);
+	return result += n;
+}
+Combination& Combination::operator-=(std::size_t n){
+	std::size_t tmp = this->crank - n;
+	if(tmp < this->count){
+		this->seek_rank(tmp);
+	}else{
+		this->first();
+		--this->crank;
+	}
+	return *this;
+}
+Combination Combination::operator-(std::size_t n) const{
+	Combination result(*this);
+	return result -= n;
+}
+std::ptrdiff_t Combination::operator-(const Combination& other) const noexcept{
+	return this->crank - other.crank;
 }
 
 // Comparison
