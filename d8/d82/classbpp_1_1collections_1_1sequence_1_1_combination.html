@@ -68,11 +68,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="#friends">Friends</a>  </div>
   <div class="headertitle"><div class="title">bpp::collections::sequence::Combination Class Reference</div></div>
 </div><!--header-->
@@ -83,6 +81,29 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="../../db/dde/_combination_8h_source.html">Combination.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:afd7c853ab26287fa9cd00192e33d3992"><td class="memItemLeft" align="right" valign="top"><a id="afd7c853ab26287fa9cd00192e33d3992" name="afd7c853ab26287fa9cd00192e33d3992"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator_category</b> = std::random_access_iterator_tag</td></tr>
+<tr class="memdesc:afd7c853ab26287fa9cd00192e33d3992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Category of the iterator. <br /></td></tr>
+<tr class="separator:afd7c853ab26287fa9cd00192e33d3992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a773484a5d87ee8ba5d780479c7df5eb2"><td class="memItemLeft" align="right" valign="top"><a id="a773484a5d87ee8ba5d780479c7df5eb2" name="a773484a5d87ee8ba5d780479c7df5eb2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = std::size_t</td></tr>
+<tr class="memdesc:a773484a5d87ee8ba5d780479c7df5eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of values accessed by the iterator. <br /></td></tr>
+<tr class="separator:a773484a5d87ee8ba5d780479c7df5eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab81fd9bd172cf7d67ebdfb7b17ca44"><td class="memItemLeft" align="right" valign="top"><a id="a3ab81fd9bd172cf7d67ebdfb7b17ca44" name="a3ab81fd9bd172cf7d67ebdfb7b17ca44"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = std::size_t</td></tr>
+<tr class="memdesc:a3ab81fd9bd172cf7d67ebdfb7b17ca44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of differences between iterators. <br /></td></tr>
+<tr class="separator:a3ab81fd9bd172cf7d67ebdfb7b17ca44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10d0804a7fd819be2f0e2201e3eb78d2"><td class="memItemLeft" align="right" valign="top"><a id="a10d0804a7fd819be2f0e2201e3eb78d2" name="a10d0804a7fd819be2f0e2201e3eb78d2"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b> = std::size_t *</td></tr>
+<tr class="memdesc:a10d0804a7fd819be2f0e2201e3eb78d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of objects pointed to by the iterator. <br /></td></tr>
+<tr class="separator:a10d0804a7fd819be2f0e2201e3eb78d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3daf29e95d93244a66a1193946ad6a44"><td class="memItemLeft" align="right" valign="top"><a id="a3daf29e95d93244a66a1193946ad6a44" name="a3daf29e95d93244a66a1193946ad6a44"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>reference</b> = std::size_t &amp;</td></tr>
+<tr class="memdesc:a3daf29e95d93244a66a1193946ad6a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of references to values. <br /></td></tr>
+<tr class="separator:a3daf29e95d93244a66a1193946ad6a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9d1cd46892a433e850ade708d2fd90b"><td class="memItemLeft" align="right" valign="top"><a id="ad9d1cd46892a433e850ade708d2fd90b" name="ad9d1cd46892a433e850ade708d2fd90b"></a>
@@ -204,6 +225,26 @@ constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>rend
 <a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html">Combination</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator--</b> (int)</td></tr>
 <tr class="memdesc:afeb1175824fd4ae217261bb99abf5ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regresses the iterator to the previous combination in the sequence. Returns a copy of the original iterator. <br /></td></tr>
 <tr class="separator:afeb1175824fd4ae217261bb99abf5ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aaf40fb3b0f79a54caf5823a07dcafc"><td class="memItemLeft" align="right" valign="top"><a id="a4aaf40fb3b0f79a54caf5823a07dcafc" name="a4aaf40fb3b0f79a54caf5823a07dcafc"></a>
+<a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html">Combination</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (std::size_t <a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html#a0f73961a1cfe86c1bdf2de6b49f8859a">n</a>)</td></tr>
+<tr class="memdesc:a4aaf40fb3b0f79a54caf5823a07dcafc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
+<tr class="separator:a4aaf40fb3b0f79a54caf5823a07dcafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09c33075ac1486598264baf3575c9483"><td class="memItemLeft" align="right" valign="top"><a id="a09c33075ac1486598264baf3575c9483" name="a09c33075ac1486598264baf3575c9483"></a>
+<a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html">Combination</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::size_t <a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html#a0f73961a1cfe86c1bdf2de6b49f8859a">n</a>) const</td></tr>
+<tr class="memdesc:a09c33075ac1486598264baf3575c9483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances a new iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
+<tr class="separator:a09c33075ac1486598264baf3575c9483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6864bf37d3dd623f499a766bda6af49c"><td class="memItemLeft" align="right" valign="top"><a id="a6864bf37d3dd623f499a766bda6af49c" name="a6864bf37d3dd623f499a766bda6af49c"></a>
+<a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html">Combination</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (std::size_t <a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html#a0f73961a1cfe86c1bdf2de6b49f8859a">n</a>)</td></tr>
+<tr class="memdesc:a6864bf37d3dd623f499a766bda6af49c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regresses the iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
+<tr class="separator:a6864bf37d3dd623f499a766bda6af49c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16360e6d990aa00f16c7530861cdd7e1"><td class="memItemLeft" align="right" valign="top"><a id="a16360e6d990aa00f16c7530861cdd7e1" name="a16360e6d990aa00f16c7530861cdd7e1"></a>
+<a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html">Combination</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (std::size_t <a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html#a0f73961a1cfe86c1bdf2de6b49f8859a">n</a>) const</td></tr>
+<tr class="memdesc:a16360e6d990aa00f16c7530861cdd7e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regresses a new iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
+<tr class="separator:a16360e6d990aa00f16c7530861cdd7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a097914ee46658b00192e4f25cd42b167"><td class="memItemLeft" align="right" valign="top"><a id="a097914ee46658b00192e4f25cd42b167" name="a097914ee46658b00192e4f25cd42b167"></a>
+std::ptrdiff_t&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html">Combination</a> &amp;other) const noexcept</td></tr>
+<tr class="memdesc:a097914ee46658b00192e4f25cd42b167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance between the ranks of the two combinations. <br /></td></tr>
+<tr class="separator:a097914ee46658b00192e4f25cd42b167"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b8172e944c9668f95d4ed62ff5ce381"><td class="memItemLeft" align="right" valign="top"><a id="a1b8172e944c9668f95d4ed62ff5ce381" name="a1b8172e944c9668f95d4ed62ff5ce381"></a>
 constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>comparable</b> (const <a class="el" href="../../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html">Combination</a> &amp;other) const noexcept</td></tr>
 <tr class="memdesc:a1b8172e944c9668f95d4ed62ff5ce381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether both objects iterate over the same set of elements and represent the same nCk combination. The base iterator must be comparable. <br /></td></tr>
@@ -219,45 +260,6 @@ static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom">
 static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>combinations</b> (std::size_t fromN, std::size_t chooseK) noexcept</td></tr>
 <tr class="memdesc:a1bc6239351b868f001d08aee2eee2bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of possible combinations produced by choosing K elements from a set of size N. This is the cardinality of the sequence of combinations given by nCk. <br /></td></tr>
 <tr class="separator:a1bc6239351b868f001d08aee2eee2bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
-Static Protected Member Functions</h2></td></tr>
-<tr class="memitem:a14a670c4f492994b8ecb8d7634ee4221"><td class="memItemLeft" align="right" valign="top"><a id="a14a670c4f492994b8ecb8d7634ee4221" name="a14a670c4f492994b8ecb8d7634ee4221"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>load_combinations</b> (std::size_t fromN, std::size_t chooseK)</td></tr>
-<tr class="separator:a14a670c4f492994b8ecb8d7634ee4221"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa957c8c01c78374bbc8c85d57be04951"><td class="memItemLeft" align="right" valign="top"><a id="aa957c8c01c78374bbc8c85d57be04951" name="aa957c8c01c78374bbc8c85d57be04951"></a>
-static std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>static_combinations</b> (std::size_t fromN, std::size_t chooseK)</td></tr>
-<tr class="separator:aa957c8c01c78374bbc8c85d57be04951"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a8234d75d7dc2c4284a4f61d82c0fc785"><td class="memItemLeft" align="right" valign="top"><a id="a8234d75d7dc2c4284a4f61d82c0fc785" name="a8234d75d7dc2c4284a4f61d82c0fc785"></a>
-std::size_t *&#160;</td><td class="memItemRight" valign="bottom"><b>positions</b></td></tr>
-<tr class="separator:a8234d75d7dc2c4284a4f61d82c0fc785"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a254ca9d5a784e667db2bdbf7a3f7783f"><td class="memItemLeft" align="right" valign="top"><a id="a254ca9d5a784e667db2bdbf7a3f7783f" name="a254ca9d5a784e667db2bdbf7a3f7783f"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>fromN</b></td></tr>
-<tr class="separator:a254ca9d5a784e667db2bdbf7a3f7783f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c219d431cc43882ffd749192a8b1dab"><td class="memItemLeft" align="right" valign="top"><a id="a6c219d431cc43882ffd749192a8b1dab" name="a6c219d431cc43882ffd749192a8b1dab"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>chooseK</b></td></tr>
-<tr class="separator:a6c219d431cc43882ffd749192a8b1dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6d35dc4c8ecf241d67046c79d6dcfd8"><td class="memItemLeft" align="right" valign="top"><a id="aa6d35dc4c8ecf241d67046c79d6dcfd8" name="aa6d35dc4c8ecf241d67046c79d6dcfd8"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>count</b></td></tr>
-<tr class="separator:aa6d35dc4c8ecf241d67046c79d6dcfd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9a1e5ad0b84fd7091f406274c43e88c"><td class="memItemLeft" align="right" valign="top"><a id="aa9a1e5ad0b84fd7091f406274c43e88c" name="aa9a1e5ad0b84fd7091f406274c43e88c"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>crank</b></td></tr>
-<tr class="separator:aa9a1e5ad0b84fd7091f406274c43e88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91349638bf4f1d9744e06dc62921f3d1"><td class="memItemLeft" align="right" valign="top"><a id="a91349638bf4f1d9744e06dc62921f3d1" name="a91349638bf4f1d9744e06dc62921f3d1"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>cflag</b></td></tr>
-<tr class="separator:a91349638bf4f1d9744e06dc62921f3d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe79736090a385c99c1f3fc3ac9852ca"><td class="memItemLeft" align="right" valign="top"><a id="afe79736090a385c99c1f3fc3ac9852ca" name="afe79736090a385c99c1f3fc3ac9852ca"></a>
-std::size_t(*&#160;</td><td class="memItemRight" valign="bottom"><b>combination</b> )(std::size_t, std::size_t)</td></tr>
-<tr class="separator:afe79736090a385c99c1f3fc3ac9852ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
-Static Protected Attributes</h2></td></tr>
-<tr class="memitem:a41cd4108680b92f700639851948fc533"><td class="memItemLeft" align="right" valign="top"><a id="a41cd4108680b92f700639851948fc533" name="a41cd4108680b92f700639851948fc533"></a>
-static std::vector&lt; std::vector&lt; std::size_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>preCombinations</b></td></tr>
-<tr class="separator:a41cd4108680b92f700639851948fc533"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
