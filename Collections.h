@@ -22,8 +22,8 @@ namespace bpp{
 		
 	}
 	
-	//! Special sequence accesses for sets of elements, like permutations and combinations.
-	namespace sequence{
+	//! Iterators for special sequences of elements of a set, like permutations and combinations.
+	namespace iteration{
 		
 	}
 	
@@ -31,7 +31,7 @@ namespace bpp{
 	}
 }
 
-#include "Collections/ListArray.h"
 #include "Collections/TreeAVL.h"
+#include "Collections/Combination.h"
 
 #endif

@@ -1,9 +1,11 @@
-#ifndef BPP_COLLECTIONS_SEQUENCE_COMBINATION_CPP
-#define BPP_COLLECTIONS_SEQUENCE_COMBINATION_CPP
+#ifndef BPP_COLLECTIONS_ITERATION_COMBINATION_CPP
+#define BPP_COLLECTIONS_ITERATION_COMBINATION_CPP
+
+#include "Combination.h"
 
 namespace bpp{
 	namespace collections{
-		namespace sequence{
+		namespace iteration{
 
 // Constructors
 constexpr Combination::Combination() noexcept{
@@ -160,7 +162,7 @@ template <std::size_t N> constexpr void Combination::flag(std::bitset<N>& flag) 
 
 // Element access
 constexpr std::size_t Combination::at(std::size_t k) const{
-	if(this->chooseK <= k){ throw std::out_of_range("bpp::collections::sequence::Combination::at"); }
+	if(this->chooseK <= k){ throw std::out_of_range("bpp::collections::iteration::Combination::at"); }
 	return this->positions[k];
 }
 constexpr std::size_t Combination::operator[](std::size_t k) const noexcept{

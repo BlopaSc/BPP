@@ -1,5 +1,5 @@
-#ifndef BPP_COLLECTIONS_SEQUENCE_COMBINATION_H
-#define BPP_COLLECTIONS_SEQUENCE_COMBINATION_H
+#ifndef BPP_COLLECTIONS_ITERATION_COMBINATION_H
+#define BPP_COLLECTIONS_ITERATION_COMBINATION_H
 #include <bitset>			// std::bitset<>
 #include <compare>			// std::strong_ordering
 #include <stdexcept>		// std::out_of_range
@@ -8,7 +8,7 @@
 
 namespace bpp{
 	namespace collections{
-		namespace sequence{
+		namespace iteration{
 
 //! Combination is an iterator structure that allows iteration over the sequence of combination from N choose K.
 class Combination{
@@ -142,7 +142,5 @@ class Combination{
 		}
 	}
 }
-
-#include "Combination.cpp"
 
 #endif
