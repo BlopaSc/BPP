@@ -10,7 +10,7 @@ namespace bpp{
 	namespace collections{
 		namespace iteration{
 
-//! Combination is an iterator structure that allows iteration over the sequence of combination from N choose K.
+//! Combination is an iterator structure that allows iteration over the sequence of combinations from N choose K.
 class Combination{
 	public:
 		//! Category of the iterator.
