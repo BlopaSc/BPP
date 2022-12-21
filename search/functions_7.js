@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['k_0',['k',['../d8/d82/classbpp_1_1collections_1_1sequence_1_1_combination.html#a4adf02af34d0cfd4fbf5fdb0b0ab7821',1,'bpp::collections::sequence::Combination']]]
+  ['k_0',['k',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a776da627af073324932d7f0a1b46d9dd',1,'bpp::collections::iteration::Combination']]]
 ];
