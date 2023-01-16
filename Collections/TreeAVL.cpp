@@ -221,7 +221,7 @@ template <class Key, class T, class Compare, class Allocator> std::size_t TreeAV
 	return this->counter;
 }
 template <class Key, class T, class Compare, class Allocator> std::size_t TreeAVL<Key,T,Compare,Allocator>::memory() const noexcept{
-	return this->counter*sizeof(NodeAVL);
+	return sizeof(TreeAVL) + this->counter*sizeof(NodeAVL);
 }
 
 // Modifiers
