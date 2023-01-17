@@ -37,8 +37,10 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		using allocator_type = Allocator;
 		//! Type of references to values.
 		using reference = value_type&;
-		//! Type of constant references to values;
+		//! Type of constant references to values.
 		using const_reference = const value_type&;
+		//! Type of container node.
+		using node_type = NodeAVL;
 		
 		//! Constructs an empty container.
 		TreeAVL();
