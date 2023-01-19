@@ -142,10 +142,10 @@ template <class Key, class T, class Compare, class Allocator> T& TreeAVL<Key,T,C
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator::iterator(NodeAVL* init){
 	this->current = init;
 }
-template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>& TreeAVL<Key,T,Compare,Allocator>::iterator::operator*() const{
+template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
-template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>* TreeAVL<Key,T,Compare,Allocator>::iterator::operator->() const{
+template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T>* TreeAVL<Key,T,Compare,Allocator>::iterator::operator->() const{
 	return this->current ? &this->current->data : 0;
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator& TreeAVL<Key,T,Compare,Allocator>::iterator::operator++(){
@@ -170,10 +170,10 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::reverse_iterator(NodeAVL* init){
 	this->current = init;
 }
-template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator*() const{
+template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
-template <class Key, class T, class Compare, class Allocator> std::pair<Key, T>* TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator->() const{
+template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T>* TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator->() const{
 	return this->current ? &this->current->data : 0;
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator++(){
@@ -408,14 +408,14 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 	this->leftChild = 0;
 	this->rightChild = 0;
 	this->height = 0;
-	this->data.first = key;
+	*((Key*) &this->data.first) = key;
 }
 template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(Key&& key, NodeAVL* parent){
 	this->parent = parent;
 	this->leftChild = 0;
 	this->rightChild = 0;
 	this->height = 0;
-	this->data.first = std::move(key);
+	*((Key*) &this->data.first) = std::move(key);
 }
 template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::~NodeAVL(){}
 template <class Key, class T, class Compare,class Allocator> void TreeAVL<Key,T,Compare,Allocator>::NodeAVL::recalculate_height(){
@@ -600,10 +600,10 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 				tmp->rightChild->parent = tmp->parent;
 				tmp->rightChild = 0;
 			}
-			src->data = std::move(tmp->data);
+			*((std::pair<Key,T>*)&src->data) = std::move(tmp->data);
 		}else if(tmp->leftChild){
 			tmp = tmp->leftChild;
-			src->data = std::move(tmp->data);
+			*((std::pair<Key,T>*)&src->data) = std::move(tmp->data);
 			tmp->parent->leftChild = 0;
 		}else{
 			if(result = tmp->parent){
@@ -702,7 +702,7 @@ template <class Key, class T, class Compare, class Allocator> bool TreeAVL<Key,T
 	return this->current != other.current;
 }
 
-template <class Key, class T, class Compare, class Allocator> std::pair<Key, T> TreeAVL<Key,T,Compare,Allocator>::iterator_actions::nullvalue;
+template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T> TreeAVL<Key,T,Compare,Allocator>::iterator_actions::nullvalue;
 
 // Specialized copy/move calls
 template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::sp_copy(const TreeAVL& other, std::true_type){

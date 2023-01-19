@@ -22,7 +22,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 	public:
 		// Declares member types
 		//! Type of the keys for the key-value pairs.
-		using key_type = Key;
+		using key_type = const Key;
 		//! Type of the mapped values for the key-value pairs.
 		using mapped_type = T;
 		//! Type of the values stored in the map.
@@ -98,19 +98,19 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			//! Category of the iterator.
 			using iterator_category = std::bidirectional_iterator_tag;
 			//! Type of values accessed by the iterator.
-			using value_type = std::pair<Key, T>;
+			using value_type = std::pair<const Key, T>;
 			//! Type of differences between iterators.
 			using difference_type = std::size_t;
 			//! Type of objects pointed to by the iterator.
 			using pointer = NodeAVL*;
 			//! Type of references to values.
-			using reference = std::pair<Key, T>&;
+			using reference = std::pair<const Key, T>&;
 			//! Should not be called, use begin() and end() instead.
 			explicit iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
-			std::pair<Key, T>& operator*() const;
+			std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.
-			std::pair<Key, T>* operator->() const;
+			std::pair<const Key, T>* operator->() const;
 			//! Advances the iterator to the next key-value in the map.
 			iterator& operator++();
 			//! Advances the iterator to the next key-value in the map.
@@ -126,19 +126,19 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			//! Category of the iterator.
 			using iterator_category = std::bidirectional_iterator_tag;
 			//! Type of values accessed by the iterator.
-			using value_type = std::pair<Key, T>;
+			using value_type = std::pair<const Key, T>;
 			//! Type of differences between iterators.
 			using difference_type = std::size_t;
 			//! Type of objects pointed to by the iterator.
 			using pointer = NodeAVL*;
 			//! Type of references to values.
-			using reference = std::pair<Key, T>&;
+			using reference = std::pair<const Key, T>&;
 			//! Should not be called, use rbegin() and rend() instead.
 			explicit reverse_iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
-			std::pair<Key, T>& operator*() const;
+			std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.
-			std::pair<Key, T>* operator->() const;
+			std::pair<const Key, T>* operator->() const;
 			//! Advances the iterator to the previous key-value in the map.
 			reverse_iterator& operator++();
 			//! Advances the iterator to the previous key-value in the map.
@@ -252,7 +252,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Nested class NodeAVL
 		struct NodeAVL{
 			NodeAVL *parent,*leftChild,*rightChild;
-			std::pair<Key,T> data;
+			std::pair<const Key,T> data;
 			std::size_t height;
 			NodeAVL(NodeAVL* parent=0);
 			NodeAVL(const Key& key, NodeAVL* parent=0);
@@ -284,7 +284,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			bool operator!=(const iterator_actions& other) const;
 			protected:
 				NodeAVL* current;
-				static std::pair<Key, T> nullvalue;
+				static std::pair<const Key, T> nullvalue;
 				inline void next_element();
 				inline void previous_element();
 		};
