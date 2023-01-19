@@ -166,6 +166,34 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	this->previous_element();
 	return pit;
 }
+// Constant Iterator
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator::const_iterator(NodeAVL* init){
+	this->current = init;
+}
+template <class Key, class T, class Compare, class Allocator> const std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::const_iterator::operator*() const{
+	return this->current ? this->current->data : this->nullvalue;
+}
+template <class Key, class T, class Compare, class Allocator> const std::pair<const Key, T>* TreeAVL<Key,T,Compare,Allocator>::const_iterator::operator->() const{
+	return this->current ? &this->current->data : 0;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator& TreeAVL<Key,T,Compare,Allocator>::const_iterator::operator++(){
+	this->next_element();
+	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::const_iterator::operator++(int){
+	const_iterator pit(this->current);
+	this->next_element();
+	return pit;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator& TreeAVL<Key,T,Compare,Allocator>::const_iterator::operator--(){
+	this->previous_element();
+	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::const_iterator::operator--(int){
+	const_iterator pit(this->current);
+	this->previous_element();
+	return pit;
+}
 // Reverse Iterator
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::reverse_iterator(NodeAVL* init){
 	this->current = init;
@@ -194,6 +222,34 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	this->next_element();
 	return pit;
 }
+// Constant Reverse Iterator
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::const_reverse_iterator(NodeAVL* init){
+	this->current = init;
+}
+template <class Key, class T, class Compare, class Allocator> const std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator*() const{
+	return this->current ? this->current->data : this->nullvalue;
+}
+template <class Key, class T, class Compare, class Allocator> const std::pair<const Key, T>* TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator->() const{
+	return this->current ? &this->current->data : 0;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator& TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator++(){
+	this->previous_element();
+	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator++(int){
+	const_reverse_iterator pit(this->current);
+	this->previous_element();
+	return pit;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator& TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator--(){
+	this->next_element();
+	return *this;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator--(int){
+	const_reverse_iterator pit(this->current);
+	this->next_element();
+	return pit;
+}
 
 // Iterator generation methods
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::begin() const noexcept{
@@ -201,16 +257,32 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	while(tmp && tmp->leftChild){ tmp = tmp->leftChild; }
 	return iterator(tmp);
 }
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::cbegin() const noexcept{
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->leftChild){ tmp = tmp->leftChild; }
+	return const_iterator(tmp);
+}
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::end() const noexcept{
 	return iterator();
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::cend() const noexcept{
+	return const_iterator();
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rbegin() const noexcept{
 	NodeAVL* tmp = this->root;
 	while(tmp && tmp->rightChild){ tmp = tmp->rightChild; }
 	return reverse_iterator(tmp);
 }
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::crbegin() const noexcept{
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->rightChild){ tmp = tmp->rightChild; }
+	return const_reverse_iterator(tmp);
+}
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rend() const noexcept{
 	return reverse_iterator();
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::crend() const noexcept{
+	return const_reverse_iterator();
 }
 
 // Capacity
@@ -432,7 +504,7 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 		std::construct_at(result);
 	}
 	ptr = result;
-	ptr->data = src->data;
+	*((std::pair<Key,T>*)&ptr->data) = src->data;
 	ptr->height = src->height;
 	goto nodeavl_copy_get_leftmost_child_loop;
 	while(ptr){
@@ -444,7 +516,7 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 			}
 			src = src->rightChild;
 			ptr = ptr->rightChild;
-			ptr->data = src->data;
+			*((std::pair<Key,T>*)&ptr->data) = src->data;
 			ptr->height = src->height;
 			nodeavl_copy_get_leftmost_child_loop:
 			while(src->leftChild){
@@ -454,7 +526,7 @@ template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compa
 				}
 				src = src->leftChild;
 				ptr = ptr->leftChild;
-				ptr->data = src->data;
+				*((std::pair<Key,T>*)&ptr->data) = src->data;
 				ptr->height = src->height;
 			};
 		}else{

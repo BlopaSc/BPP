@@ -120,7 +120,33 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			//! Regresses the iterator to the previous key-value in the map. If out of bounds, becomes equal to end().
 			iterator operator--(int);
 		};
-		struct const_iterator;
+		//! const_iterator is an object that allows iteration of the container in the order of the sorted keys for access only. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.
+		struct const_iterator : public iterator_actions{
+			//! Category of the iterator.
+			using iterator_category = std::bidirectional_iterator_tag;
+			//! Type of values accessed by the iterator.
+			using value_type = const std::pair<const Key, T>;
+			//! Type of differences between iterators.
+			using difference_type = std::size_t;
+			//! Type of objects pointed to by the iterator.
+			using pointer = NodeAVL*;
+			//! Type of references to values.
+			using reference = const std::pair<const Key, T>&;
+			//! Should not be called, use begin() and end() instead.
+			explicit const_iterator(NodeAVL* init=0);
+			//! References the key-value pair pointed at by the iterator.
+			const std::pair<const Key, T>& operator*() const;
+			//! Dereferences the key-value pair pointed at by the iterator.
+			const std::pair<const Key, T>* operator->() const;
+			//! Advances the iterator to the next key-value in the map.
+			const_iterator& operator++();
+			//! Advances the iterator to the next key-value in the map.
+			const_iterator operator++(int);
+			//! Regresses the iterator to the previous key-value in the map. If out of bounds, becomes equal to end().
+			const_iterator& operator--();
+			//! Regresses the iterator to the previous key-value in the map. If out of bounds, becomes equal to end().
+			const_iterator operator--(int);
+		};
 		//! reverse_iterator is an object that allows iteration of the container in the inverse order of the sorted keys. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.
 		struct reverse_iterator : public iterator_actions{
 			//! Category of the iterator.
@@ -148,23 +174,53 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			//! Regresses the iterator to the next key-value in the map. If out of bounds, becomes equal to end().
 			reverse_iterator operator--(int);
 		};
-		struct const_reverse_iterator;
+		//! const_reverse_iterator is an object that allows iteration of the container in the inverse order of the sorted keys for access only. Beware that any changes in the tree may invalidate the iterators and produce undefined behaviour.
+		struct const_reverse_iterator : public iterator_actions{
+			//! Category of the iterator.
+			using iterator_category = std::bidirectional_iterator_tag;
+			//! Type of values accessed by the iterator.
+			using value_type = const std::pair<const Key, T>;
+			//! Type of differences between iterators.
+			using difference_type = std::size_t;
+			//! Type of objects pointed to by the iterator.
+			using pointer = NodeAVL*;
+			//! Type of references to values.
+			using reference = const std::pair<const Key, T>&;
+			//! Should not be called, use rbegin() and rend() instead.
+			explicit const_reverse_iterator(NodeAVL* init=0);
+			//! References the key-value pair pointed at by the iterator.
+			const std::pair<const Key, T>& operator*() const;
+			//! Dereferences the key-value pair pointed at by the iterator.
+			const std::pair<const Key, T>* operator->() const;
+			//! Advances the iterator to the previous key-value in the map.
+			const_reverse_iterator& operator++();
+			//! Advances the iterator to the previous key-value in the map.
+			const_reverse_iterator operator++(int);
+			//! Regresses the iterator to the next key-value in the map. If out of bounds, becomes equal to end().
+			const_reverse_iterator& operator--();
+			//! Regresses the iterator to the next key-value in the map. If out of bounds, becomes equal to end().
+			const_reverse_iterator operator--(int);
+		};
 		//! Returns an iterator to the first element of the map. If the map is empty, the returned iterator will be equal to end().
 		iterator begin() const noexcept;
 		// const_iterator begin() const noexcept;
-		// const_iterator cbegin() const noexcept;
+		//! Returns a constant iterator to the first element of the map. If the map is empty, the returned iterator will be equal to end().
+		const_iterator cbegin() const noexcept;
 		//! Returns an iterator to the element following the last element of the map. This element acts as a placeholder; attempting to access it results in undefined behavior.
 		iterator end() const noexcept;
 		// const_iterator end() const noexcept;
-		// const_iterator cend() const noexcept;
+		//! Returns a constant iterator to the element following the last element of the map. This element acts as a placeholder; attempting to access it results in undefined behavior.
+		const_iterator cend() const noexcept;
 		//! Returns a reverse iterator to the first element of the reversed map. It corresponds to the last element of the non-reversed map. If the map is empty, the returned iterator is equal to rend().
 		reverse_iterator rbegin() const noexcept;
 		// const_reverse_iterator rbegin() const noexcept;
-		// const_reverse_iterator crbegin() const noexcept;
+		//! Returns a constant reverse iterator to the first element of the reversed map. It corresponds to the last element of the non-reversed map. If the map is empty, the returned iterator is equal to rend().
+		const_reverse_iterator crbegin() const noexcept;
 		//! Returns a reverse iterator to the element following the last element of the reversed map. It corresponds to the element preceding the first element of the non-reversed map. This element acts as a placeholder, attempting to access it results in undefined behavior.
 		reverse_iterator rend() const noexcept;
 		// const_reverse_iterator rend() const noexcept;
-		// const_reverse_iterator crend() const noexcept;
+		//! Returns a constant reverse iterator to the element following the last element of the reversed map. It corresponds to the element preceding the first element of the non-reversed map. This element acts as a placeholder, attempting to access it results in undefined behavior.
+		const_reverse_iterator crend() const noexcept;
 		
 		// Capacity
 		//! Checks if the container has no elements, i.e. whether begin() == end().
