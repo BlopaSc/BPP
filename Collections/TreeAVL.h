@@ -105,8 +105,6 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			using pointer = NodeAVL*;
 			//! Type of references to values.
 			using reference = std::pair<const Key, T>&;
-			//! Should not be called, use begin() and end() instead.
-			explicit iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
 			std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.
@@ -132,8 +130,6 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			using pointer = NodeAVL*;
 			//! Type of references to values.
 			using reference = const std::pair<const Key, T>&;
-			//! Should not be called, use begin() and end() instead.
-			explicit const_iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
 			const std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.
@@ -159,8 +155,6 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			using pointer = NodeAVL*;
 			//! Type of references to values.
 			using reference = std::pair<const Key, T>&;
-			//! Should not be called, use rbegin() and rend() instead.
-			explicit reverse_iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
 			std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.
@@ -186,8 +180,6 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			using pointer = NodeAVL*;
 			//! Type of references to values.
 			using reference = const std::pair<const Key, T>&;
-			//! Should not be called, use rbegin() and rend() instead.
-			explicit const_reverse_iterator(NodeAVL* init=0);
 			//! References the key-value pair pointed at by the iterator.
 			const std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.
@@ -336,6 +328,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		// Iterator base structure
 		struct iterator_actions{
 			friend class TreeAVL<Key,T,Compare,Allocator>;
+			iterator_actions(NodeAVL* init = 0);
 			bool operator==(const iterator_actions& other) const;
 			bool operator!=(const iterator_actions& other) const;
 			protected:

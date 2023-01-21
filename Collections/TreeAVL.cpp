@@ -139,9 +139,6 @@ template <class Key, class T, class Compare, class Allocator> T& TreeAVL<Key,T,C
 
 // Iterators
 // Iterator
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator::iterator(NodeAVL* init){
-	this->current = init;
-}
 template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
@@ -167,9 +164,6 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	return pit;
 }
 // Constant Iterator
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator::const_iterator(NodeAVL* init){
-	this->current = init;
-}
 template <class Key, class T, class Compare, class Allocator> const std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::const_iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
@@ -195,9 +189,6 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	return pit;
 }
 // Reverse Iterator
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::reverse_iterator(NodeAVL* init){
-	this->current = init;
-}
 template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
@@ -223,9 +214,6 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	return pit;
 }
 // Constant Reverse Iterator
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::const_reverse_iterator(NodeAVL* init){
-	this->current = init;
-}
 template <class Key, class T, class Compare, class Allocator> const std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
@@ -745,6 +733,9 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 }
 
 // Iterator actions
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator_actions::iterator_actions(NodeAVL* init){
+	this->current = init;
+}
 template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::iterator_actions::next_element(){
 	if(this->current){
 		if(this->current->rightChild){
