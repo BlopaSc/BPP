@@ -155,6 +155,8 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			using pointer = NodeAVL*;
 			//! Type of references to values.
 			using reference = std::pair<const Key, T>&;
+			//! Returns the underlying base iterator.
+			inline constexpr iterator base() const;
 			//! References the key-value pair pointed at by the iterator.
 			std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.
@@ -180,6 +182,8 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			using pointer = NodeAVL*;
 			//! Type of references to values.
 			using reference = const std::pair<const Key, T>&;
+			//! Returns the underlying base iterator.
+			inline constexpr const_iterator base() const;
 			//! References the key-value pair pointed at by the iterator.
 			const std::pair<const Key, T>& operator*() const;
 			//! Dereferences the key-value pair pointed at by the iterator.

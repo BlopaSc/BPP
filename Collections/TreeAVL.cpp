@@ -189,6 +189,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	return pit;
 }
 // Reverse Iterator
+template <class Key, class T, class Compare, class Allocator> constexpr TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::base() const{ return iterator(this->current); }
 template <class Key, class T, class Compare, class Allocator> std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::reverse_iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
@@ -214,6 +215,7 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	return pit;
 }
 // Constant Reverse Iterator
+template <class Key, class T, class Compare, class Allocator> constexpr TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::base() const{ return const_iterator(this->current); }
 template <class Key, class T, class Compare, class Allocator> const std::pair<const Key, T>& TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator::operator*() const{
 	return this->current ? this->current->data : this->nullvalue;
 }
