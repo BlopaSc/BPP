@@ -278,10 +278,10 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		//! Checks if there is an element with key that compares equivalent to the value x.
 		template<class K> bool contains(const K& key) const;
 		// Bounds
-		//! Returns an iterator pointing to the first element that compares not less (i.e. greater or equal) to the value x.
+		//! Returns an iterator pointing to the first element that compares not less (i.e. greater or equal) to the value x. If no such element is found, past-the-end (see end()) iterator is returned.
 		template<class K> iterator lower_bound(const K& key);
 		// template<class K> const_iterator lower_bound(const K& key);
-		//! Returns an iterator pointing to the first element that compares greater to the value x.
+		//! Returns an iterator pointing to the first element that compares greater to the value x. If no such element is found, past-the-end (see end()) iterator is returned.
 		template<class K> iterator upper_bound(const K& key);
 		// template<class K> const_iterator upper_bound(const K& key);
 		//! Returns a range containing all elements with the given key in the container. The range is defined by two iterators, one pointing to the first element that is not less than key and another pointing to the first element greater than key. Alternatively, the first iterator may be obtained with lower_bound(), and the second with upper_bound().
