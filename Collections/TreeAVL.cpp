@@ -6,89 +6,85 @@ namespace bpp{
 		namespace map{
 
 // Empty initialization
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(){
-	this->root = 0;
-	this->counter = 0;
-}
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const Compare& comp, const Allocator& alloc){
-	this->alloc = alloc;
-	this->cmp = comp;
-	this->root = 0;
-	this->counter = 0;
-}
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const Allocator& alloc){
-	this->alloc = alloc;
-	this->root = 0;
-	this->counter = 0;
-}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL() :
+	root(0),
+	counter(0){ }
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const Compare& comp, const Allocator& alloc) :
+	alloc(alloc),
+	cmp(comp),
+	root(0),
+	counter(0){ }
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const Allocator& alloc) :
+	alloc(alloc),
+	root(0),
+	counter(0){ }
 
 // Iterator initilization
-template <class Key, class T, class Compare, class Allocator> template<class InputIt> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(InputIt first, InputIt last, const Compare& comp, const Allocator& alloc){
-	this->alloc = alloc;
-	this->cmp = comp;
-	this->root = 0;
-	this->counter = 0;
+template <class Key, class T, class Compare, class Allocator> template<class InputIt> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(InputIt first, InputIt last, const Compare& comp, const Allocator& alloc) :
+	alloc(alloc),
+	cmp(comp),
+	root(0),
+	counter(0){
 	for(auto it = first; it != last; ++it){
 		this->get_forward(it->first)->data.second = it->second;
 	}
 }
-template <class Key, class T, class Compare, class Allocator> template<class InputIt> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(InputIt first, InputIt last, const Allocator& alloc){
-	this->alloc = alloc;
-	this->root = 0;
-	this->counter = 0;
+template <class Key, class T, class Compare, class Allocator> template<class InputIt> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(InputIt first, InputIt last, const Allocator& alloc) :
+	alloc(alloc),
+	root(0),
+	counter(0){
 	for(auto it = first; it != last; ++it){
 		this->get_forward(it->first)->data.second = it->second;
 	}
 }
 
 // Copy constructor
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const TreeAVL& other){
-	this->alloc = std::allocator_traits<Allocator>::select_on_container_copy_construction(other.get_allocator());
-	this->root = other.root ? NodeAVL::copy(this->alloc, other.root) : 0;
-	this->counter = other.counter;
-}
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const TreeAVL& other, const Allocator& alloc){
-	this->alloc = alloc;
-	this->root = other.root ? NodeAVL::copy(this->alloc, other.root) : 0;
-	this->counter = other.counter;
-}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const TreeAVL& other) :
+	alloc(std::allocator_traits<Allocator>::select_on_container_copy_construction(other.get_allocator())),
+	root(other.root ? NodeAVL::copy(this->alloc, other.root) : 0),
+	counter(other.counter){ }
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(const TreeAVL& other, const Allocator& alloc) :
+	alloc(alloc),
+	root(other.root ? NodeAVL::copy(this->alloc, other.root) : 0),
+	counter(other.counter){ }
 
 // Move constructor
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(TreeAVL&& other){
-	this->alloc = std::move(other.alloc);
-	this->cmp = std::move(other.cmp);
-	this->root = other.root;
-	this->counter = other.counter;
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(TreeAVL&& other) :
+	alloc(std::move(other.alloc)),
+	cmp(std::move(other.cmp)),
+	root(other.root),
+	counter(other.counter){
 	other.root = 0;
 	other.counter = 0;
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(TreeAVL&& other, const Allocator& alloc){
-	this->alloc = alloc;
-	this->cmp = std::move(other.cmp);
-	this->counter = other.counter;
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(TreeAVL&& other, const Allocator& alloc) :
+	alloc(alloc),
+	cmp(std::move(other.cmp)),
+	counter(other.counter){
 	if(this->alloc == other.alloc){
 		this->root = other.root;
 		other.root = 0;
 		other.counter = 0;
 	}else{
 		this->root = other.root ? NodeAVL::copy(this->alloc, other.root) : 0;
+		other.clear();
 	}
 }
 
 // Initializer list initialization
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(std::initializer_list<std::pair<const Key, T>> ilist, const Compare& comp, const Allocator& alloc){
-	this->alloc = alloc;
-	this->cmp = comp;
-	this->root = 0;
-	this->counter = 0;
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(std::initializer_list<std::pair<const Key, T>> ilist, const Compare& comp, const Allocator& alloc) :
+	alloc(alloc),
+	cmp(comp),
+	root(0),
+	counter(0){
 	for(auto it : ilist){
 		this->get_forward(it.first)->data.second = it.second;
 	}
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(std::initializer_list<std::pair<const Key, T>> ilist, const Allocator& alloc){
-	this->alloc = alloc;
-	this->root = 0;
-	this->counter = 0;
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::TreeAVL(std::initializer_list<std::pair<const Key, T>> ilist, const Allocator& alloc) :
+	alloc(alloc),
+	root(0),
+	counter(0){
 	for(auto it : ilist){
 		this->get_forward(it.first)->data.second = it.second;
 	}
@@ -459,24 +455,23 @@ template<class A,class B,class C,class D> std::strong_ordering operator<=>(const
 }
 
 // Nested class NodeAVL
-template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(NodeAVL* parent){
-	this->parent = parent;
-	this->leftChild = 0;
-	this->rightChild = 0;
-	this->height = 0;
-}
-template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(const Key& key, NodeAVL* parent){
-	this->parent = parent;
-	this->leftChild = 0;
-	this->rightChild = 0;
-	this->height = 0;
+template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(NodeAVL* parent) :
+	parent(parent),
+	leftChild(0),
+	rightChild(0),
+	height(0){ }
+template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(const Key& key, NodeAVL* parent) :
+	parent(parent),
+	leftChild(0),
+	rightChild(0),
+	height(0){
 	*((Key*) &this->data.first) = key;
 }
-template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(Key&& key, NodeAVL* parent){
-	this->parent = parent;
-	this->leftChild = 0;
-	this->rightChild = 0;
-	this->height = 0;
+template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::NodeAVL(Key&& key, NodeAVL* parent) :
+	parent(parent),
+	leftChild(0),
+	rightChild(0),
+	height(0){
 	*((Key*) &this->data.first) = std::move(key);
 }
 template <class Key, class T, class Compare,class Allocator> TreeAVL<Key,T,Compare,Allocator>::NodeAVL::~NodeAVL(){}
