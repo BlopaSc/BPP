@@ -730,9 +730,8 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 }
 
 // Iterator actions
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator_actions::iterator_actions(NodeAVL* init){
-	this->current = init;
-}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator_actions::iterator_actions(NodeAVL* init) : 
+	current(init){ }
 template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T,Compare,Allocator>::iterator_actions::next_element(){
 	if(this->current){
 		if(this->current->rightChild){
