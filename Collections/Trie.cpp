@@ -512,7 +512,6 @@ template<class A,class B,class C,class D> bool operator==(const Trie<A,B,C,D>& l
 	}
 	return true;
 }
-// TODO: DEBUG THIS TOO
 template<class A,class B,class C,class D> std::strong_ordering operator<=>(const Trie<A,B,C,D>& lhs, const Trie<A,B,C,D>& rhs){
 	typename Trie<A,B,C,D>::NodeTrie *lPtr = lhs.root, *rPtr = rhs.root;
 	typename C::iterator lit, rit;
