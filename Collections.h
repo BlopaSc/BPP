@@ -12,8 +12,8 @@ namespace bpp{
 	//! The header file <Collections.h> will include all of the Collections module namespaces into the project.
 	//! @{
 	
-	//! Generic containers that allow quick lookup times for the smallest element.
-	namespace priority_queue{
+	//! Iterators for special sequences of elements of a set, like permutations and combinations.
+	namespace iteration{
 		
 	}
 	
@@ -22,10 +22,15 @@ namespace bpp{
 		
 	}
 	
-	//! Iterators for special sequences of elements of a set, like permutations and combinations.
-	namespace iteration{
+	//! Generic containers that allow quick lookup times for the smallest element.
+	namespace priority_queue{
 		
 	}
+	
+	//! Functions for data serialization. Specialization of template function objects required for custom classes.
+	namespace serialize{
+		
+	};
 	
 	//! @}
 	}
