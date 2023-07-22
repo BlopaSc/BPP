@@ -7,6 +7,9 @@
 
 namespace bpp{
 	namespace collections{
+//!
+//! Currently supports basic data types of 1, 2, 4 and 8 bytes, std::string objects and std::vector objects by default, as well as additional support for all data structures in the Collections module of BPP.
+//!
 		namespace serialize{
 
 //! serialize is a function to allow serialization of a single object. A stream-like buffer which supports the write(const char*, std::streamsize) method and a single object are required. A specialization of the Serialize template must exist for the specified object type. Returns the number of bytes written to the buffer.
@@ -46,17 +49,17 @@ template <typename Buff, typename T, typename = void> struct Deserialize{
 	std::size_t operator()(Buff& buffer, T& obj) const=0;
 };
 
-//! Specialization of the Desearialize template to support all arithmetic types and their aliases. Loads basic types using little-endian byte ordering.
+//! Specialization of the Deserialize template to support all arithmetic types and their aliases. Loads basic types using little-endian byte ordering.
 template <typename Buff, typename T> struct Deserialize<Buff,T,std::enable_if_t<std::is_arithmetic<T>::value>>{
 	std::size_t operator()(Buff& buffer, T& obj) const;
 };
 
-//! Specialization of the Desearialize template to support std::basic_string objects.
+//! Specialization of the Deserialize template to support std::basic_string objects.
 template <typename Buff, typename... Types> struct Deserialize<Buff,std::basic_string<Types...>>{
 	std::size_t operator()(Buff& buffer, std::basic_string<Types...>& obj) const;
 };
 
-//! Specialization of the Desearialize template to support std::vector objects.
+//! Specialization of the Deserialize template to support std::vector objects.
 template <typename Buff, typename... Types> struct Deserialize<Buff,std::vector<Types...>>{
 	std::size_t operator()(Buff& buffer, std::vector<Types...>& obj) const;
 };

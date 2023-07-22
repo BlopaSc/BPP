@@ -35,6 +35,9 @@ The main directories are listed below as well as their general purpose. The corr
 - collections: All data structures related classes, iterators and algorithms.
 	- `map`: TreeAVL, Trie
 	- `sequence`: Combination
+	- `serialize`: serialize/deserialize functions for data structures and basic data types
+- utility: Utility functions and structures used as part of other modules.
+	- `byte_ordering`: host to byte-ordering functions and vice-versa
 
 ## Contributors
 
