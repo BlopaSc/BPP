@@ -57,6 +57,9 @@ template<typename Buff, typename... Types> std::size_t Serialize<Buff,std::vecto
 	}
 	return res;
 }
+template <typename Buff, typename... Types> std::size_t Serialize<Buff,std::pair<Types...>>::operator()(Buff& buffer, const std::pair<Types...>& obj) const{
+	return serialize(buffer, obj.first, obj.second);
+}
 
 // Global callable functions
 template<typename Buff, typename T> std::size_t deserialize(Buff& buffer, T& obj){
@@ -117,6 +120,9 @@ template<typename Buff, typename... Types> std::size_t Deserialize<Buff,std::vec
 		obj.push_back(std::move(val));
 	}
 	return res;
+}
+template<typename Buff, typename... Types> std::size_t Deserialize<Buff,std::pair<Types...>>::operator()(Buff& buffer, std::pair<Types...>& obj) const{
+	return deserialize(buffer, obj.first, obj.second);
 }
 
 		};

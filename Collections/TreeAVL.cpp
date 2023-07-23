@@ -813,6 +813,38 @@ template <class Key, class T, class Compare, class Allocator> void TreeAVL<Key,T
 }
 
 		}
+		namespace serialize{
+
+//! Specialization of the Serialize template to support TreeAVL objects.
+template<typename Buff, typename... Types> std::size_t Serialize<Buff,bpp::collections::map::TreeAVL<Types...>>::operator()(Buff& buffer, const bpp::collections::map::TreeAVL<Types...>& obj) const{
+	std::queue<typename bpp::collections::map::TreeAVL<Types...>::node_type*> queue;
+	std::size_t objs = obj.size();
+	std::size_t res = serialize(buffer, objs);
+	if(objs){
+		queue.push(obj.root);
+		do{
+			typename bpp::collections::map::TreeAVL<Types...>::node_type* ptr = queue.front();
+			queue.pop();
+			res += serialize(buffer, ptr->data);
+			if(ptr->leftChild){ queue.push(ptr->leftChild); }
+			if(ptr->rightChild){ queue.push(ptr->rightChild); }
+		}while(queue.size());
+	}
+	return res;
+}
+template<typename Buff, typename... Types> std::size_t Deserialize<Buff,bpp::collections::map::TreeAVL<Types...>>::operator()(Buff& buffer, bpp::collections::map::TreeAVL<Types...>& obj) const{
+	std::size_t objs;
+	std::size_t res = deserialize(buffer, objs);
+	obj.clear();
+	for(std::size_t i=0; i<objs; ++i){
+		std::pair<typename bpp::collections::map::TreeAVL<Types...>::key_type,typename bpp::collections::map::TreeAVL<Types...>::mapped_type> value;
+		res += deserialize(buffer, value);
+		obj.insert(value);
+	}
+	return res;
+}
+
+		}
 	}
 }
 

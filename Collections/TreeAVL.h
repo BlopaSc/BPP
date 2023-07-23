@@ -4,9 +4,11 @@
 #include <functional>		// std::less
 #include <initializer_list>	// std::initializer_list<>
 #include <memory>			// std::allocator<>, std::allocator_traits<>, std::construct_at, std::destroy_at
+#include <queue>			// std:queue<>
 #include <stdexcept>		// std::out_of_range
 #include <type_traits>		// std::true_type, std::false_type
 #include <utility>			// std::pair, std::swap, std::move
+#include "Serialize.h"
 
 namespace bpp{
 	namespace collections{
@@ -22,7 +24,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 	public:
 		// Declares member types
 		//! Type of the keys for the key-value pairs.
-		using key_type = const Key;
+		using key_type = Key;
 		//! Type of the mapped values for the key-value pairs.
 		using mapped_type = T;
 		//! Type of the values stored in the map.
@@ -299,7 +301,9 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		template<class A,class B,class C,class D, class Pred> friend std::size_t std::erase_if(TreeAVL<A,B,C,D>& tree, Pred pred);
 		//! Specialized swapping function.
 		template<class A,class B,class C,class D> friend void std::swap(TreeAVL<A,B,C,D> &lhs, TreeAVL<A,B,C,D>& rhs);
-		
+		// Friendship
+		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Serialize;
+		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Deserialize;
 	private:
 		// Nested class NodeAVL
 		struct NodeAVL{
@@ -346,6 +350,18 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 		inline void sp_copy(const TreeAVL& other, std::false_type);
 		inline void sp_move(TreeAVL&& other, std::true_type) noexcept;
 		inline void sp_move(TreeAVL&& other, std::false_type);
+};
+
+		}
+		namespace serialize{
+
+//! Specialization of the Serialize template to support TreeAVL objects.
+template<typename Buff, typename... Types> struct Serialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
+	std::size_t operator()(Buff& buffer, const bpp::collections::map::TreeAVL<Types...>& obj) const;
+};
+//! Specialization of the Deserialize template to support std::vector objects.
+template<typename Buff, typename... Types> struct Deserialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
+	std::size_t operator()(Buff& buffer, bpp::collections::map::TreeAVL<Types...>& obj) const;
 };
 
 		}
