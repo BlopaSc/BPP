@@ -359,7 +359,7 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 template<typename Buff, typename... Types> struct Serialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
 	std::size_t operator()(Buff& buffer, const bpp::collections::map::TreeAVL<Types...>& obj) const;
 };
-//! Specialization of the Deserialize template to support std::vector objects.
+//! Specialization of the Deserialize template to support TreeAVL objects.
 template<typename Buff, typename... Types> struct Deserialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
 	std::size_t operator()(Buff& buffer, bpp::collections::map::TreeAVL<Types...>& obj) const;
 };

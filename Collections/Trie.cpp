@@ -901,6 +901,89 @@ template <class Key, class T, class Container, class Allocator> void Trie<Key,T,
 }
 
 		}
+		namespace serialize{
+
+template<typename Buff, typename... Types> std::size_t Serialize<Buff,bpp::collections::map::Trie<Types...>>::operator()(Buff& buffer, const bpp::collections::map::Trie<Types...>& obj) const{
+	typename bpp::collections::map::Trie<Types...>::node_type* ptr = obj.root;
+	typename bpp::collections::map::Trie<Types...>::key_type key;
+	std::size_t objs = obj.size();
+	std::size_t res = serialize(buffer, objs);
+	std::size_t new_chars, pos=0;
+	uint8_t encoding;
+	if(!objs){ return res; }
+	while(!ptr->valid){
+		ptr = (typename bpp::collections::map::Trie<Types...>::node_type*) ptr->children.begin()->second;
+		key.push_back(ptr->data.first);
+	}
+	do{
+		new_chars = key.size() - pos;
+		do{
+			encoding = (new_chars&0x3FULL) | ((new_chars&(~0x3FULL))?0x40:0x0);
+			new_chars >>= 6;
+			res += serialize(buffer,encoding);
+		}while(new_chars);
+		do{
+			res += serialize(buffer,key[pos++]);
+		}while(pos < key.size());
+		res += serialize(buffer, ptr->data.second);
+		do{
+			if(ptr->children.size()){
+				ptr = (typename bpp::collections::map::Trie<Types...>::node_type*) ptr->children.begin()->second;
+				key.push_back(ptr->data.first);
+			}else{
+				while(ptr->parent){
+					typename bpp::collections::map::Trie<Types...>::container_type::iterator it = ++(ptr->parent->children.find(ptr->data.first));
+					if(it != ptr->parent->children.end()){
+						ptr = (typename bpp::collections::map::Trie<Types...>::node_type*) it->second;
+						key.back() = ptr->data.first;
+						break;
+					}
+					ptr = ptr->parent;
+					key.pop_back();
+				}
+				ptr = ptr->parent ? ptr : 0;
+				if(ptr){
+					new_chars = pos - (key.size() - 1);
+					pos = key.size()-1;
+					while(new_chars){
+						encoding = (new_chars&0x3FULL) | ((new_chars&(~0x3FULL))?0x40:0x0) | 0x80;
+						new_chars >>= 6;
+						res += serialize(buffer,encoding);
+					}
+				}
+			}
+		}while(ptr && !ptr->valid);
+	}while(ptr);
+	return res;
+}
+template<typename Buff, typename... Types> std::size_t Deserialize<Buff,bpp::collections::map::Trie<Types...>>::operator()(Buff& buffer, bpp::collections::map::Trie<Types...>& obj) const{
+	typename bpp::collections::map::Trie<Types...>::key_type key;
+	typename bpp::collections::map::Trie<Types...>::key_type::value_type skey;
+	std::size_t objs, new_chars, counter, res = deserialize(buffer, objs);
+	uint8_t encoding;
+	bool up;
+	for(std::size_t i=0; i<objs; ++i){
+		new_chars = 0;
+		counter = 0;
+		do{
+			res += deserialize(buffer, encoding);
+			new_chars |= ((encoding&0x3F) << (6*(counter++)));
+		}while(encoding&0x40);
+		if(encoding&0x80){
+			for(std::size_t j=0; j<new_chars; ++j){	key.pop_back();	}
+			--i;
+		}else{
+			for(std::size_t j=0; j<new_chars; ++j){
+				res += deserialize(buffer, skey);
+				key.push_back(std::move(skey));
+			}
+			res += deserialize(buffer, obj[key]);
+		}
+	}
+	return res;
+}
+
+		}
 	}
 }
 

@@ -1,12 +1,13 @@
 #ifndef BPP_COLLECTIONS_MAP_TRIE_H
 #define BPP_COLLECTIONS_MAP_TRIE_H
-
 #include <algorithm>	// std::reverse
+#include <cstdint>		// uint8_t
 #include <map>			// std::map
 #include <memory>		// std::allocator<>, std::allocator_traits<>, std::construct_at, std::destroy_at
 #include <stdexcept>	// std::out_of_range
 #include <utility>		// std::move, std::pair
 #include <vector>		// std::vector
+#include "Serialize.h"
 
 namespace bpp{
 	namespace collections{
@@ -22,7 +23,7 @@ template <class Key, class T, class Container = std::map<Key, void*>, class Allo
 	public:
 		// Declares member types
 		//! Type of the keys for the key-value pairs.
-		using key_type = const std::vector<Key>;
+		using key_type = std::vector<Key>;
 		//! Type of the mapped values for the key-value pairs.
 		using mapped_type = T;
 		//! Type of the values stored in the map.
@@ -39,6 +40,8 @@ template <class Key, class T, class Container = std::map<Key, void*>, class Allo
 		using const_reference = const value_type&;
 		//! Type of container node.
 		using node_type = NodeTrie;
+		//! Type of container.
+		using container_type = Container;
 		
 		//! Constructs an empty container.
 		Trie();
@@ -282,7 +285,9 @@ template <class Key, class T, class Container = std::map<Key, void*>, class Allo
 		template<class A,class B,class C,class D, class Pred> friend std::size_t std::erase_if(Trie<A,B,C,D>& trie, Pred pred);
 		//! Specialized swapping function.
 		template<class A,class B,class C,class D> friend void std::swap(Trie<A,B,C,D> &lhs, Trie<A,B,C,D>& rhs);
-		
+		// Friendship
+		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Serialize;
+		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Deserialize;
 	private:
 		// Nested class NodeTrie
 		struct NodeTrie{
@@ -339,6 +344,18 @@ template <class Key, class T, class Container = std::map<Key, void*>, class Allo
 		inline void sp_copy(const Trie& other, std::false_type);
 		inline void sp_move(Trie&& other, std::true_type) noexcept;
 		inline void sp_move(Trie&& other, std::false_type);
+};
+
+		}
+		namespace serialize{
+
+//! Specialization of the Serialize template to support Trie objects.
+template<typename Buff, typename... Types> struct Serialize<Buff,bpp::collections::map::Trie<Types...>>{
+	std::size_t operator()(Buff& buffer, const bpp::collections::map::Trie<Types...>& obj) const;
+};
+//! Specialization of the Deserialize template to support Trie objects.
+template<typename Buff, typename... Types> struct Deserialize<Buff,bpp::collections::map::Trie<Types...>>{
+	std::size_t operator()(Buff& buffer, bpp::collections::map::Trie<Types...>& obj) const;
 };
 
 		}
