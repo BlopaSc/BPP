@@ -962,6 +962,7 @@ template<typename Buff, typename... Types> std::size_t Deserialize<Buff,bpp::col
 	std::size_t objs, new_chars, counter, res = deserialize(buffer, objs);
 	uint8_t encoding;
 	bool up;
+	obj.clear();
 	for(std::size_t i=0; i<objs; ++i){
 		new_chars = 0;
 		counter = 0;

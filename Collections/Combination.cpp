@@ -374,6 +374,22 @@ std::strong_ordering operator<=>(const Combination& lhs, std::size_t rhs){
 std::vector<std::vector<std::size_t>> Combination::preCombinations;
 
 		}
+		namespace serialize{
+
+template<typename Buff> std::size_t Serialize<Buff,bpp::collections::iteration::Combination>::operator()(Buff& buffer, const bpp::collections::iteration::Combination& obj) const{	
+	return serialize(buffer, obj.fromN, obj.chooseK, obj.crank, (obj.combination==obj.static_combinations));
+}
+template<typename Buff> std::size_t Deserialize<Buff,bpp::collections::iteration::Combination>::operator()(Buff& buffer, bpp::collections::iteration::Combination& obj) const{
+	std::size_t n,k,rank,res;
+	bool precalculate;
+	res = deserialize(buffer, n, k, rank, precalculate);
+	obj = std::move(bpp::collections::iteration::Combination(n,k,precalculate));
+	obj.seek_rank(rank);
+	return res;
+}
+
+
+		}
 	}
 }
 

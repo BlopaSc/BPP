@@ -5,6 +5,7 @@
 #include <stdexcept>		// std::out_of_range
 #include <utility>			// std::move
 #include <vector>			// std::vector
+#include "Serialize.h"
 
 namespace bpp{
 	namespace collections{
@@ -18,7 +19,7 @@ class Combination{
 		//! Type of values accessed by the iterator.
 		using value_type = std::size_t;
 		//! Type of differences between iterators.
-		using difference_type = std::size_t;
+		using difference_type = std::ptrdiff_t;
 		//! Type of objects pointed to by the iterator.
 		using pointer = std::size_t*;
 		//! Type of references to values.
@@ -30,7 +31,7 @@ class Combination{
 		//! Constructors an iterator for the combination from N choose K. Specifies whether to precalculate values for the seek functions.
 		Combination(std::size_t n, std::size_t k, bool precalculate = false);
 		//! Constructs the iterator in the range [first, last). Specifies the number of elements to choose from the given range. Specifies whether to precalculate values for the seek functions.
-		template <class It> Combination(const It& first, const It& last, std::size_t k, bool precalculate = false);
+		template <class It> Combination(const It& first, const It& last, std::size_t k, bool precalculate);
 		//! Copy constructor. Constructs the iterator with the copy of the contents of other.
 		Combination(const Combination& other);
 		//! Copy constructor. Constructs the iterator with the copy of the contents of other. Specifies whether to precalculate values for the seek functions.
@@ -96,11 +97,11 @@ class Combination{
 		Combination operator--(int);
 		//! Advances the iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk.
 		Combination& operator+=(std::size_t n);
-		//! Advances a new iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk.
+		//! Returns a new iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk.
 		Combination operator+(std::size_t n) const;
 		//! Regresses the iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk.
 		Combination& operator-=(std::size_t n);
-		//! Regresses a new iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk.
+		//! Returns a new iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk.
 		Combination operator-(std::size_t n) const;
 		//! Returns the distance between the ranks of the two combinations.
 		std::ptrdiff_t operator-(const Combination& other) const noexcept;
@@ -125,6 +126,11 @@ class Combination{
 		inline friend bool operator==(const Combination& lhs, std::size_t rhs);
 		//! Compares the current rank of the iterator against an integer.
 		inline friend std::strong_ordering operator<=>(const Combination& lhs, std::size_t rhs);
+		// Friendship
+		//! Specialization of the Serialize template to support Combination objects.
+		template<typename Buff> friend struct bpp::collections::serialize::Serialize;
+		//! Specialization of the Deserialize template to support Combination objects.
+		template<typename Buff> friend struct bpp::collections::serialize::Deserialize;
 		
 	private:
 		std::size_t* positions;
@@ -136,7 +142,18 @@ class Combination{
 		static std::vector<std::vector<std::size_t>> preCombinations;
 		static void load_combinations(std::size_t fromN, std::size_t chooseK);
 		static std::size_t static_combinations(std::size_t fromN, std::size_t chooseK);
-		
+};
+
+		}
+		namespace serialize{
+
+//! Specialization of the Serialize template to support Combination objects.
+template<typename Buff> struct Serialize<Buff,bpp::collections::iteration::Combination>{
+	std::size_t operator()(Buff& buffer, const bpp::collections::iteration::Combination& obj) const;
+};
+//! Specialization of the Deserialize template to support Combination objects.
+template<typename Buff> struct Deserialize<Buff,bpp::collections::iteration::Combination>{
+	std::size_t operator()(Buff& buffer, bpp::collections::iteration::Combination& obj) const;
 };
 
 		}

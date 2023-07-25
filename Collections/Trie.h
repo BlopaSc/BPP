@@ -286,8 +286,11 @@ template <class Key, class T, class Container = std::map<Key, void*>, class Allo
 		//! Specialized swapping function.
 		template<class A,class B,class C,class D> friend void std::swap(Trie<A,B,C,D> &lhs, Trie<A,B,C,D>& rhs);
 		// Friendship
+		//! Specialization of the Serialize template to support Trie objects.
 		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Serialize;
+		//! Specialization of the Deserialize template to support Trie objects.
 		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Deserialize;
+		
 	private:
 		// Nested class NodeTrie
 		struct NodeTrie{
