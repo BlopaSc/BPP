@@ -91,10 +91,10 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator_category</b
 using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = std::size_t</td></tr>
 <tr class="memdesc:a8cf8ea81091e55e0a2a67efbbedee003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of values accessed by the iterator. <br /></td></tr>
 <tr class="separator:a8cf8ea81091e55e0a2a67efbbedee003"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d369381da1838ca7298696ef22bd262"><td class="memItemLeft" align="right" valign="top"><a id="a0d369381da1838ca7298696ef22bd262" name="a0d369381da1838ca7298696ef22bd262"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = std::size_t</td></tr>
-<tr class="memdesc:a0d369381da1838ca7298696ef22bd262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of differences between iterators. <br /></td></tr>
-<tr class="separator:a0d369381da1838ca7298696ef22bd262"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af79b05fa29c681a4651fe79cbf791761"><td class="memItemLeft" align="right" valign="top"><a id="af79b05fa29c681a4651fe79cbf791761" name="af79b05fa29c681a4651fe79cbf791761"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>difference_type</b> = std::ptrdiff_t</td></tr>
+<tr class="memdesc:af79b05fa29c681a4651fe79cbf791761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of differences between iterators. <br /></td></tr>
+<tr class="separator:af79b05fa29c681a4651fe79cbf791761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac48a30c06b326037aa69fc03908a1e3c"><td class="memItemLeft" align="right" valign="top"><a id="ac48a30c06b326037aa69fc03908a1e3c" name="ac48a30c06b326037aa69fc03908a1e3c"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b> = std::size_t *</td></tr>
 <tr class="memdesc:ac48a30c06b326037aa69fc03908a1e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of objects pointed to by the iterator. <br /></td></tr>
@@ -114,11 +114,11 @@ constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>Combination</b> 
 &#160;</td><td class="memItemRight" valign="bottom"><b>Combination</b> (std::size_t <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a4180e74c2a1758f8a1c89cec4623ab98">n</a>, std::size_t <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a776da627af073324932d7f0a1b46d9dd">k</a>, bool precalculate=false)</td></tr>
 <tr class="memdesc:af7e3c20fdb368eefa43c8dd79a454034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors an iterator for the combination from N choose K. Specifies whether to precalculate values for the seek functions. <br /></td></tr>
 <tr class="separator:af7e3c20fdb368eefa43c8dd79a454034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c20d91c1b915dc1501174362fc80798"><td class="memTemplParams" colspan="2"><a id="a2c20d91c1b915dc1501174362fc80798" name="a2c20d91c1b915dc1501174362fc80798"></a>
+<tr class="memitem:a555c17634d1d2bab111f64f821bba9e0"><td class="memTemplParams" colspan="2"><a id="a555c17634d1d2bab111f64f821bba9e0" name="a555c17634d1d2bab111f64f821bba9e0"></a>
 template&lt;class It &gt; </td></tr>
-<tr class="memitem:a2c20d91c1b915dc1501174362fc80798"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Combination</b> (const It &amp;<a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#ac63c7305f77860026c6d8a5a8e31311f">first</a>, const It &amp;<a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a98db19948645425528626f82e44d41be">last</a>, std::size_t <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a776da627af073324932d7f0a1b46d9dd">k</a>, bool precalculate=false)</td></tr>
-<tr class="memdesc:a2c20d91c1b915dc1501174362fc80798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the iterator in the range [first, last). Specifies the number of elements to choose from the given range. Specifies whether to precalculate values for the seek functions. <br /></td></tr>
-<tr class="separator:a2c20d91c1b915dc1501174362fc80798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a555c17634d1d2bab111f64f821bba9e0"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Combination</b> (const It &amp;<a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#ac63c7305f77860026c6d8a5a8e31311f">first</a>, const It &amp;<a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a98db19948645425528626f82e44d41be">last</a>, std::size_t <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a776da627af073324932d7f0a1b46d9dd">k</a>, bool precalculate)</td></tr>
+<tr class="memdesc:a555c17634d1d2bab111f64f821bba9e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the iterator in the range [first, last). Specifies the number of elements to choose from the given range. Specifies whether to precalculate values for the seek functions. <br /></td></tr>
+<tr class="separator:a555c17634d1d2bab111f64f821bba9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af070298cd73b4b09a431de90c56b4c53"><td class="memItemLeft" align="right" valign="top"><a id="af070298cd73b4b09a431de90c56b4c53" name="af070298cd73b4b09a431de90c56b4c53"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Combination</b> (const <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html">Combination</a> &amp;other)</td></tr>
 <tr class="memdesc:af070298cd73b4b09a431de90c56b4c53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. Constructs the iterator with the copy of the contents of other. <br /></td></tr>
@@ -231,7 +231,7 @@ constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>rend
 <tr class="separator:adbe2650bbb4fcab7a386ef9ca91cf270"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2898b67fdb85a650729dcfb791e50ccf"><td class="memItemLeft" align="right" valign="top"><a id="a2898b67fdb85a650729dcfb791e50ccf" name="a2898b67fdb85a650729dcfb791e50ccf"></a>
 <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html">Combination</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::size_t <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a4180e74c2a1758f8a1c89cec4623ab98">n</a>) const</td></tr>
-<tr class="memdesc:a2898b67fdb85a650729dcfb791e50ccf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances a new iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
+<tr class="memdesc:a2898b67fdb85a650729dcfb791e50ccf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new iterator to the combination n steps ahead in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
 <tr class="separator:a2898b67fdb85a650729dcfb791e50ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af85e44e83d3f20cc9e30c7f1f79711a8"><td class="memItemLeft" align="right" valign="top"><a id="af85e44e83d3f20cc9e30c7f1f79711a8" name="af85e44e83d3f20cc9e30c7f1f79711a8"></a>
 <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html">Combination</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (std::size_t <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a4180e74c2a1758f8a1c89cec4623ab98">n</a>)</td></tr>
@@ -239,7 +239,7 @@ constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>rend
 <tr class="separator:af85e44e83d3f20cc9e30c7f1f79711a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa6b677da1a260c721e8b741a13050a4"><td class="memItemLeft" align="right" valign="top"><a id="aaa6b677da1a260c721e8b741a13050a4" name="aaa6b677da1a260c721e8b741a13050a4"></a>
 <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html">Combination</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (std::size_t <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a4180e74c2a1758f8a1c89cec4623ab98">n</a>) const</td></tr>
-<tr class="memdesc:aaa6b677da1a260c721e8b741a13050a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regresses a new iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
+<tr class="memdesc:aaa6b677da1a260c721e8b741a13050a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new iterator to the combination n steps before in the sequence. Applies a seek_rank call with constant duration for a given nCk. <br /></td></tr>
 <tr class="separator:aaa6b677da1a260c721e8b741a13050a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadbaa4a9e226a783eaed05c345e0bf7d"><td class="memItemLeft" align="right" valign="top"><a id="aadbaa4a9e226a783eaed05c345e0bf7d" name="aadbaa4a9e226a783eaed05c345e0bf7d"></a>
 std::ptrdiff_t&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html">Combination</a> &amp;other) const noexcept</td></tr>
@@ -263,6 +263,16 @@ static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom">
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
+<tr class="memitem:ad615894e1e3ace09d2c5f0f8d9d8e8d5"><td class="memTemplParams" colspan="2"><a id="ad615894e1e3ace09d2c5f0f8d9d8e8d5" name="ad615894e1e3ace09d2c5f0f8d9d8e8d5"></a>
+template&lt;typename Buff &gt; </td></tr>
+<tr class="memitem:ad615894e1e3ace09d2c5f0f8d9d8e8d5"><td class="memTemplItemLeft" align="right" valign="top">struct&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#ad615894e1e3ace09d2c5f0f8d9d8e8d5">bpp::collections::serialize::Serialize</a></td></tr>
+<tr class="memdesc:ad615894e1e3ace09d2c5f0f8d9d8e8d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of the Serialize template to support <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html" title="Combination is an iterator structure that allows iteration over the sequence of combinations from N c...">Combination</a> objects. <br /></td></tr>
+<tr class="separator:ad615894e1e3ace09d2c5f0f8d9d8e8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63ddf980697a27791153605b8ad09689"><td class="memTemplParams" colspan="2"><a id="a63ddf980697a27791153605b8ad09689" name="a63ddf980697a27791153605b8ad09689"></a>
+template&lt;typename Buff &gt; </td></tr>
+<tr class="memitem:a63ddf980697a27791153605b8ad09689"><td class="memTemplItemLeft" align="right" valign="top">struct&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a63ddf980697a27791153605b8ad09689">bpp::collections::serialize::Deserialize</a></td></tr>
+<tr class="memdesc:a63ddf980697a27791153605b8ad09689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of the Deserialize template to support <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html" title="Combination is an iterator structure that allows iteration over the sequence of combinations from N c...">Combination</a> objects. <br /></td></tr>
+<tr class="separator:a63ddf980697a27791153605b8ad09689"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4b97f4501b699acafe89d326c53ba60"><td class="memItemLeft" align="right" valign="top"><a id="ab4b97f4501b699acafe89d326c53ba60" name="ab4b97f4501b699acafe89d326c53ba60"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html">Combination</a> &amp;lhs, const <a class="el" href="../../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html">Combination</a> &amp;rhs)</td></tr>
 <tr class="memdesc:ab4b97f4501b699acafe89d326c53ba60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the iterators share the same current rank. Assumes the combinations point to the same set of elements and represent the same nCk combination. <br /></td></tr>
