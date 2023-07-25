@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Library: bpp::collections::serialize::Deserialize&lt; Buff, bpp::collections::map::TreeAVL&lt; Types... &gt; &gt; Struct Template Reference</title>
+<title>B++ Library: bpp::collections::serialize::Serialize&lt; Buff, bpp::collections::map::Trie&lt; Types... &gt; &gt; Struct Template Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -63,32 +63,32 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="../../d3/dd4/namespacebpp.html">bpp</a></li><li class="navelem"><a class="el" href="../../d0/d04/namespacebpp_1_1collections.html">collections</a></li><li class="navelem"><a class="el" href="../../d9/d98/namespacebpp_1_1collections_1_1serialize.html">serialize</a></li><li class="navelem"><a class="el" href="../../d7/d43/structbpp_1_1collections_1_1serialize_1_1_deserialize_3_01_buff_00_01bpp_1_1collections_1_1map_1e7998d729f0237f4433033883b5ecb1b.html">Deserialize&lt; Buff, bpp::collections::map::TreeAVL&lt; Types... &gt; &gt;</a></li>  </ul>
+<li class="navelem"><a class="el" href="../../d3/dd4/namespacebpp.html">bpp</a></li><li class="navelem"><a class="el" href="../../d0/d04/namespacebpp_1_1collections.html">collections</a></li><li class="navelem"><a class="el" href="../../d9/d98/namespacebpp_1_1collections_1_1serialize.html">serialize</a></li><li class="navelem"><a class="el" href="../../da/dea/structbpp_1_1collections_1_1serialize_1_1_serialize_3_01_buff_00_01bpp_1_1collections_1_1map_1_167014e6e08c58780c4753654a010ff19.html">Serialize&lt; Buff, bpp::collections::map::Trie&lt; Types... &gt; &gt;</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a>  </div>
-  <div class="headertitle"><div class="title">bpp::collections::serialize::Deserialize&lt; Buff, bpp::collections::map::TreeAVL&lt; Types... &gt; &gt; Struct Template Reference</div></div>
+  <div class="headertitle"><div class="title">bpp::collections::serialize::Serialize&lt; Buff, bpp::collections::map::Trie&lt; Types... &gt; &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Specialization of the <a class="el" href="../../d1/d2b/structbpp_1_1collections_1_1serialize_1_1_deserialize.html" title="Each specialization of the Deserialize template defines a function object that implements the deseria...">Deserialize</a> template to support TreeAVL objects.  
- <a href="../../d7/d43/structbpp_1_1collections_1_1serialize_1_1_deserialize_3_01_buff_00_01bpp_1_1collections_1_1map_1e7998d729f0237f4433033883b5ecb1b.html#details">More...</a></p>
+<p>Specialization of the <a class="el" href="../../d3/d60/structbpp_1_1collections_1_1serialize_1_1_serialize.html" title="Each specialization of the Serialize template defines a function object that implements the serializa...">Serialize</a> template to support Trie objects.  
+ <a href="../../da/dea/structbpp_1_1collections_1_1serialize_1_1_serialize_3_01_buff_00_01bpp_1_1collections_1_1map_1_167014e6e08c58780c4753654a010ff19.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="../../db/d18/_tree_a_v_l_8h_source.html">TreeAVL.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="../../db/d43/_trie_8h_source.html">Trie.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a607af2a95bd982ea832cfe3084bfef78"><td class="memItemLeft" align="right" valign="top"><a id="a607af2a95bd982ea832cfe3084bfef78" name="a607af2a95bd982ea832cfe3084bfef78"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (Buff &amp;buffer, <a class="el" href="../../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html">bpp::collections::map::TreeAVL</a>&lt; Types... &gt; &amp;obj) const</td></tr>
-<tr class="separator:a607af2a95bd982ea832cfe3084bfef78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85d29760265af0142f3b52fc31f2bc85"><td class="memItemLeft" align="right" valign="top"><a id="a85d29760265af0142f3b52fc31f2bc85" name="a85d29760265af0142f3b52fc31f2bc85"></a>
+std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (Buff &amp;buffer, const <a class="el" href="../../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html">bpp::collections::map::Trie</a>&lt; Types... &gt; &amp;obj) const</td></tr>
+<tr class="separator:a85d29760265af0142f3b52fc31f2bc85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Buff, typename... Types&gt;<br />
-struct bpp::collections::serialize::Deserialize&lt; Buff, bpp::collections::map::TreeAVL&lt; Types... &gt; &gt;</div><p >Specialization of the <a class="el" href="../../d1/d2b/structbpp_1_1collections_1_1serialize_1_1_deserialize.html" title="Each specialization of the Deserialize template defines a function object that implements the deseria...">Deserialize</a> template to support TreeAVL objects. </p>
+struct bpp::collections::serialize::Serialize&lt; Buff, bpp::collections::map::Trie&lt; Types... &gt; &gt;</div><p >Specialization of the <a class="el" href="../../d3/d60/structbpp_1_1collections_1_1serialize_1_1_serialize.html" title="Each specialization of the Serialize template defines a function object that implements the serializa...">Serialize</a> template to support Trie objects. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>Collections/<a class="el" href="../../db/d18/_tree_a_v_l_8h_source.html">TreeAVL.h</a></li>
+<li>Collections/<a class="el" href="../../db/d43/_trie_8h_source.html">Trie.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
