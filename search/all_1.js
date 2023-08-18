@@ -10,11 +10,13 @@ var searchData=
   ['bpp_2c_20b_2b_2b_20or_20blopa_2b_2b_7',['BPP, B++ or Blopa++',['../d3/dcc/md__r_e_a_d_m_e.html',1,'']]],
   ['byte_5fordering_8',['byte_ordering',['../de/d78/namespacebpp_1_1utility_1_1byte__ordering.html',1,'bpp::utility']]],
   ['collections_9',['collections',['../d0/d04/namespacebpp_1_1collections.html',1,'bpp']]],
-  ['deserialize_10',['Deserialize',['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a4a53f4fc48b1a523857b39bb742625d1',1,'bpp::collections::map::Trie::Deserialize()'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a4a53f4fc48b1a523857b39bb742625d1',1,'bpp::collections::map::TreeAVL::Deserialize()'],['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a63ddf980697a27791153605b8ad09689',1,'bpp::collections::iteration::Combination::Deserialize()']]],
+  ['deserialize_10',['Deserialize',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a63ddf980697a27791153605b8ad09689',1,'bpp::collections::iteration::Combination::Deserialize()'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a4a53f4fc48b1a523857b39bb742625d1',1,'bpp::collections::map::Trie::Deserialize()'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a4a53f4fc48b1a523857b39bb742625d1',1,'bpp::collections::map::TreeAVL::Deserialize()']]],
   ['iteration_11',['iteration',['../dc/d91/namespacebpp_1_1collections_1_1iteration.html',1,'bpp::collections']]],
   ['map_12',['map',['../d3/d6c/namespacebpp_1_1collections_1_1map.html',1,'bpp::collections']]],
-  ['priority_5fqueue_13',['priority_queue',['../dd/d0e/namespacebpp_1_1collections_1_1priority__queue.html',1,'bpp::collections']]],
-  ['serialize_14',['serialize',['../d9/d98/namespacebpp_1_1collections_1_1serialize.html',1,'bpp::collections']]],
-  ['serialize_15',['Serialize',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#ad615894e1e3ace09d2c5f0f8d9d8e8d5',1,'bpp::collections::iteration::Combination::Serialize()'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#ad94a6e92c2ca0513dcaef0df37f08783',1,'bpp::collections::map::TreeAVL::Serialize()'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#ad94a6e92c2ca0513dcaef0df37f08783',1,'bpp::collections::map::Trie::Serialize()']]],
-  ['utility_16',['utility',['../d1/d86/namespacebpp_1_1utility.html',1,'bpp']]]
+  ['os_13',['os',['../dc/df5/namespacebpp_1_1os.html',1,'bpp']]],
+  ['path_14',['path',['../d4/d72/namespacebpp_1_1os_1_1path.html',1,'bpp::os']]],
+  ['priority_5fqueue_15',['priority_queue',['../dd/d0e/namespacebpp_1_1collections_1_1priority__queue.html',1,'bpp::collections']]],
+  ['serialize_16',['serialize',['../d9/d98/namespacebpp_1_1collections_1_1serialize.html',1,'bpp::collections']]],
+  ['serialize_17',['Serialize',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#ad615894e1e3ace09d2c5f0f8d9d8e8d5',1,'bpp::collections::iteration::Combination::Serialize()'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#ad94a6e92c2ca0513dcaef0df37f08783',1,'bpp::collections::map::TreeAVL::Serialize()'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#ad94a6e92c2ca0513dcaef0df37f08783',1,'bpp::collections::map::Trie::Serialize()']]],
+  ['utility_18',['utility',['../d1/d86/namespacebpp_1_1utility.html',1,'bpp']]]
 ];

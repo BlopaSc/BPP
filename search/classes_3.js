@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['reverse_5fiterator_0',['reverse_iterator',['../d7/dd0/structbpp_1_1collections_1_1map_1_1_tree_a_v_l_1_1reverse__iterator.html',1,'bpp::collections::map::TreeAVL&lt; Key, T, Compare, Allocator &gt;::reverse_iterator'],['../d3/dc5/structbpp_1_1collections_1_1map_1_1_trie_1_1reverse__iterator.html',1,'bpp::collections::map::Trie&lt; Key, T, Container, Allocator &gt;::reverse_iterator']]]
+  ['path_0',['Path',['../d3/d62/structbpp_1_1os_1_1path_1_1_path.html',1,'bpp::os::path']]],
+  ['pathattributes_1',['PathAttributes',['../da/d45/structbpp_1_1os_1_1path_1_1_path_attributes.html',1,'bpp::os::path']]]
 ];

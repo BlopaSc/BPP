@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['rank_0',['rank',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a1e40bea2630c3904a5676983b8f37c64',1,'bpp::collections::iteration::Combination']]],
-  ['rbegin_1',['rbegin',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#abdbaac112d33a723d5b44a2a1c9ceede',1,'bpp::collections::map::TreeAVL::rbegin()'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a50610aeb7d6530762eef800c617aa88c',1,'bpp::collections::map::Trie::rbegin()']]],
-  ['rend_2',['rend',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a58283a6b3265914f133fc1c7391fdc6e',1,'bpp::collections::iteration::Combination::rend()'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#afa710644dcff03d8197c54732e8d39d0',1,'bpp::collections::map::TreeAVL::rend()'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a04d529bbbfda252aabc386b918b6c6bb',1,'bpp::collections::map::Trie::rend()']]]
+  ['path_0',['Path',['../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a0778ab19c19f0c7ce36e7210869728fe',1,'bpp::os::path::Path::Path()'],['../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a1f47a98df81c62f4d301d35d800dc52b',1,'bpp::os::path::Path::Path(const Path &amp;other)'],['../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#af36237c2ecd7f3d79947509af1fe5965',1,'bpp::os::path::Path::Path(Path &amp;&amp;other)'],['../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a1fe2cd20a6a5b3322a1f46e94d191fac',1,'bpp::os::path::Path::Path(const T *path)']]]
 ];
