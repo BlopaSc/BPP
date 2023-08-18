@@ -18,6 +18,7 @@ namespace bpp{
 }
 
 #include "Collections.h"
+#include "OS.h"
 #include "Utility.h"
 
 #endif

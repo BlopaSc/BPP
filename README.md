@@ -36,6 +36,8 @@ The main directories are listed below as well as their general purpose. The corr
 	- `map`: TreeAVL, Trie
 	- `sequence`: Combination
 	- `serialize`: serialize/deserialize functions for data structures and basic data types
+- os: Functions and structures to interact with the operative system of the machine.
+	- `path`: Path, functions to read properties from files and directories in the system.
 - utility: Utility functions and structures used as part of other modules.
 	- `byte_ordering`: host to byte-ordering functions and vice-versa
 
