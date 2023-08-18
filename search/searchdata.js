@@ -4,10 +4,11 @@ var indexSectionsWithContent =
   1: "cdiprst",
   2: "b",
   3: "abcdefghiklmnoprstu~",
-  4: "acdikmnprstv",
-  5: "bos",
-  6: "cou",
-  7: "b"
+  4: "cefil",
+  5: "acdikmnprstv",
+  6: "bos",
+  7: "cou",
+  8: "b"
 };
 
 var indexSectionNames =
@@ -16,10 +17,11 @@ var indexSectionNames =
   1: "classes",
   2: "namespaces",
   3: "functions",
-  4: "typedefs",
-  5: "related",
-  6: "groups",
-  7: "pages"
+  4: "variables",
+  5: "typedefs",
+  6: "related",
+  7: "groups",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -28,9 +30,10 @@ var indexSectionLabels =
   1: "Data Structures",
   2: "Namespaces",
   3: "Functions",
-  4: "Typedefs",
-  5: "Friends",
-  6: "Modules",
-  7: "Pages"
+  4: "Variables",
+  5: "Typedefs",
+  6: "Friends",
+  7: "Modules",
+  8: "Pages"
 };
 
