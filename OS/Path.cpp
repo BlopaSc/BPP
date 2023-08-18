@@ -367,6 +367,7 @@ std::vector<Path> Path::getListDirectory() const{
 const Path::T_Path* Path::getPath() const{ return this->path; }
 const Path::T_Path* Path::getName() const{ return this->path ? &(this->path[this->name]) : 0; }
 const Path::T_Path* Path::getExtension() const{ return this->path ? &(this->path[this->ext]) : 0; }
+const PathAttributes& Path::getAttributes() const{ return this->attr; }
 
 // Private methods
 void Path::parsePath(){

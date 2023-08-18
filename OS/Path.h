@@ -54,8 +54,24 @@ template <class T> std::vector<Path> getListDirectory(const T* path);
 
 //! PathAttributes is a data structure that stores the attributes of a given file or directory in the filesystem.
 struct PathAttributes{
-    uint64_t fileSize, creationTime, lastAccessTime, lastModifyTime;
-    bool exists, isDirectory, isHidden, isSystem, isTemporary;
+	//! Stores the file size of the object pointed by the path.
+	uint64_t fileSize;
+	//! Stores the creation time of the object pointed by the path.
+	uint64_t creationTime;
+	//! Stores the last access time of the object pointed by the path.
+	uint64_t lastAccessTime;
+	//! Stores the last modification time of the object pointed by the path.
+	uint64_t lastModifyTime;
+	//! Stores whether there exists an object at the pointed path.
+	bool exists;
+	//! Stores whether the oject pointed by the path is a directory.
+	bool isDirectory;
+	//! Stores whether the oject pointed by the path is a hidden file or directory.
+	bool isHidden;
+	//! Stores whether the oject pointed by the path is a system file or directory.
+	bool isSystem;
+	//! Stores whether the oject pointed by the path is a temporary file or directory.
+	bool isTemporary;
 };
 
 //! Path is an specialized string-like container to handle filesystem paths and get information on the directories and files stored in them.
@@ -127,6 +143,9 @@ struct Path{
 	const T_Path* getName() const;
 	//! Returns a pointer to the extension of the file stored in the object. If the path doesn't contains an extension then the returned pointer will point to the end of the string.
 	const T_Path* getExtension() const;
+	//! Returns the PathAttributes object associated to the Path object.
+	const PathAttributes& getAttributes() const;
+	
 	private:
         PathAttributes attr;
 		T_PATH *path;
