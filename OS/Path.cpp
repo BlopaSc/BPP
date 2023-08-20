@@ -227,7 +227,7 @@ Path::Path(const Path& other) : path(0), length(other.length), name(other.name),
 	memcpy((void*) this->path, (void*) other.path, (other.length+1)*sizeof(T_PATH));
 	memcpy((void*) &this->attr, (void*) &other.attr, sizeof(PathAttributes));
 }
-Path::Path(Path&& other) : path(other.path), length(other.length), name(other.name), ext(other.ext){
+Path::Path(Path&& other) noexcept : path(other.path), length(other.length), name(other.name), ext(other.ext){
     memcpy((void*) &this->attr, (void*) &other.attr, sizeof(PathAttributes));
 	other.path = 0;
 	other.length = 0;
@@ -256,7 +256,7 @@ Path& Path::operator=(const Path& other){
 	memcpy((void*) &this->attr, (void*) &other.attr, sizeof(PathAttributes));
 	return *this;
 }
-Path& Path::operator=(Path&& other){
+Path& Path::operator=(Path&& other) noexcept{
 	if(this->path){ delete[] path; }
 	this->path = other.path;
 	this->length = other.length;
@@ -278,18 +278,19 @@ template <class T> Path& Path::operator=(const T* path){
 	return *this;
 }
 // Length
-std::size_t Path::getLength() const{ return this->length; }
+std::size_t Path::getLength() const noexcept{ return this->length; }
+std::size_t Path::size() const noexcept{ return this->length; }
 // Methods
-bool Path::exists() const{ return this->attr.exists; }
-bool Path::isDir() const{ return this->attr.exists && this->attr.isDirectory; }
-bool Path::isFile() const{ return this->attr.exists && !this->attr.isDirectory; }
-bool Path::isHidden() const{ return this->attr.exists && this->attr.isHidden; }
-bool Path::isSystem() const{ return this->attr.exists && this->attr.isSystem; }
-bool Path::isTemporary() const{ return this->attr.exists && this->attr.isTemporary; }
-uint64_t Path::getSize() const{ return this->attr.exists ? this->attr.fileSize : 0; }
-uint64_t Path::getCreationTime() const{ return this->attr.exists ? this->attr.creationTime : 0; }
-uint64_t Path::getLastAccessTime() const{ return this->attr.exists ? this->attr.lastAccessTime : 0; }
-uint64_t Path::getLastModifiedTime() const{ return this->attr.exists ? this->attr.lastModifyTime : 0; }
+bool Path::exists() const noexcept{ return this->attr.exists; }
+bool Path::isDir() const noexcept{ return this->attr.exists && this->attr.isDirectory; }
+bool Path::isFile() const noexcept{ return this->attr.exists && !this->attr.isDirectory; }
+bool Path::isHidden() const noexcept{ return this->attr.exists && this->attr.isHidden; }
+bool Path::isSystem() const noexcept{ return this->attr.exists && this->attr.isSystem; }
+bool Path::isTemporary() const noexcept{ return this->attr.exists && this->attr.isTemporary; }
+uint64_t Path::getSize() const noexcept{ return this->attr.exists ? this->attr.fileSize : 0; }
+uint64_t Path::getCreationTime() const noexcept{ return this->attr.exists ? this->attr.creationTime : 0; }
+uint64_t Path::getLastAccessTime() const noexcept{ return this->attr.exists ? this->attr.lastAccessTime : 0; }
+uint64_t Path::getLastModifiedTime() const noexcept{ return this->attr.exists ? this->attr.lastModifyTime : 0; }
 Path Path::getAbsolutePath() const{
 	Path result(*this);
 	return result.toAbsolutePath();
@@ -364,10 +365,12 @@ std::vector<Path> Path::getListDirectory() const{
 	}
 	return result;
 }
-const Path::T_Path* Path::getPath() const{ return this->path; }
-const Path::T_Path* Path::getName() const{ return this->path ? &(this->path[this->name]) : 0; }
-const Path::T_Path* Path::getExtension() const{ return this->path ? &(this->path[this->ext]) : 0; }
-const PathAttributes& Path::getAttributes() const{ return this->attr; }
+
+Path::value_type Path::operator[](std::size_t pos) const noexcept{ return (pos < this->length)?this->path[pos] : 0;}
+const Path::value_type* Path::getPath() const noexcept{ return this->path; }
+const Path::value_type* Path::getName() const noexcept{ return this->path ? &(this->path[this->name]) : 0; }
+const Path::value_type* Path::getExtension() const noexcept{ return this->path ? &(this->path[this->ext]) : 0; }
+const PathAttributes& Path::getAttributes() const noexcept{ return this->attr; }
 
 // Private methods
 void Path::parsePath(){
@@ -402,6 +405,31 @@ void Path::getPathAttributes(){
 #elif defined(_WIN32) || defined(WIN32)
     const std::size_t Path::MAX_LENGTH = 256;
 #endif
+
+// Non-member
+bool operator==(const Path& lhs, const Path& rhs){
+	if(lhs.length != rhs.length){ return false; }
+	for(std::size_t i=0; i < lhs.length; ++i){
+		if(lhs.path[i] != rhs.path[i]){ return false; }
+	}
+	return true;
+}
+std::strong_ordering operator<=>(const Path& lhs, const Path& rhs){
+	std::size_t min = (lhs.length < rhs.length) ? lhs.length : rhs.length;
+	for(std::size_t i=0; i < min; ++i){
+		if(lhs.path[i] < rhs.path[i]){
+			return std::strong_ordering::less;
+		}else if(lhs.path[i] > rhs.path[i]){
+			return std::strong_ordering::greater;
+		}
+	}
+	if(lhs.length < rhs.length){
+		return std::strong_ordering::less;
+	}else if(lhs.length > rhs.length){
+        return std::strong_ordering::greater;
+	}
+	return std::strong_ordering::equal;
+}
 
 		}
 	}

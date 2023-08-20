@@ -77,7 +77,7 @@ struct PathAttributes{
 //! Path is an specialized string-like container to handle filesystem paths and get information on the directories and files stored in them.
 struct Path{
 	//! Type of the characteres required to store the path. Depending on the system may be char or wchar_t.
-	using T_Path = T_PATH;
+	using value_type = T_PATH;
 	
 	// Constructors
 	//! Constructs an empty container.
@@ -85,7 +85,7 @@ struct Path{
 	//! Copy constructor. Constructs the container with the copy of the contents of other.
 	Path(const Path& other);
 	//! Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is empty.
-	Path(Path&& other);
+	Path(Path&& other) noexcept;
 	//! Constructs the container with the provided path given and reads the attributes of the specified file or directory.
 	template <class T> Path(const T* path);
 	
@@ -96,35 +96,37 @@ struct Path{
 	//! Copy assignment operator. Replaces the contents with a copy of the contents of other.
 	Path& operator=(const Path& other);
 	//! Move assignment operator. Replaces the contents with those of other using move semantics. After the move, other is empty.
-	Path& operator=(Path&& other);
+	Path& operator=(Path&& other) noexcept;
 	//! Replaces the contents in path with those of the new path. Reads the attributes of the new specified file or directory.
 	template <class T> Path& operator=(const T* path);
 	
 	// Length
 	//! Returns the total length of the path.
-	std::size_t getLength() const;
+	std::size_t getLength() const noexcept;
+	//! Returns the size of the path (works as an alias to getLength)
+	std::size_t size() const noexcept;
 	
 	// Methods
 	//! Returns whether the specified path exists in the filesystem.
-	bool exists() const;
+	bool exists() const noexcept;
 	//! Returns whether the specified path corresponds to a directory in the filesystem.
-	bool isDir() const;
+	bool isDir() const noexcept;
 	//! Returns whether the specified path corresponds to a file in the filesystem.
-	bool isFile() const;
+	bool isFile() const noexcept;
 	//! Returns whether the specified path corresponds to a hidden file or directory in the filesystem.
-	bool isHidden() const;
+	bool isHidden() const noexcept;
 	//! Returns whether the specified path corresponds to a system file or directory in the filesystem.
-	bool isSystem() const;
+	bool isSystem() const noexcept;
 	//! Returns whether the specified path corresponds to a temporary file or directory in the filesystem.
-	bool isTemporary() const;
+	bool isTemporary() const noexcept;
 	//! Returns the size of the file for the specified path. If the path corresponds to a directory or does not exists then the returned size is 0.
-	uint64_t getSize() const;
+	uint64_t getSize() const noexcept;
 	//! Returns an unsigned 64-bit integer representing the creation time of the file. What this number means may vary from system to system.
-	uint64_t getCreationTime() const;
+	uint64_t getCreationTime() const noexcept;
 	//! Returns an unsigned 64-bit integer representing the last access time of the file. What this number means may vary from system to system.
-	uint64_t getLastAccessTime() const;
+	uint64_t getLastAccessTime() const noexcept;
 	//! Returns an unsigned 64-bit integer representing the last modification time for the file. What this number means may vary from system to system.
-	uint64_t getLastModifiedTime() const;
+	uint64_t getLastModifiedTime() const noexcept;
 	//! Returns a Path object with the absolute path of the current object.
 	Path getAbsolutePath() const;
 	//! Transforms the current path to its absolute path form. If the path was already in absolute form no change is applied.
@@ -137,14 +139,23 @@ struct Path{
 	std::vector<Path> getListDirectory() const;
 
 	// Data access
+	//! Returns the character specified at location pos. If location is out of bounds returns a null character.
+	value_type operator[](std::size_t pos) const noexcept;
 	//! Returns a pointer to the entire path stored in the object.
-	const T_Path* getPath() const;
+	const value_type* getPath() const noexcept;
 	//! Returns a pointer to the name of the path stored in the object.
-	const T_Path* getName() const;
+	const value_type* getName() const noexcept;
 	//! Returns a pointer to the extension of the file stored in the object. If the path doesn't contains an extension then the returned pointer will point to the end of the string.
-	const T_Path* getExtension() const;
+	const value_type* getExtension() const noexcept;
 	//! Returns the PathAttributes object associated to the Path object.
-	const PathAttributes& getAttributes() const;
+	const PathAttributes& getAttributes() const noexcept;
+	
+	// Non-member
+	// Operators
+	//! Checks if the path of lhs and rhs are equal. An absolute and a relative path that point towards the same file would be considered different.
+	friend bool operator==(const Path& lhs, const Path& rhs);
+	//! Compares the paths of lhs and rhs lexicographically. An absolute and a relative path that point towards the same file would be considered different.
+	friend std::strong_ordering operator<=>(const Path& lhs, const Path& rhs);
 	
 	private:
         PathAttributes attr;
