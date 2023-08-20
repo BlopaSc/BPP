@@ -69,7 +69,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle"><div class="title">bpp::os::path::Path Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -81,10 +82,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ab5761d95c426203a023d4d5d8a7ac8c8"><td class="memItemLeft" align="right" valign="top"><a id="ab5761d95c426203a023d4d5d8a7ac8c8" name="ab5761d95c426203a023d4d5d8a7ac8c8"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>T_Path</b> = T_PATH</td></tr>
-<tr class="memdesc:ab5761d95c426203a023d4d5d8a7ac8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the characteres required to store the path. Depending on the system may be char or wchar_t. <br /></td></tr>
-<tr class="separator:ab5761d95c426203a023d4d5d8a7ac8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d34c31a876e7151ee0c7c75cc6218d"><td class="memItemLeft" align="right" valign="top"><a id="a49d34c31a876e7151ee0c7c75cc6218d" name="a49d34c31a876e7151ee0c7c75cc6218d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = T_PATH</td></tr>
+<tr class="memdesc:a49d34c31a876e7151ee0c7c75cc6218d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the characteres required to store the path. Depending on the system may be char or wchar_t. <br /></td></tr>
+<tr class="separator:a49d34c31a876e7151ee0c7c75cc6218d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -96,10 +97,10 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;other)</td></tr>
 <tr class="memdesc:a1f47a98df81c62f4d301d35d800dc52b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. Constructs the container with the copy of the contents of other. <br /></td></tr>
 <tr class="separator:a1f47a98df81c62f4d301d35d800dc52b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af36237c2ecd7f3d79947509af1fe5965"><td class="memItemLeft" align="right" valign="top"><a id="af36237c2ecd7f3d79947509af1fe5965" name="af36237c2ecd7f3d79947509af1fe5965"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> (<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&amp;other)</td></tr>
-<tr class="memdesc:af36237c2ecd7f3d79947509af1fe5965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is empty. <br /></td></tr>
-<tr class="separator:af36237c2ecd7f3d79947509af1fe5965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28930019ed1e457a0242aa21ea8f7478"><td class="memItemLeft" align="right" valign="top"><a id="a28930019ed1e457a0242aa21ea8f7478" name="a28930019ed1e457a0242aa21ea8f7478"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> (<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="memdesc:a28930019ed1e457a0242aa21ea8f7478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is empty. <br /></td></tr>
+<tr class="separator:a28930019ed1e457a0242aa21ea8f7478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fe2cd20a6a5b3322a1f46e94d191fac"><td class="memTemplParams" colspan="2"><a id="a1fe2cd20a6a5b3322a1f46e94d191fac" name="a1fe2cd20a6a5b3322a1f46e94d191fac"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:a1fe2cd20a6a5b3322a1f46e94d191fac"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Path</b> (const T *path)</td></tr>
@@ -113,59 +114,63 @@ template&lt;class T &gt; </td></tr>
 <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;other)</td></tr>
 <tr class="memdesc:aa97138a9b3df6b015a9c4c1be7e32793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment operator. Replaces the contents with a copy of the contents of other. <br /></td></tr>
 <tr class="separator:aa97138a9b3df6b015a9c4c1be7e32793"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a042a2e19270ad59b2f5d3cdf91972c0b"><td class="memItemLeft" align="right" valign="top"><a id="a042a2e19270ad59b2f5d3cdf91972c0b" name="a042a2e19270ad59b2f5d3cdf91972c0b"></a>
-<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&amp;other)</td></tr>
-<tr class="memdesc:a042a2e19270ad59b2f5d3cdf91972c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator. Replaces the contents with those of other using move semantics. After the move, other is empty. <br /></td></tr>
-<tr class="separator:a042a2e19270ad59b2f5d3cdf91972c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c206f807b9a08c1544f818ed1573ada"><td class="memItemLeft" align="right" valign="top"><a id="a1c206f807b9a08c1544f818ed1573ada" name="a1c206f807b9a08c1544f818ed1573ada"></a>
+<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="memdesc:a1c206f807b9a08c1544f818ed1573ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator. Replaces the contents with those of other using move semantics. After the move, other is empty. <br /></td></tr>
+<tr class="separator:a1c206f807b9a08c1544f818ed1573ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d32d5ab73b553078e8d8a48c34fdd6c"><td class="memTemplParams" colspan="2"><a id="a8d32d5ab73b553078e8d8a48c34fdd6c" name="a8d32d5ab73b553078e8d8a48c34fdd6c"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:a8d32d5ab73b553078e8d8a48c34fdd6c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (const T *path)</td></tr>
 <tr class="memdesc:a8d32d5ab73b553078e8d8a48c34fdd6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the contents in path with those of the new path. Reads the attributes of the new specified file or directory. <br /></td></tr>
 <tr class="separator:a8d32d5ab73b553078e8d8a48c34fdd6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac848c84b6c7a4bb4eb9d8eb473ada582"><td class="memItemLeft" align="right" valign="top"><a id="ac848c84b6c7a4bb4eb9d8eb473ada582" name="ac848c84b6c7a4bb4eb9d8eb473ada582"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLength</b> () const</td></tr>
-<tr class="memdesc:ac848c84b6c7a4bb4eb9d8eb473ada582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total length of the path. <br /></td></tr>
-<tr class="separator:ac848c84b6c7a4bb4eb9d8eb473ada582"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d22e22b7eefa5fdfed98fa7d38c36a"><td class="memItemLeft" align="right" valign="top"><a id="ac0d22e22b7eefa5fdfed98fa7d38c36a" name="ac0d22e22b7eefa5fdfed98fa7d38c36a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>exists</b> () const</td></tr>
-<tr class="memdesc:ac0d22e22b7eefa5fdfed98fa7d38c36a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path exists in the filesystem. <br /></td></tr>
-<tr class="separator:ac0d22e22b7eefa5fdfed98fa7d38c36a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b11b582d59f301c7522c0f4c73897da"><td class="memItemLeft" align="right" valign="top"><a id="a5b11b582d59f301c7522c0f4c73897da" name="a5b11b582d59f301c7522c0f4c73897da"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDir</b> () const</td></tr>
-<tr class="memdesc:a5b11b582d59f301c7522c0f4c73897da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a directory in the filesystem. <br /></td></tr>
-<tr class="separator:a5b11b582d59f301c7522c0f4c73897da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac98bb4879966f422eed020f23cc91a93"><td class="memItemLeft" align="right" valign="top"><a id="ac98bb4879966f422eed020f23cc91a93" name="ac98bb4879966f422eed020f23cc91a93"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFile</b> () const</td></tr>
-<tr class="memdesc:ac98bb4879966f422eed020f23cc91a93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a file in the filesystem. <br /></td></tr>
-<tr class="separator:ac98bb4879966f422eed020f23cc91a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e5d07cad9f2da33e878c756aa941b48"><td class="memItemLeft" align="right" valign="top"><a id="a3e5d07cad9f2da33e878c756aa941b48" name="a3e5d07cad9f2da33e878c756aa941b48"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isHidden</b> () const</td></tr>
-<tr class="memdesc:a3e5d07cad9f2da33e878c756aa941b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a hidden file or directory in the filesystem. <br /></td></tr>
-<tr class="separator:a3e5d07cad9f2da33e878c756aa941b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77493e55ef4de3c17855b37cae4cd5a9"><td class="memItemLeft" align="right" valign="top"><a id="a77493e55ef4de3c17855b37cae4cd5a9" name="a77493e55ef4de3c17855b37cae4cd5a9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isSystem</b> () const</td></tr>
-<tr class="memdesc:a77493e55ef4de3c17855b37cae4cd5a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a system file or directory in the filesystem. <br /></td></tr>
-<tr class="separator:a77493e55ef4de3c17855b37cae4cd5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60c9938463fb1c9319c817d81017c857"><td class="memItemLeft" align="right" valign="top"><a id="a60c9938463fb1c9319c817d81017c857" name="a60c9938463fb1c9319c817d81017c857"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTemporary</b> () const</td></tr>
-<tr class="memdesc:a60c9938463fb1c9319c817d81017c857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a temporary file or directory in the filesystem. <br /></td></tr>
-<tr class="separator:a60c9938463fb1c9319c817d81017c857"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae50f3368d5c226f3994264eef17c1a0c"><td class="memItemLeft" align="right" valign="top"><a id="ae50f3368d5c226f3994264eef17c1a0c" name="ae50f3368d5c226f3994264eef17c1a0c"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const</td></tr>
-<tr class="memdesc:ae50f3368d5c226f3994264eef17c1a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the file for the specified path. If the path corresponds to a directory or does not exists then the returned size is 0. <br /></td></tr>
-<tr class="separator:ae50f3368d5c226f3994264eef17c1a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83255d229bf6b5eccde5d9d5798d2c44"><td class="memItemLeft" align="right" valign="top"><a id="a83255d229bf6b5eccde5d9d5798d2c44" name="a83255d229bf6b5eccde5d9d5798d2c44"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getCreationTime</b> () const</td></tr>
-<tr class="memdesc:a83255d229bf6b5eccde5d9d5798d2c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 64-bit integer representing the creation time of the file. What this number means may vary from system to system. <br /></td></tr>
-<tr class="separator:a83255d229bf6b5eccde5d9d5798d2c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26bc77ddd8c356b4568b6757bbc5b6b3"><td class="memItemLeft" align="right" valign="top"><a id="a26bc77ddd8c356b4568b6757bbc5b6b3" name="a26bc77ddd8c356b4568b6757bbc5b6b3"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLastAccessTime</b> () const</td></tr>
-<tr class="memdesc:a26bc77ddd8c356b4568b6757bbc5b6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 64-bit integer representing the last access time of the file. What this number means may vary from system to system. <br /></td></tr>
-<tr class="separator:a26bc77ddd8c356b4568b6757bbc5b6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add175e4be44e186784752c5c90b6ad16"><td class="memItemLeft" align="right" valign="top"><a id="add175e4be44e186784752c5c90b6ad16" name="add175e4be44e186784752c5c90b6ad16"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLastModifiedTime</b> () const</td></tr>
-<tr class="memdesc:add175e4be44e186784752c5c90b6ad16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 64-bit integer representing the last modification time for the file. What this number means may vary from system to system. <br /></td></tr>
-<tr class="separator:add175e4be44e186784752c5c90b6ad16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36bc9c39423e8cc1451b37ab1adb909a"><td class="memItemLeft" align="right" valign="top"><a id="a36bc9c39423e8cc1451b37ab1adb909a" name="a36bc9c39423e8cc1451b37ab1adb909a"></a>
+std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLength</b> () const noexcept</td></tr>
+<tr class="memdesc:a36bc9c39423e8cc1451b37ab1adb909a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total length of the path. <br /></td></tr>
+<tr class="separator:a36bc9c39423e8cc1451b37ab1adb909a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5de8eeb952e7caa2c098163b5883b5b"><td class="memItemLeft" align="right" valign="top"><a id="ab5de8eeb952e7caa2c098163b5883b5b" name="ab5de8eeb952e7caa2c098163b5883b5b"></a>
+std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const noexcept</td></tr>
+<tr class="memdesc:ab5de8eeb952e7caa2c098163b5883b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the path (works as an alias to getLength) <br /></td></tr>
+<tr class="separator:ab5de8eeb952e7caa2c098163b5883b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fee08cd21fb2a1347e5e85875c1ab59"><td class="memItemLeft" align="right" valign="top"><a id="a5fee08cd21fb2a1347e5e85875c1ab59" name="a5fee08cd21fb2a1347e5e85875c1ab59"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>exists</b> () const noexcept</td></tr>
+<tr class="memdesc:a5fee08cd21fb2a1347e5e85875c1ab59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path exists in the filesystem. <br /></td></tr>
+<tr class="separator:a5fee08cd21fb2a1347e5e85875c1ab59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0fb140886e037241e74a2225660e925"><td class="memItemLeft" align="right" valign="top"><a id="ac0fb140886e037241e74a2225660e925" name="ac0fb140886e037241e74a2225660e925"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDir</b> () const noexcept</td></tr>
+<tr class="memdesc:ac0fb140886e037241e74a2225660e925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a directory in the filesystem. <br /></td></tr>
+<tr class="separator:ac0fb140886e037241e74a2225660e925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d76dbc9c46a8cd582dbfc8d0aab984"><td class="memItemLeft" align="right" valign="top"><a id="a49d76dbc9c46a8cd582dbfc8d0aab984" name="a49d76dbc9c46a8cd582dbfc8d0aab984"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFile</b> () const noexcept</td></tr>
+<tr class="memdesc:a49d76dbc9c46a8cd582dbfc8d0aab984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a file in the filesystem. <br /></td></tr>
+<tr class="separator:a49d76dbc9c46a8cd582dbfc8d0aab984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43304a8c2eede4722220b4a26ebc3088"><td class="memItemLeft" align="right" valign="top"><a id="a43304a8c2eede4722220b4a26ebc3088" name="a43304a8c2eede4722220b4a26ebc3088"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isHidden</b> () const noexcept</td></tr>
+<tr class="memdesc:a43304a8c2eede4722220b4a26ebc3088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a hidden file or directory in the filesystem. <br /></td></tr>
+<tr class="separator:a43304a8c2eede4722220b4a26ebc3088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82633676fc230a482b0353d16b5d81c2"><td class="memItemLeft" align="right" valign="top"><a id="a82633676fc230a482b0353d16b5d81c2" name="a82633676fc230a482b0353d16b5d81c2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isSystem</b> () const noexcept</td></tr>
+<tr class="memdesc:a82633676fc230a482b0353d16b5d81c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a system file or directory in the filesystem. <br /></td></tr>
+<tr class="separator:a82633676fc230a482b0353d16b5d81c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0660cf6972bca310acc13d096badcb"><td class="memItemLeft" align="right" valign="top"><a id="a1e0660cf6972bca310acc13d096badcb" name="a1e0660cf6972bca310acc13d096badcb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTemporary</b> () const noexcept</td></tr>
+<tr class="memdesc:a1e0660cf6972bca310acc13d096badcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the specified path corresponds to a temporary file or directory in the filesystem. <br /></td></tr>
+<tr class="separator:a1e0660cf6972bca310acc13d096badcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1abaa86fb7e0a0f9290e23ba7de36930"><td class="memItemLeft" align="right" valign="top"><a id="a1abaa86fb7e0a0f9290e23ba7de36930" name="a1abaa86fb7e0a0f9290e23ba7de36930"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const noexcept</td></tr>
+<tr class="memdesc:a1abaa86fb7e0a0f9290e23ba7de36930"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the file for the specified path. If the path corresponds to a directory or does not exists then the returned size is 0. <br /></td></tr>
+<tr class="separator:a1abaa86fb7e0a0f9290e23ba7de36930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a491282cbe38b958a9f2aed7fa2f01bdf"><td class="memItemLeft" align="right" valign="top"><a id="a491282cbe38b958a9f2aed7fa2f01bdf" name="a491282cbe38b958a9f2aed7fa2f01bdf"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getCreationTime</b> () const noexcept</td></tr>
+<tr class="memdesc:a491282cbe38b958a9f2aed7fa2f01bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 64-bit integer representing the creation time of the file. What this number means may vary from system to system. <br /></td></tr>
+<tr class="separator:a491282cbe38b958a9f2aed7fa2f01bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71e66cf0ae8ee764352b2ecc593af029"><td class="memItemLeft" align="right" valign="top"><a id="a71e66cf0ae8ee764352b2ecc593af029" name="a71e66cf0ae8ee764352b2ecc593af029"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLastAccessTime</b> () const noexcept</td></tr>
+<tr class="memdesc:a71e66cf0ae8ee764352b2ecc593af029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 64-bit integer representing the last access time of the file. What this number means may vary from system to system. <br /></td></tr>
+<tr class="separator:a71e66cf0ae8ee764352b2ecc593af029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f7e2a59cd216d078d88b14582ac60e"><td class="memItemLeft" align="right" valign="top"><a id="a62f7e2a59cd216d078d88b14582ac60e" name="a62f7e2a59cd216d078d88b14582ac60e"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLastModifiedTime</b> () const noexcept</td></tr>
+<tr class="memdesc:a62f7e2a59cd216d078d88b14582ac60e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 64-bit integer representing the last modification time for the file. What this number means may vary from system to system. <br /></td></tr>
+<tr class="separator:a62f7e2a59cd216d078d88b14582ac60e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99036724846af8fe356512012b9251c4"><td class="memItemLeft" align="right" valign="top"><a id="a99036724846af8fe356512012b9251c4" name="a99036724846af8fe356512012b9251c4"></a>
 <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getAbsolutePath</b> () const</td></tr>
 <tr class="memdesc:a99036724846af8fe356512012b9251c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html" title="Path is an specialized string-like container to handle filesystem paths and get information on the di...">Path</a> object with the absolute path of the current object. <br /></td></tr>
@@ -186,22 +191,37 @@ uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getLastModifiedTi
 std::vector&lt; <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getListDirectory</b> () const</td></tr>
 <tr class="memdesc:aed0bf71177940c92d16d1e4c49870d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector with the list of all files contained in the current directory. If the path does not exists or is not a directory the returned vector is empty. <br /></td></tr>
 <tr class="separator:aed0bf71177940c92d16d1e4c49870d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a509d0aa891e90487d0f5cc74b9fdd47b"><td class="memItemLeft" align="right" valign="top"><a id="a509d0aa891e90487d0f5cc74b9fdd47b" name="a509d0aa891e90487d0f5cc74b9fdd47b"></a>
-const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#ab5761d95c426203a023d4d5d8a7ac8c8">T_Path</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPath</b> () const</td></tr>
-<tr class="memdesc:a509d0aa891e90487d0f5cc74b9fdd47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the entire path stored in the object. <br /></td></tr>
-<tr class="separator:a509d0aa891e90487d0f5cc74b9fdd47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad90f6b40e00f3372fd10a1930e2ea4ac"><td class="memItemLeft" align="right" valign="top"><a id="ad90f6b40e00f3372fd10a1930e2ea4ac" name="ad90f6b40e00f3372fd10a1930e2ea4ac"></a>
-const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#ab5761d95c426203a023d4d5d8a7ac8c8">T_Path</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
-<tr class="memdesc:ad90f6b40e00f3372fd10a1930e2ea4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the name of the path stored in the object. <br /></td></tr>
-<tr class="separator:ad90f6b40e00f3372fd10a1930e2ea4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55211821d5d569fde1442ae2da3dabd2"><td class="memItemLeft" align="right" valign="top"><a id="a55211821d5d569fde1442ae2da3dabd2" name="a55211821d5d569fde1442ae2da3dabd2"></a>
-const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#ab5761d95c426203a023d4d5d8a7ac8c8">T_Path</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getExtension</b> () const</td></tr>
-<tr class="memdesc:a55211821d5d569fde1442ae2da3dabd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the extension of the file stored in the object. If the path doesn't contains an extension then the returned pointer will point to the end of the string. <br /></td></tr>
-<tr class="separator:a55211821d5d569fde1442ae2da3dabd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a405833d8d4f0c6209218bf9891f0570a"><td class="memItemLeft" align="right" valign="top"><a id="a405833d8d4f0c6209218bf9891f0570a" name="a405833d8d4f0c6209218bf9891f0570a"></a>
-const <a class="el" href="../../da/d45/structbpp_1_1os_1_1path_1_1_path_attributes.html">PathAttributes</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAttributes</b> () const</td></tr>
-<tr class="memdesc:a405833d8d4f0c6209218bf9891f0570a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="../../da/d45/structbpp_1_1os_1_1path_1_1_path_attributes.html" title="PathAttributes is a data structure that stores the attributes of a given file or directory in the fil...">PathAttributes</a> object associated to the <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html" title="Path is an specialized string-like container to handle filesystem paths and get information on the di...">Path</a> object. <br /></td></tr>
-<tr class="separator:a405833d8d4f0c6209218bf9891f0570a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42819b3119feaf32352a7a5ff7416551"><td class="memItemLeft" align="right" valign="top"><a id="a42819b3119feaf32352a7a5ff7416551" name="a42819b3119feaf32352a7a5ff7416551"></a>
+<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a49d34c31a876e7151ee0c7c75cc6218d">value_type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (std::size_t pos) const noexcept</td></tr>
+<tr class="memdesc:a42819b3119feaf32352a7a5ff7416551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the character specified at location pos. If location is out of bounds returns a null character. <br /></td></tr>
+<tr class="separator:a42819b3119feaf32352a7a5ff7416551"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb58d21715973642724ea6b73ceaf46c"><td class="memItemLeft" align="right" valign="top"><a id="adb58d21715973642724ea6b73ceaf46c" name="adb58d21715973642724ea6b73ceaf46c"></a>
+const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a49d34c31a876e7151ee0c7c75cc6218d">value_type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPath</b> () const noexcept</td></tr>
+<tr class="memdesc:adb58d21715973642724ea6b73ceaf46c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the entire path stored in the object. <br /></td></tr>
+<tr class="separator:adb58d21715973642724ea6b73ceaf46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33a538363f77a67563b1097d8c0cfad8"><td class="memItemLeft" align="right" valign="top"><a id="a33a538363f77a67563b1097d8c0cfad8" name="a33a538363f77a67563b1097d8c0cfad8"></a>
+const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a49d34c31a876e7151ee0c7c75cc6218d">value_type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const noexcept</td></tr>
+<tr class="memdesc:a33a538363f77a67563b1097d8c0cfad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the name of the path stored in the object. <br /></td></tr>
+<tr class="separator:a33a538363f77a67563b1097d8c0cfad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9137efeb6b691e0bcaba624f04af8f8"><td class="memItemLeft" align="right" valign="top"><a id="ae9137efeb6b691e0bcaba624f04af8f8" name="ae9137efeb6b691e0bcaba624f04af8f8"></a>
+const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a49d34c31a876e7151ee0c7c75cc6218d">value_type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getExtension</b> () const noexcept</td></tr>
+<tr class="memdesc:ae9137efeb6b691e0bcaba624f04af8f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the extension of the file stored in the object. If the path doesn't contains an extension then the returned pointer will point to the end of the string. <br /></td></tr>
+<tr class="separator:ae9137efeb6b691e0bcaba624f04af8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ad359c652121d9e068a511904237216"><td class="memItemLeft" align="right" valign="top"><a id="a9ad359c652121d9e068a511904237216" name="a9ad359c652121d9e068a511904237216"></a>
+const <a class="el" href="../../da/d45/structbpp_1_1os_1_1path_1_1_path_attributes.html">PathAttributes</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAttributes</b> () const noexcept</td></tr>
+<tr class="memdesc:a9ad359c652121d9e068a511904237216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="../../da/d45/structbpp_1_1os_1_1path_1_1_path_attributes.html" title="PathAttributes is a data structure that stores the attributes of a given file or directory in the fil...">PathAttributes</a> object associated to the <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html" title="Path is an specialized string-like container to handle filesystem paths and get information on the di...">Path</a> object. <br /></td></tr>
+<tr class="separator:a9ad359c652121d9e068a511904237216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aea1bcdabacf6091fe2de76a20d2589da"><td class="memItemLeft" align="right" valign="top"><a id="aea1bcdabacf6091fe2de76a20d2589da" name="aea1bcdabacf6091fe2de76a20d2589da"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;lhs, const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;rhs)</td></tr>
+<tr class="memdesc:aea1bcdabacf6091fe2de76a20d2589da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the path of lhs and rhs are equal. An absolute and a relative path that point towards the same file would be considered different. <br /></td></tr>
+<tr class="separator:aea1bcdabacf6091fe2de76a20d2589da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa233060554088419579937fd45df41f3"><td class="memItemLeft" align="right" valign="top"><a id="aa233060554088419579937fd45df41f3" name="aa233060554088419579937fd45df41f3"></a>
+std::strong_ordering&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=&gt;</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;lhs, const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;rhs)</td></tr>
+<tr class="memdesc:aa233060554088419579937fd45df41f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the paths of lhs and rhs lexicographically. An absolute and a relative path that point towards the same file would be considered different. <br /></td></tr>
+<tr class="separator:aa233060554088419579937fd45df41f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html" title="Path is an specialized string-like container to handle filesystem paths and get information on the di...">Path</a> is an specialized string-like container to handle filesystem paths and get information on the directories and files stored in them. </p>
