@@ -211,6 +211,20 @@ const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a49
 const <a class="el" href="../../da/d45/structbpp_1_1os_1_1path_1_1_path_attributes.html">PathAttributes</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAttributes</b> () const noexcept</td></tr>
 <tr class="memdesc:a9ad359c652121d9e068a511904237216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="../../da/d45/structbpp_1_1os_1_1path_1_1_path_attributes.html" title="PathAttributes is a data structure that stores the attributes of a given file or directory in the fil...">PathAttributes</a> object associated to the <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html" title="Path is an specialized string-like container to handle filesystem paths and get information on the di...">Path</a> object. <br /></td></tr>
 <tr class="separator:a9ad359c652121d9e068a511904237216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa13f69f96f5bbb61d43751d5967697a"><td class="memItemLeft" align="right" valign="top"><a id="aaa13f69f96f5bbb61d43751d5967697a" name="aaa13f69f96f5bbb61d43751d5967697a"></a>
+<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;other)</td></tr>
+<tr class="memdesc:aaa13f69f96f5bbb61d43751d5967697a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends the path in other at the end of the current path with the adequate separator in between. <br /></td></tr>
+<tr class="separator:aaa13f69f96f5bbb61d43751d5967697a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a53e69f5d7647590b0733df49906c52"><td class="memTemplParams" colspan="2"><a id="a0a53e69f5d7647590b0733df49906c52" name="a0a53e69f5d7647590b0733df49906c52"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a0a53e69f5d7647590b0733df49906c52"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+=</b> (const T *path)</td></tr>
+<tr class="memdesc:a0a53e69f5d7647590b0733df49906c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends the specified path at the end of the current path with the adequate separator in between. <br /></td></tr>
+<tr class="separator:a0a53e69f5d7647590b0733df49906c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace3795005adbf2d0c832cb4c5cb34f9d"><td class="memTemplParams" colspan="2"><a id="ace3795005adbf2d0c832cb4c5cb34f9d" name="ace3795005adbf2d0c832cb4c5cb34f9d"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:ace3795005adbf2d0c832cb4c5cb34f9d"><td class="memTemplItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>open</b> (const T *mode)</td></tr>
+<tr class="memdesc:ace3795005adbf2d0c832cb4c5cb34f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a stream handler to the path specified by this object. Mode specifies the kind of access that's enabled to the file. If the file cannot be opened then return a null pointer. <br /></td></tr>
+<tr class="separator:ace3795005adbf2d0c832cb4c5cb34f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -222,6 +236,17 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 std::strong_ordering&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=&gt;</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;lhs, const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;rhs)</td></tr>
 <tr class="memdesc:aa233060554088419579937fd45df41f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the paths of lhs and rhs lexicographically. An absolute and a relative path that point towards the same file would be considered different. <br /></td></tr>
 <tr class="separator:aa233060554088419579937fd45df41f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409ba3e63693f625f39ae86832ba7b7b"><td class="memItemLeft" align="right" valign="top"><a id="a409ba3e63693f625f39ae86832ba7b7b" name="a409ba3e63693f625f39ae86832ba7b7b"></a>
+<a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;lhs, const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;rhs)</td></tr>
+<tr class="separator:a409ba3e63693f625f39ae86832ba7b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628a62eb7a361662807876216893974a"><td class="memTemplParams" colspan="2"><a id="a628a62eb7a361662807876216893974a" name="a628a62eb7a361662807876216893974a"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a628a62eb7a361662807876216893974a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;lhs, const T *rhs)</td></tr>
+<tr class="separator:a628a62eb7a361662807876216893974a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ffa5e87867bf35a1d64d3eef6a5617"><td class="memTemplParams" colspan="2"><a id="ad7ffa5e87867bf35a1d64d3eef6a5617" name="ad7ffa5e87867bf35a1d64d3eef6a5617"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:ad7ffa5e87867bf35a1d64d3eef6a5617"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const T *lhs, const <a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html">Path</a> &amp;rhs)</td></tr>
+<tr class="separator:ad7ffa5e87867bf35a1d64d3eef6a5617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="../../d3/d62/structbpp_1_1os_1_1path_1_1_path.html" title="Path is an specialized string-like container to handle filesystem paths and get information on the di...">Path</a> is an specialized string-like container to handle filesystem paths and get information on the directories and files stored in them. </p>
