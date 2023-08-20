@@ -1,5 +1,6 @@
 #ifndef BPP_OS_PATH_H
 #define BPP_OS_PATH_H
+#include <cstdio>       // FILE
 #include <cstring>      // memcpy
 #include <cstdint>      // uint64_t
 #include <vector>       // std::vector<>
@@ -87,7 +88,7 @@ struct Path{
 	//! Move constructor. Constructs the container with the contents of other using move semantics. After the move, other is empty.
 	Path(Path&& other) noexcept;
 	//! Constructs the container with the provided path given and reads the attributes of the specified file or directory.
-	template <class T> Path(const T* path);
+	template <class T> explicit Path(const T* path);
 	
 	//! Destructs the path. Any allocated memory is released.
 	~Path();
@@ -150,12 +151,26 @@ struct Path{
 	//! Returns the PathAttributes object associated to the Path object.
 	const PathAttributes& getAttributes() const noexcept;
 	
+	// Modify path
+	//! Appends the path in other at the end of the current path with the adequate separator in between.
+	Path& operator+=(const Path& other);
+	//! Appends the specified path at the end of the current path with the adequate separator in between.
+	template <class T> Path& operator+=(const T* path);
+	
 	// Non-member
 	// Operators
 	//! Checks if the path of lhs and rhs are equal. An absolute and a relative path that point towards the same file would be considered different.
 	friend bool operator==(const Path& lhs, const Path& rhs);
 	//! Compares the paths of lhs and rhs lexicographically. An absolute and a relative path that point towards the same file would be considered different.
 	friend std::strong_ordering operator<=>(const Path& lhs, const Path& rhs);
+	
+	friend Path operator+(const Path& lhs, const Path& rhs);
+	template <class T> friend Path operator+(const Path& lhs, const T* rhs);
+	template <class T> friend Path operator+(const T* lhs, const Path& rhs);
+	
+	// Other
+	//! Returns a stream handler to the path specified by this object. Mode specifies the kind of access that's enabled to the file. If the file cannot be opened then return a null pointer.
+	template <class T> FILE* open(const T* mode);
 	
 	private:
         PathAttributes attr;

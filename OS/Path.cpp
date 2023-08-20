@@ -206,7 +206,7 @@ template <class T> std::vector<Path> getListDirectory(const T* path){
 						newPath[length+1+i] = (ansii ? ffd.a.cFileName[i] : ffd.w.cFileName[i]);
 					}
 					newPath[length+1+i] = 0;
-					result.push_back(newPath);
+					result.push_back(std::move(Path(newPath)));
 					if(ansii){
 						success = FindNextFileA(search, &ffd.a);
 					}else{
@@ -235,8 +235,8 @@ Path::Path(Path&& other) noexcept : path(other.path), length(other.length), name
 }
 template <class T> Path::Path(const T* path) : path(0), length(0){
     std::size_t i;
-    this->path = new T_PATH[this->MAX_LENGTH];
-	for(i=0; path[i] && (i<(this->MAX_LENGTH-1)); ++i){ this->path[i] = path[i]; }
+    this->path = new T_PATH[MAX_LENGTH];
+	for(i=0; path[i] && (i<(MAX_LENGTH-1)); ++i){ this->path[i] = path[i]; }
 	this->path[i] = 0;
 	this->length = i;
 	this->parsePath();
@@ -270,7 +270,7 @@ Path& Path::operator=(Path&& other) noexcept{
 }
 template <class T> Path& Path::operator=(const T* path){
     std::size_t i;
-    for(i=0; path[i] && (i<(this->MAX_LENGTH-1)); ++i){ this->path[i] = path[i]; }
+    for(i=0; path[i] && (i<(MAX_LENGTH-1)); ++i){ this->path[i] = path[i]; }
 	this->path[i] = 0;
 	this->length = i;
 	this->parsePath();
@@ -356,7 +356,7 @@ std::vector<Path> Path::getListDirectory() const{
 						newPath[this->length+1+i] = ffd.cFileName[i];
 					}
 					newPath[this->length+1+i] = 0;
-					result.push_back(newPath);
+					result.push_back(std::move(Path(newPath)));
 					success = FindNextFileW(search, &ffd);
 				}while(success);
 				FindClose(search);
@@ -399,6 +399,31 @@ void Path::getPathAttributes(){
 	#endif
 }
 
+// Modify path
+Path& Path::operator+=(const Path& other){
+	std::size_t len = this->length;
+	this->path[len++] = '/';
+	for(std::size_t i = 0; i<other.length && len<(MAX_LENGTH-1); i++){
+        this->path[len++] = other.path[i];
+	}
+	this->path[len] = 0;
+	this->length = len;
+	this->parsePath();
+	this->getPathAttributes();
+	return *this;
+}
+template <class T> Path& Path::operator+=(const T* path){
+    std::size_t len = this->length;
+	this->path[len++] = '/';
+	for(std::size_t i = 0; path[i] && len<(MAX_LENGTH-1); i++){
+        this->path[len++] = path[i];
+	}
+	this->path[len] = 0;
+	this->length = len;
+	this->parsePath();
+	this->getPathAttributes();
+	return *this;
+}
 
 #ifdef __unix__
 	const std::size_t Path::MAX_LENGTH = 4096;
@@ -429,6 +454,31 @@ std::strong_ordering operator<=>(const Path& lhs, const Path& rhs){
         return std::strong_ordering::greater;
 	}
 	return std::strong_ordering::equal;
+}
+Path operator+(const Path& lhs, const Path& rhs){ return Path(lhs)+=rhs; }
+template <class T> Path operator+(const Path& lhs, const T* rhs){ return Path(lhs)+=rhs; }
+template <class T> Path operator+(const T* lhs, const Path& rhs){ return Path(lhs)+=rhs; }
+
+// Other
+template <class T> FILE* Path::open(const T* mode){
+    #ifdef __unix__
+		return fopen(this->path, mode);
+	#elif defined(_WIN32) || defined(WIN32)
+		T_PATH nMode[0x100];
+		std::size_t i;
+		for(i=0; i<0x100 && mode[i]; i++){
+			nMode[i] = mode[i];
+		}
+		switch(sizeof(T_PATH)){
+			case 1:
+                return fopen((const char*)this->path, (const char*)nMode);
+				break;
+			case 2:
+				return _wfopen((const wchar_t*)this->path, (const wchar_t*)nMode);
+				break;
+		}
+	#endif
+	return 0;
 }
 
 		}
