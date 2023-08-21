@@ -173,7 +173,7 @@ struct Path{
 	template <class T> FILE* open(const T* mode);
 	
 	private:
-        PathAttributes attr;
+		PathAttributes attr;
 		T_PATH *path;
 		std::size_t length, name, ext;
 		static const std::size_t MAX_LENGTH;

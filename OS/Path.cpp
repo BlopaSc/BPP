@@ -14,10 +14,10 @@ template <class T> static void winGetFileAttributes(const T* path, PathAttribute
 	DWORD tmp;
 	switch(sizeof(T)){
 		case 1:
-            tmp = GetFileAttributesA((const char*) path);
+			tmp = GetFileAttributesA((const char*) path);
 			break;
 		case 2:
-            tmp = GetFileAttributesW((const wchar_t*) path);
+			tmp = GetFileAttributesW((const wchar_t*) path);
 			break;
 	}
 	if(attr.exists = (tmp != INVALID_FILE_ATTRIBUTES)){
@@ -28,22 +28,22 @@ template <class T> static void winGetFileAttributes(const T* path, PathAttribute
 	}
 }
 template <class T> static void winGetFileData(const T* path, PathAttributes& attr){
-    HANDLE handle;
-    BY_HANDLE_FILE_INFORMATION ffd;
+	HANDLE handle;
+	BY_HANDLE_FILE_INFORMATION ffd;
 	DWORD& tmp = ffd.dwFileAttributes;
 	switch(sizeof(T)){
 		case 1:
-            handle = CreateFileA((const char*)path,GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS,NULL);
+			handle = CreateFileA((const char*)path,GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS,NULL);
 			break;
 		case 2:
-            handle = CreateFileW((const wchar_t*)path,GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS,NULL);
+			handle = CreateFileW((const wchar_t*)path,GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS,NULL);
 			break;
 	}
 	if(attr.exists = (handle != INVALID_HANDLE_VALUE)){
 		attr.exists = GetFileInformationByHandle(handle, &ffd);
 		CloseHandle(handle);
 		if(attr.exists){
-            attr.isHidden = tmp & FILE_ATTRIBUTE_HIDDEN;
+			attr.isHidden = tmp & FILE_ATTRIBUTE_HIDDEN;
 			attr.isSystem = tmp & FILE_ATTRIBUTE_SYSTEM;
 			attr.isDirectory = tmp & FILE_ATTRIBUTE_DIRECTORY;
 			attr.isTemporary = tmp & FILE_ATTRIBUTE_TEMPORARY;
@@ -57,18 +57,18 @@ template <class T> static void winGetFileData(const T* path, PathAttributes& att
 #endif
 
 template <class T> bool mkDir(const T* path){
-    bool result = false;
+	bool result = false;
 	#ifdef __unix__
 		result = !mkdir(path,DEFAULT_MODE);
 	#elif defined(_WIN32) || defined(WIN32)
-	    switch(sizeof(T)){
+		switch(sizeof(T)){
 			case 1:
 				if(!(result = CreateDirectoryA((const char*) path,NULL))){
 					result = GetLastError() != ERROR_PATH_NOT_FOUND;
 				}
 				break;
 			case 2:
-                if(!(result = CreateDirectoryW((const wchar_t*) path,NULL))){
+				if(!(result = CreateDirectoryW((const wchar_t*) path,NULL))){
 					result = GetLastError() != ERROR_PATH_NOT_FOUND;
 				}
 				break;
@@ -77,92 +77,92 @@ template <class T> bool mkDir(const T* path){
 	return result;
 }
 template <class T> bool exists(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileAttributes(path, attr);
+		winGetFileAttributes(path, attr);
 	#endif
 	return attr.exists;
 }
 template <class T> bool isDir(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileAttributes(path, attr);
+		winGetFileAttributes(path, attr);
 	#endif
 	return attr.exists && attr.isDirectory;
 }
 template <class T> bool isFile(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileAttributes(path, attr);
+		winGetFileAttributes(path, attr);
 	#endif
 	return attr.exists && !attr.isDirectory;
 }
 template <class T> bool isHidden(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileAttributes(path, attr);
+		winGetFileAttributes(path, attr);
 	#endif
 	return attr.exists && attr.isHidden;
 }
 template <class T> bool isSystem(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileAttributes(path, attr);
+		winGetFileAttributes(path, attr);
 	#endif
 	return attr.exists && attr.isSystem;
 }
 template <class T> bool isTemporary(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileAttributes(path, attr);
+		winGetFileAttributes(path, attr);
 	#endif
 	return attr.exists && attr.isTemporary;
 }
 template <class T> uint64_t getSize(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileData(path, attr);
+		winGetFileData(path, attr);
 	#endif
 	return attr.exists ? attr.fileSize : 0;
 }
 template <class T> uint64_t getCreationTime(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileData(path, attr);
+		winGetFileData(path, attr);
 	#endif
 	return attr.exists ? attr.creationTime : 0;
 }
 template <class T> uint64_t getLastAccessTime(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileData(path, attr);
+		winGetFileData(path, attr);
 	#endif
 	return attr.exists ? attr.lastAccessTime : 0;
 }
 template <class T> uint64_t getLastModifiedTime(const T* path){
-    PathAttributes attr;
+	PathAttributes attr;
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
-	    winGetFileData(path, attr);
+		winGetFileData(path, attr);
 	#endif
 	return attr.exists ? attr.lastModifyTime : 0;
 }
@@ -181,23 +181,23 @@ template <class T> std::vector<Path> getListDirectory(const T* path){
 	newPath[i] = 0;
 	if(isDir(path)){
 		#ifdef __unix__
-	        // TODO
-	    #elif defined(_WIN32) || defined(WIN32)
-            HANDLE search;
-            union WinData{
+			// TODO
+		#elif defined(_WIN32) || defined(WIN32)
+			HANDLE search;
+			union WinData{
 				WIN32_FIND_DATAA a;
 				WIN32_FIND_DATAW w;
 			} ffd;
 			bool success, ansii = sizeof(T)==1;
-	        newPath[length] = '/';
-	        newPath[length+1] = '*';
-	        newPath[length+2] = 0;
-	        switch(sizeof(T)){
+			newPath[length] = '/';
+			newPath[length+1] = '*';
+			newPath[length+2] = 0;
+			switch(sizeof(T)){
 				case 1:
-                    search = FindFirstFileA((char*)newPath, &ffd.a);
+					search = FindFirstFileA((char*)newPath, &ffd.a);
 					break;
 				case 2:
-                    search = FindFirstFileW((wchar_t*)newPath, &ffd.w);
+					search = FindFirstFileW((wchar_t*)newPath, &ffd.w);
 					break;
 			}
 			if(search != INVALID_HANDLE_VALUE){
@@ -210,7 +210,7 @@ template <class T> std::vector<Path> getListDirectory(const T* path){
 					if(ansii){
 						success = FindNextFileA(search, &ffd.a);
 					}else{
-                        success = FindNextFileW(search, &ffd.w);
+						success = FindNextFileW(search, &ffd.w);
 					}
 				}while(success);
 				FindClose(search);
@@ -228,14 +228,14 @@ Path::Path(const Path& other) : path(0), length(other.length), name(other.name),
 	memcpy((void*) &this->attr, (void*) &other.attr, sizeof(PathAttributes));
 }
 Path::Path(Path&& other) noexcept : path(other.path), length(other.length), name(other.name), ext(other.ext){
-    memcpy((void*) &this->attr, (void*) &other.attr, sizeof(PathAttributes));
+	memcpy((void*) &this->attr, (void*) &other.attr, sizeof(PathAttributes));
 	other.path = 0;
 	other.length = 0;
 	other.attr.exists = false;
 }
 template <class T> Path::Path(const T* path) : path(0), length(0){
-    std::size_t i;
-    this->path = new T_PATH[MAX_LENGTH];
+	std::size_t i;
+	this->path = new T_PATH[MAX_LENGTH];
 	for(i=0; path[i] && (i<(MAX_LENGTH-1)); ++i){ this->path[i] = path[i]; }
 	this->path[i] = 0;
 	this->length = i;
@@ -269,8 +269,8 @@ Path& Path::operator=(Path&& other) noexcept{
 	return *this;
 }
 template <class T> Path& Path::operator=(const T* path){
-    std::size_t i;
-    for(i=0; path[i] && (i<(MAX_LENGTH-1)); ++i){ this->path[i] = path[i]; }
+	std::size_t i;
+	for(i=0; path[i] && (i<(MAX_LENGTH-1)); ++i){ this->path[i] = path[i]; }
 	this->path[i] = 0;
 	this->length = i;
 	this->parsePath();
@@ -296,7 +296,7 @@ Path Path::getAbsolutePath() const{
 	return result.toAbsolutePath();
 }
 Path& Path::toAbsolutePath(){
-    if(!this->exists()){ return *this; }
+	if(!this->exists()){ return *this; }
 	#ifdef __unix__
 		// TODO
 	#elif defined(_WIN32) || defined(WIN32)
@@ -314,10 +314,10 @@ Path Path::getParent(bool* success) const{
 Path& Path::toParent(bool* success){
 	if(!this->exists()){ return *this; }
 	#ifdef __unix__
-        // TODO
-    #elif defined(_WIN32) || defined(WIN32)
-    	if(!this->name){
-            if(this->length && this->path[this->length-1]!=':'){
+		// TODO
+	#elif defined(_WIN32) || defined(WIN32)
+		if(!this->name){
+			if(this->length && this->path[this->length-1]!=':'){
 				this->toAbsolutePath();
 			}else{
 				if(success){ *success = false; }
@@ -341,14 +341,14 @@ std::vector<Path> Path::getListDirectory() const{
 	for(i=0; i<=this->length; ++i){ newPath[i] = this->path[i]; }
 	if(this->isDir()){
 		#ifdef __unix__
-	        // TODO
-	    #elif defined(_WIN32) || defined(WIN32)
-            HANDLE search;
+			// TODO
+		#elif defined(_WIN32) || defined(WIN32)
+			HANDLE search;
 			WIN32_FIND_DATAW ffd;
 			bool success;
-	        newPath[this->length] = '/';
-	        newPath[this->length+1] = '*';
-	        newPath[this->length+2] = 0;
+			newPath[this->length] = '/';
+			newPath[this->length+1] = '*';
+			newPath[this->length+2] = 0;
 			search = FindFirstFileW(newPath, &ffd);
 			if(search != INVALID_HANDLE_VALUE){
 				do{
@@ -374,11 +374,11 @@ const PathAttributes& Path::getAttributes() const noexcept{ return this->attr; }
 
 // Private methods
 void Path::parsePath(){
-    std::size_t i;
+	std::size_t i;
 	if(!this->length){ return; }
-    #ifdef __unix__
-        if(this->path[this->length - 1]=='/' && this->length>1){ this->path[--this->length] = 0; }
-    #elif defined(_WIN32) || defined(WIN32)
+	#ifdef __unix__
+		if(this->path[this->length - 1]=='/' && this->length>1){ this->path[--this->length] = 0; }
+	#elif defined(_WIN32) || defined(WIN32)
 		for(i=0; i<this->length; ++i){
 			this->path[i] = ((this->path[i]=='\\') ? '/' : this->path[i]);
 		}
@@ -404,7 +404,7 @@ Path& Path::operator+=(const Path& other){
 	std::size_t len = this->length;
 	this->path[len++] = '/';
 	for(std::size_t i = 0; i<other.length && len<(MAX_LENGTH-1); i++){
-        this->path[len++] = other.path[i];
+		this->path[len++] = other.path[i];
 	}
 	this->path[len] = 0;
 	this->length = len;
@@ -413,10 +413,10 @@ Path& Path::operator+=(const Path& other){
 	return *this;
 }
 template <class T> Path& Path::operator+=(const T* path){
-    std::size_t len = this->length;
+	std::size_t len = this->length;
 	this->path[len++] = '/';
 	for(std::size_t i = 0; path[i] && len<(MAX_LENGTH-1); i++){
-        this->path[len++] = path[i];
+		this->path[len++] = path[i];
 	}
 	this->path[len] = 0;
 	this->length = len;
@@ -428,7 +428,7 @@ template <class T> Path& Path::operator+=(const T* path){
 #ifdef __unix__
 	const std::size_t Path::MAX_LENGTH = 4096;
 #elif defined(_WIN32) || defined(WIN32)
-    const std::size_t Path::MAX_LENGTH = 256;
+	const std::size_t Path::MAX_LENGTH = 256;
 #endif
 
 // Non-member
@@ -451,7 +451,7 @@ std::strong_ordering operator<=>(const Path& lhs, const Path& rhs){
 	if(lhs.length < rhs.length){
 		return std::strong_ordering::less;
 	}else if(lhs.length > rhs.length){
-        return std::strong_ordering::greater;
+		return std::strong_ordering::greater;
 	}
 	return std::strong_ordering::equal;
 }
@@ -461,7 +461,7 @@ template <class T> Path operator+(const T* lhs, const Path& rhs){ return Path(lh
 
 // Other
 template <class T> FILE* Path::open(const T* mode){
-    #ifdef __unix__
+	#ifdef __unix__
 		return fopen(this->path, mode);
 	#elif defined(_WIN32) || defined(WIN32)
 		T_PATH nMode[0x100];
@@ -471,7 +471,7 @@ template <class T> FILE* Path::open(const T* mode){
 		}
 		switch(sizeof(T_PATH)){
 			case 1:
-                return fopen((const char*)this->path, (const char*)nMode);
+				return fopen((const char*)this->path, (const char*)nMode);
 				break;
 			case 2:
 				return _wfopen((const wchar_t*)this->path, (const wchar_t*)nMode);
