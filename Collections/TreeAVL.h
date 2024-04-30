@@ -15,7 +15,7 @@ namespace bpp{
 		namespace map{
 
 //! TreeAVL is a sorted associative container that contains key-value pairs with unique keys. Keys are sorted by using the comparison function Compare. Search, removal, and insertion operations have logarithmic complexity. This is an implementation of an Adelson-Velsky and Landis Tree.
-template <class Key, class T, class Compare = std::less<Key>,class Allocator = std::allocator<std::pair<const Key, T>>> class TreeAVL{
+template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T>>> class TreeAVL{
 	private:
 		struct NodeAVL;
 		struct iterator_actions;
@@ -200,23 +200,27 @@ template <class Key, class T, class Compare = std::less<Key>,class Allocator = s
 			const_reverse_iterator operator--(int);
 		};
 		//! Returns an iterator to the first element of the map. If the map is empty, the returned iterator will be equal to end().
-		iterator begin() const noexcept;
-		// const_iterator begin() const noexcept;
+		iterator begin() noexcept;
+		//! Returns a constant iterator to the first element of the map. If the map is empty, the returned iterator will be equal to end().
+		const_iterator begin() const noexcept;
 		//! Returns a constant iterator to the first element of the map. If the map is empty, the returned iterator will be equal to end().
 		const_iterator cbegin() const noexcept;
 		//! Returns an iterator to the element following the last element of the map. This element acts as a placeholder; attempting to access it results in undefined behavior.
-		iterator end() const noexcept;
-		// const_iterator end() const noexcept;
+		iterator end() noexcept;
+		//! Returns a constant iterator to the element following the last element of the map. This element acts as a placeholder; attempting to access it results in undefined behavior.
+		const_iterator end() const noexcept;
 		//! Returns a constant iterator to the element following the last element of the map. This element acts as a placeholder; attempting to access it results in undefined behavior.
 		const_iterator cend() const noexcept;
 		//! Returns a reverse iterator to the first element of the reversed map. It corresponds to the last element of the non-reversed map. If the map is empty, the returned iterator is equal to rend().
-		reverse_iterator rbegin() const noexcept;
-		// const_reverse_iterator rbegin() const noexcept;
+		reverse_iterator rbegin() noexcept;
+		//! Returns a constant reverse iterator to the first element of the reversed map. It corresponds to the last element of the non-reversed map. If the map is empty, the returned iterator is equal to rend().
+		const_reverse_iterator rbegin() const noexcept;
 		//! Returns a constant reverse iterator to the first element of the reversed map. It corresponds to the last element of the non-reversed map. If the map is empty, the returned iterator is equal to rend().
 		const_reverse_iterator crbegin() const noexcept;
 		//! Returns a reverse iterator to the element following the last element of the reversed map. It corresponds to the element preceding the first element of the non-reversed map. This element acts as a placeholder, attempting to access it results in undefined behavior.
-		reverse_iterator rend() const noexcept;
-		// const_reverse_iterator rend() const noexcept;
+		reverse_iterator rend() noexcept;
+		//! Returns a constant reverse iterator to the element following the last element of the reversed map. It corresponds to the element preceding the first element of the non-reversed map. This element acts as a placeholder, attempting to access it results in undefined behavior.
+		const_reverse_iterator rend() const noexcept;
 		//! Returns a constant reverse iterator to the element following the last element of the reversed map. It corresponds to the element preceding the first element of the non-reversed map. This element acts as a placeholder, attempting to access it results in undefined behavior.
 		const_reverse_iterator crend() const noexcept;
 		

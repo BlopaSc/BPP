@@ -238,34 +238,50 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 }
 
 // Iterator generation methods
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::begin() const noexcept{
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::begin() noexcept{
 	NodeAVL* tmp = this->root;
 	while(tmp && tmp->leftChild){ tmp = tmp->leftChild; }
 	return iterator(tmp);
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::begin() const noexcept{
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->leftChild){ tmp = tmp->leftChild; }
+	return const_iterator(tmp);
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::cbegin() const noexcept{
 	NodeAVL* tmp = this->root;
 	while(tmp && tmp->leftChild){ tmp = tmp->leftChild; }
 	return const_iterator(tmp);
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::end() const noexcept{
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::end() noexcept{
 	return iterator();
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::end() const noexcept{
+	return const_iterator();
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_iterator TreeAVL<Key,T,Compare,Allocator>::cend() const noexcept{
 	return const_iterator();
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rbegin() const noexcept{
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rbegin() noexcept{
 	NodeAVL* tmp = this->root;
 	while(tmp && tmp->rightChild){ tmp = tmp->rightChild; }
 	return reverse_iterator(tmp);
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rbegin() const noexcept{
+	NodeAVL* tmp = this->root;
+	while(tmp && tmp->rightChild){ tmp = tmp->rightChild; }
+	return const_reverse_iterator(tmp);
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::crbegin() const noexcept{
 	NodeAVL* tmp = this->root;
 	while(tmp && tmp->rightChild){ tmp = tmp->rightChild; }
 	return const_reverse_iterator(tmp);
 }
-template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rend() const noexcept{
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rend() noexcept{
 	return reverse_iterator();
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::rend() const noexcept{
+	return const_reverse_iterator();
 }
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::const_reverse_iterator TreeAVL<Key,T,Compare,Allocator>::crend() const noexcept{
 	return const_reverse_iterator();
