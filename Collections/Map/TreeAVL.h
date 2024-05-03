@@ -52,9 +52,9 @@ template <class Key, class T, class Compare = std::less<Key>, class Allocator = 
 		explicit TreeAVL(const Allocator& alloc);
 		
 		//! Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Can receive the comparison function object to use for all comparisons of keys and the allocator to use for all memory allocations.
-		template<class InputIt> TreeAVL(InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator());
+		template <class InputIt> TreeAVL(InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator());
 		//! Constructs the container with the contents of the range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted. Receives the allocator to use for all memory allocations.
-		template<class InputIt> TreeAVL(InputIt first, InputIt last, const Allocator& alloc);
+		template <class InputIt> TreeAVL(InputIt first, InputIt last, const Allocator& alloc);
 		
 		//! Copy constructor. Constructs the container with the copy of the contents of other.
 		TreeAVL(const TreeAVL& other);
@@ -239,16 +239,16 @@ template <class Key, class T, class Compare = std::less<Key>, class Allocator = 
 		// Insert
 		//! Inserts element(s) into the container, if the container doesn't already contain an element with an equivalent key. Returns a pair consisting of an iterator to the inserted element (or to the element that prevented the insertion) and a bool denoting whether the insertion took place.
 		std::pair<iterator, bool> insert(const std::pair<const Key, T>& value);
-		// template<class P> std::pair<iterator, bool> insert(P&& value);
+		// template <class P> std::pair<iterator, bool> insert(P&& value);
 		//! Inserts element(s) into the container, if the container doesn't already contain an element with an equivalent key. Returns a pair consisting of an iterator to the inserted element (or to the element that prevented the insertion) and a bool denoting whether the insertion took place.
 		std::pair<iterator, bool> insert(std::pair<const Key, T>&& value);
 		//! Inserts value in the position as close as possible to hint. Returns an iterator to the inserted element, or to the element that prevented the insertion.
 		iterator insert(iterator hint, const std::pair<const Key, T>& value);
-		// template<class P> iterator insert(const_iterator hint, P&& value);
+		// template <class P> iterator insert(const_iterator hint, P&& value);
 		//! Inserts value in the position as close as possible to hint. Returns an iterator to the inserted element, or to the element that prevented the insertion.
 		iterator insert(iterator hint, std::pair<const Key, T>&& value);
 		//! Inserts elements from range [first, last). If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
-		template<class InputIt> void insert(InputIt first, InputIt last);
+		template <class InputIt> void insert(InputIt first, InputIt last);
 		//! Inserts elements from initializer list ilist. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
 		void insert(std::initializer_list<std::pair<const Key, T>> ilist);
 		// Insert or Assign
@@ -270,46 +270,50 @@ template <class Key, class T, class Compare = std::less<Key>, class Allocator = 
 		//! Removes the element (if one exists) with the key equivalent to key. Returns the number of elements removed (0 or 1).
 		std::size_t erase(const Key& key);
 		//! Removes the element (if one exists) with the key equivalent to key. Returns the number of elements removed (0 or 1).
-		template<class K> std::size_t erase(K&& key);
+		template <class K> std::size_t erase(K&& key);
 		
 		// Lookup
 		// Count
 		//! Returns the number of elements with key that compares equivalent to the specified argument, which is either 1 or 0 since this container does not allow duplicates.
-		template<class K> std::size_t count(const K& key) const;
+		template <class K> std::size_t count(const K& key) const;
 		// Find
 		//! Finds an element with key equivalent to key and returns an iterator to the element. If no such element is found, past-the-end (see end()) iterator is returned.
-		template<class K> iterator find(const K& key);
-		// template<class K> const_iterator find(const K& key) const;
+		template <class K> iterator find(const K& key);
+		//! Finds an element with key equivalent to key and returns an iterator to the element. If no such element is found, past-the-end (see cend()) iterator is returned.
+		template <class K> const_iterator find(const K& key) const;
 		// Contains
-		//! Checks if there is an element with key that compares equivalent to the value x.
-		template<class K> bool contains(const K& key) const;
+		//! Checks if there is an element with key that compares equivalent to the value of key.
+		template <class K> bool contains(const K& key) const;
 		// Bounds
-		//! Returns an iterator pointing to the first element that compares not less (i.e. greater or equal) to the value x. If no such element is found, past-the-end (see end()) iterator is returned.
-		template<class K> iterator lower_bound(const K& key);
-		// template<class K> const_iterator lower_bound(const K& key);
-		//! Returns an iterator pointing to the first element that compares greater to the value x. If no such element is found, past-the-end (see end()) iterator is returned.
-		template<class K> iterator upper_bound(const K& key);
-		// template<class K> const_iterator upper_bound(const K& key);
+		//! Returns an iterator pointing to the first element that compares not less (i.e. greater or equal) to the value of key. If no such element is found, past-the-end (see end()) iterator is returned.
+		template <class K> iterator lower_bound(const K& key);
+		//! Returns an iterator pointing to the first element that compares not less (i.e. greater or equal) to the value of key. If no such element is found, past-the-end (see cend()) iterator is returned.
+		template <class K> const_iterator lower_bound(const K& key) const;
+		//! Returns an iterator pointing to the first element that compares greater to the value of key. If no such element is found, past-the-end (see end()) iterator is returned.
+		template <class K> iterator upper_bound(const K& key);
+		//! Returns an iterator pointing to the first element that compares greater to the value of key. If no such element is found, past-the-end (see cend()) iterator is returned.
+		template <class K> const_iterator upper_bound(const K& key) const;
 		//! Returns a range containing all elements with the given key in the container. The range is defined by two iterators, one pointing to the first element that is not less than key and another pointing to the first element greater than key. Alternatively, the first iterator may be obtained with lower_bound(), and the second with upper_bound().
-		template<class K> std::pair<iterator,iterator> equal_range(const K& key);
-		// template<class K> std::pair<const_iterator,const_iterator> equal_range(const K& key);
+		template <class K> std::pair<iterator,iterator> equal_range(const K& key);
+		//! Returns a range containing all elements with the given key in the container. The range is defined by two iterators, one pointing to the first element that is not less than key and another pointing to the first element greater than key. Alternatively, the first iterator may be obtained with lower_bound(), and the second with upper_bound().
+		template <class K> std::pair<const_iterator,const_iterator> equal_range(const K& key) const;
 		
 		// Non-member
 		// Operators
 		//! Checks if the contents of lhs and rhs are equal, that is, they have the same number of elements and each element in lhs compares equal with the element in rhs at the same position.
-		template<class A,class B,class C,class D> friend bool operator==(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
+		template <class A, class B, class C, class D> friend bool operator==(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
 		//! Compares the contents of lhs and rhs lexicographically.
-		template<class A,class B,class C,class D> friend std::strong_ordering operator<=>(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
+		template <class A, class B, class C, class D> friend std::strong_ordering operator<=>(const TreeAVL<A,B,C,D>& lhs, const TreeAVL<A,B,C,D>& rhs);
 		// Other
 		//! Erases all elements that satisfy the predicate pred from the container.
-		template<class A,class B,class C,class D, class Pred> friend std::size_t std::erase_if(TreeAVL<A,B,C,D>& tree, Pred pred);
+		template <class A, class B, class C, class D, class Pred> friend std::size_t std::erase_if(TreeAVL<A,B,C,D>& tree, Pred pred);
 		//! Specialized swapping function.
-		template<class A,class B,class C,class D> friend void std::swap(TreeAVL<A,B,C,D> &lhs, TreeAVL<A,B,C,D>& rhs);
+		template <class A, class B, class C, class D> friend void std::swap(TreeAVL<A,B,C,D> &lhs, TreeAVL<A,B,C,D>& rhs);
 		// Friendship
 		//! Specialization of the Serialize template to support TreeAVL objects.
-		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Serialize;
+		template <typename Buff, typename... Types> friend struct bpp::collections::serialize::Serialize;
 		//! Specialization of the Deserialize template to support TreeAVL objects.
-		template<typename Buff, typename... Types> friend struct bpp::collections::serialize::Deserialize;
+		template <typename Buff, typename... Types> friend struct bpp::collections::serialize::Deserialize;
 		
 	private:
 		// Nested class NodeAVL
@@ -363,11 +367,11 @@ template <class Key, class T, class Compare = std::less<Key>, class Allocator = 
 		namespace serialize{
 
 //! Specialization of the Serialize template to support TreeAVL objects.
-template<typename Buff, typename... Types> struct Serialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
+template <typename Buff, typename... Types> struct Serialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
 	std::size_t operator()(Buff& buffer, const bpp::collections::map::TreeAVL<Types...>& obj) const;
 };
 //! Specialization of the Deserialize template to support TreeAVL objects.
-template<typename Buff, typename... Types> struct Deserialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
+template <typename Buff, typename... Types> struct Deserialize<Buff,bpp::collections::map::TreeAVL<Types...>>{
 	std::size_t operator()(Buff& buffer, bpp::collections::map::TreeAVL<Types...>& obj) const;
 };
 
