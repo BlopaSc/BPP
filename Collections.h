@@ -36,7 +36,9 @@ namespace bpp{
 	}
 }
 
-#include "Collections/TreeAVL.h"
 #include "Collections/Combination.h"
+#include "Collections/Serialize.h"
+#include "Collections/Map/TreeAVL.h"
+#include "Collections/Map/Trie.h"
 
 #endif
