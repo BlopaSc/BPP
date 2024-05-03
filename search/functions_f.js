@@ -1,6 +1,5 @@
 var searchData=
 [
   ['rank_0',['rank',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a1e40bea2630c3904a5676983b8f37c64',1,'bpp::collections::iteration::Combination']]],
-  ['rbegin_1',['rbegin',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a601b2cbb427006453e187afec41c6848',1,'bpp::collections::map::TreeAVL::rbegin() noexcept'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a6fc55dafdd579b9fd34c4b1912317445',1,'bpp::collections::map::TreeAVL::rbegin() const noexcept'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a50610aeb7d6530762eef800c617aa88c',1,'bpp::collections::map::Trie::rbegin()']]],
-  ['rend_2',['rend',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a58283a6b3265914f133fc1c7391fdc6e',1,'bpp::collections::iteration::Combination::rend()'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#ad7934e473a1d6f8175aadd7a26afc2b9',1,'bpp::collections::map::TreeAVL::rend() noexcept'],['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a7cdccd1ce50260a4b0e2ebd61bc83a13',1,'bpp::collections::map::TreeAVL::rend() const noexcept'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a04d529bbbfda252aabc386b918b6c6bb',1,'bpp::collections::map::Trie::rend()']]]
+  ['rend_1',['rend',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a58283a6b3265914f133fc1c7391fdc6e',1,'bpp::collections::iteration::Combination']]]
 ];

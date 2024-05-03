@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['key_5fcompare_0',['key_compare',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a8e807c0f1bc4abcb016cfc2ed6331cf4',1,'bpp::collections::map::TreeAVL']]],
-  ['key_5ftype_1',['key_type',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a171a248b242eb701a7512426434153be',1,'bpp::collections::map::TreeAVL::key_type()'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a1576435bfdb148a48290f00585d36697',1,'bpp::collections::map::Trie::key_type()']]]
+  ['value_5ftype_0',['value_type',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#a8cf8ea81091e55e0a2a67efbbedee003',1,'bpp::collections::iteration::Combination::value_type()'],['../d3/d62/structbpp_1_1os_1_1path_1_1_path.html#a49d34c31a876e7151ee0c7c75cc6218d',1,'bpp::os::path::Path::value_type()']]]
 ];
