@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['difference_5ftype_0',['difference_type',['../db/d9b/classbpp_1_1collections_1_1iteration_1_1_combination.html#af79b05fa29c681a4651fe79cbf791761',1,'bpp::collections::iteration::Combination']]]
+  ['allocator_5ftype_0',['allocator_type',['../d8/dd6/classbpp_1_1collections_1_1map_1_1_tree_a_v_l.html#a6b3919b98c06d590058cd30eb81bdfac',1,'bpp::collections::map::TreeAVL::allocator_type()'],['../d6/da7/classbpp_1_1collections_1_1map_1_1_trie.html#a225aa2e9edcbd26fb87c241983f59dda',1,'bpp::collections::map::Trie::allocator_type()']]]
 ];
