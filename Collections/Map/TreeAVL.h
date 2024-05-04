@@ -263,10 +263,12 @@ template <class Key, class T, class Compare = std::less<Key>, class Allocator = 
 		// Erase
 		//! Removes element at pos from the container. Returns iterator following the last removed element.
 		iterator erase(iterator pos);
-		// iterator erase(const_iterator);
+		//! Removes element at pos from the container. Returns iterator following the last removed element.
+		iterator erase(const_iterator pos);
 		//! Removes the elements in the range [first; last), which must be a valid range in *this.
 		iterator erase(iterator first, iterator last);
-		// iterator erase(const_iterator_base first, const_iterator last);
+		//! Removes the elements in the range [first; last), which must be a valid range in *this.
+		iterator erase(const_iterator first, const_iterator last);
 		//! Removes the element (if one exists) with the key equivalent to key. Returns the number of elements removed (0 or 1).
 		std::size_t erase(const Key& key);
 		//! Removes the element (if one exists) with the key equivalent to key. Returns the number of elements removed (0 or 1).

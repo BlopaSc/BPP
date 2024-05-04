@@ -380,10 +380,27 @@ template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Comp
 	if(tmp && this->cmp(tmp->data.first, k)){ ++it; }
 	return it;
 }
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::erase(const_iterator pos){
+	NodeAVL *tmp = pos.current;
+	const Key k = pos.current->data.first;
+	tmp = this->remove_node(tmp);
+	iterator it(tmp);
+	if(tmp && this->cmp(tmp->data.first, k)){ ++it; }
+	return it;
+}
 template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::erase(iterator first, iterator last){
 	while(first != last){
 		first = erase(first);
 	}
+	return first;
+}
+template <class Key, class T, class Compare, class Allocator> TreeAVL<Key,T,Compare,Allocator>::iterator TreeAVL<Key,T,Compare,Allocator>::erase(const_iterator first, const_iterator last){
+	iterator it;
+	it.current = first.current;
+	while(it != last){
+		it = erase(it);
+	}
+	return it;
 }
 template <class Key, class T, class Compare, class Allocator> std::size_t TreeAVL<Key,T,Compare,Allocator>::erase(const Key& key){
 	NodeAVL *tmp = this->root;
